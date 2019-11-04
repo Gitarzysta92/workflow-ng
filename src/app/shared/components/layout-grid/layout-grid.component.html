@@ -1,0 +1,12 @@
+
+
+<div class="col-3">
+ 
+  <ng-container *ngIf="name == 'root'">
+      {{ name }}
+      <router-outlet></router-outlet>
+  </ng-container>
+  
+  <router-outlet name="sidebar-left"></router-outlet>
+   
+</div>
