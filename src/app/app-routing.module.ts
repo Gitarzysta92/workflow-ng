@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'workflow', canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'dashboard', loadChildren: () => DashboardModule },
-    { path: 'sidebar-left', loadChildren: () => SidebarModule,  }
+    //{ path: 'sidebar-left', loadChildren: () => SidebarModule,  }
     //{ path: 'projects', loadChildren: () => ProjectsModule }
   ]},
   // { path: 'login',  component:  },
