@@ -2,6 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router'
 
 
+
 @Component({
   selector: 'grid-column',
   templateUrl: './layout-grid.component.html',
@@ -20,5 +21,9 @@ export class GridColumn implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     console.log(this.name, this.config);
   }
+}
+
+export class GridConfig {
+
 }
 

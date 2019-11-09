@@ -1,7 +1,13 @@
 <div class="app-wrapper">
-  <grid-column [name]="'sidebar-left'" [config]="{ width: 4, expandable: true, expanded: true }"></grid-column>
-  <grid-column [name]="'root'" [config]="{ width: 4, expandable: true, expanded: true }"></grid-column>
-  <grid-column [name]="'sidebar-right'" [config]="{ width: 4, expandable: true, expanded: true }"></grid-column>
+  <grid-column [config]="sidebarLeftConfig">
+    <router-outlet name="sidebar-left"></router-outlet>
+  </grid-column>
+  <grid-column [config]="mainConfig">
+    <router-outlet></router-outlet>
+  </grid-column>
+  <grid-column [config]="sidebarRightConfig">
+    <router-outlet name="sidebar-right"></router-outlet>
+  </grid-column>
 </div>
 
 
