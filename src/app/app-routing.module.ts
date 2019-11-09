@@ -15,7 +15,6 @@ const routes: Routes = [
   { path: 'workflow', canActivate: [AuthGuard], children: [
     { path: '', component: InitializationComponent, pathMatch: 'full' },
     { path: 'dashboard', loadChildren: () => DashboardModule },
-    //{ path: '', redirectTo: 'dashboard(popup:compose)', pathMatch: 'full' },
     //{ path: 'sidebar-left', loadChildren: () => SidebarModule,  }
     //{ path: 'projects', loadChildren: () => ProjectsModule }
   ]},
