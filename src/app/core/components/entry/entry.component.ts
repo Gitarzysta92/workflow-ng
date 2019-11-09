@@ -17,10 +17,18 @@ export class EntryComponent implements OnInit {
   mainConfig: GridConfig;
 
   constructor() {
+    const AuthState = Workflow.isAuthorized({ listen: true });
 
+    AuthState.subscribe(result => {
+      result ? this._setupViewForLoggedUser() : this._setupViewForNotLoggedUser()
+    })
   }
 
   ngOnInit() {
+  }
+
+  private _setupViewForLoggedUser() {
+
   }
 
 }
