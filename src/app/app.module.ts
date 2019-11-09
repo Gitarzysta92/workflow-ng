@@ -24,11 +24,13 @@ import { GridColumn } from './shared/components/layout-grid/layout-grid.componen
 
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
+import { InitializationComponent } from './core/components/initialization/initialization.component';
 
 @NgModule({
   declarations: [
     GridColumn,
     EntryComponent,
+    InitializationComponent,
   ],
   imports: [
     AppModuleRouting,
