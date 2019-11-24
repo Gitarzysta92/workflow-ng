@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 
-import { Workflow } from '../../services/workflow-shared-api.service';
-
-import { GridConfig } from '../layout-grid/layout-grid.component';
+import { UserService } from '../../services/shared-api/shared-api.service';
 
 
 @Component({
@@ -12,23 +10,17 @@ import { GridConfig } from '../layout-grid/layout-grid.component';
 })
 export class EntryComponent implements OnInit {
 
-  sidebarLeftConfig: GridConfig;
-  sidebarRightConfig: GridConfig;
-  mainConfig: GridConfig;
+  @ViewChild('tripleColumnGrid', { static: false }) tripleColumnGrid: ElementRef;
+  @ViewChild('tripleColumnGrid', { static: false }) singleColumnGrid: ElementRef;
 
-  constructor() {
-    const AuthState = Workflow.isAuthorized({ listen: true });
+  isUserExists: boolean;
 
-    AuthState.subscribe(result => {
-      result ? this._setupViewForLoggedUser() : this._setupViewForNotLoggedUser()
-    })
-  }
+  constructor(
+    private readonly userService: UserService,
+  ) {}
 
   ngOnInit() {
+    const AuthorizedUser = this.userService.getAsyncUserData();
+    AuthorizedUser.subscribe(isExists => this.isUserExists = isExists);
   }
-
-  private _setupViewForLoggedUser() {
-
-  }
-
 }

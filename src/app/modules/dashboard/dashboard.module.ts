@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardMasterComponent } from './components/dashboard-master/dashboard-master.component'
 
 // import routing module
-import { DashboardModuleRouting } from './dashboard-routing.module';
+import { RoutesModule } from './dashboard-routing.module';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { DashboardModuleRouting } from './dashboard-routing.module';
     DashboardMasterComponent
   ],
   imports: [
-    DashboardModuleRouting,
+    RoutesModule,
     CommonModule
   ],
   providers: []

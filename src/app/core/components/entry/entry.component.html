@@ -1,13 +1,30 @@
 <div class="app-wrapper">
-  <grid-column [config]="sidebarLeftConfig">
-    <router-outlet name="sidebar-left"></router-outlet>
-  </grid-column>
-  <grid-column [config]="mainConfig">
-    <router-outlet></router-outlet>
-  </grid-column>
-  <grid-column [config]="sidebarRightConfig">
-    <router-outlet name="sidebar-right"></router-outlet>
-  </grid-column>
+  <div class="row">
+    <ng-container *ngTemplateOutlet="isUserExists ? tripleColumnGrid : singleColumnGrid;"></ng-container>
+  </div>
 </div>
+
+
+
+<!-- View template with 3 outlets -->
+<ng-template #tripleColumnGrid>
+  <div grid-column [config]="{ width: 3 }">
+    <router-outlet name="sidebar-left"></router-outlet>
+  </div>
+  <div grid-column [config]="{ width: 6 }">
+    <router-outlet></router-outlet>
+  </div>
+  <div grid-column [config]="{ width: 3 }">
+    <router-outlet name="sidebar-right"></router-outlet>
+  </div>
+</ng-template>
+
+<!-- View template with 1 outlet -->
+<ng-template #singleColumnGrid>
+  <div grid-column [config]="{ width: 12 }">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+
 
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import { SharedRegistryService } from '../../core/services/shared-registry/shared-registry.service';
 
 
@@ -8,29 +8,33 @@ import { DashboardMasterComponent } from './components/dashboard-master/dashboar
 
 
 // declare routes
-const routes = [
+const routes: Array<Route> = [
   { path: '', component: DashboardMasterComponent }
 ]
 
-
+export const RoutesModule = RouterModule.forChild(routes);
 
 // declare navigation paths
-SharedRegistryService.get('navigation').add({
-  name: '',
-  path: '',
-  childrens: {},
-  meta: {
-    icon: '',
-    position: ''
+SharedRegistryService.createRecord({
+  key: 'main-navigation',
+  data: {
+    name: '',
+    path: '',
+    childrens: {},
+    meta: {
+      icon: '',
+      position: ''
+    }
   }
 })
 
 
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: []
-})
 
-export class DashboardModuleRouting {}
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule],
+//   providers: []
+// })
+
+// export class DashboardModuleRouting {}

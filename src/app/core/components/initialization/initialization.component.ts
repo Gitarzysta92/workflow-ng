@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { UserService } from '../../services/shared-api/shared-api.service';
+
 @Component({
   selector: 'app-initialization',
   templateUrl: './initialization.component.html',
@@ -8,15 +10,26 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class InitializationComponent implements OnInit {
 
+  isUserExists: boolean;
+
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private readonly userService: UserService,
   ) {}
 
   ngOnInit() {
-    console.log('on init');
-    this.router.navigate(['dashboard'], { relativeTo: this.route });
-    this.router.navigate([{ outlets: { 'sidebar-left': ['workflow'] }}]);
+
+    const AuthorizedUser = this.userService.getAsyncUserData();
+    AuthorizedUser.subscribe(isExists => this.isUserExists = isExists);
+
+    
+    //this.router.navigate(['dashboard'], { relativeTo: this.route });
+    //this.router.navigate([{ outlets: { primary: ['workflow','dashboard'], 'sidebar-left': ['workflow','sidebar'] }}]);
+    this.router.navigate([{ outlets: { 'sidebar-left': ['workflow','sidebar'] }}]);
+
+    console.log('on init', this.router, this.route);
   }
+
 
 }

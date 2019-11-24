@@ -8,12 +8,15 @@ import { InitializationComponent } from './core/components/initialization/initia
 // Load additional modules
 import { ArticlesModule } from './modules/articles/articles.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { SidebarModule } from './modules/sidebar/sidebar.module';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'workflow', pathMatch: 'full' },
+ //{ path: 'asd', outlet: 'sidebar-left' },
   { path: 'workflow', canActivate: [AuthGuard], children: [
     { path: '', component: InitializationComponent, pathMatch: 'full' },
+    { path: 'sidebar', loadChildren: () => SidebarModule, },
     { path: 'dashboard', loadChildren: () => DashboardModule },
     //{ path: 'sidebar-left', loadChildren: () => SidebarModule,  }
     //{ path: 'projects', loadChildren: () => ProjectsModule }
@@ -23,7 +26,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
   providers: []
 })

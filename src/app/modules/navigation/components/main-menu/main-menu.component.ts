@@ -30,7 +30,7 @@ interface NavigationItem {
     meta: NavigationItemMeta;
 }
 
-@SharedRegistry('navigation')
+@SharedRegistry('main-navigation')
 class Navigation { 
   // Registry configuration
   static accessible: boolean = true;

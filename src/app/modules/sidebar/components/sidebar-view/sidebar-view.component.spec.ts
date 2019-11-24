@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutGridComponent } from './layout-grid.component';
+import { SidebarViewComponent } from './sidebar-view.component';
 
-describe('LayoutGridComponent', () => {
-  let component: LayoutGridComponent;
-  let fixture: ComponentFixture<LayoutGridComponent>;
+describe('SidebarViewComponent', () => {
+  let component: SidebarViewComponent;
+  let fixture: ComponentFixture<SidebarViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LayoutGridComponent ]
+      declarations: [ SidebarViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LayoutGridComponent);
+    fixture = TestBed.createComponent(SidebarViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

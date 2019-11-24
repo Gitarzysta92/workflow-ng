@@ -1,3 +1,9 @@
+interface RegistryRecord {
+  key?: string;
+  data?: Object;
+}
+
+
 interface ConfigClass {
   table: Array<any>;
   scheme: Object;
@@ -19,8 +25,14 @@ export class SharedRegistryService {
     this._archive.push(createdRegistry);
   }
 
-  public static get(name: string): Registry {
-    return this._archive.find(reg => reg.name === name);
+  public static createRecord(query: RegistryRecord = {}): Registry {
+    const { key, data } = query;
+    if (key == null || data == null) return;
+
+    const targetRegistry = this._archive.find(reg => reg.name === key);
+    targetRegistry && targetRegistry.add(data);
+
+    return targetRegistry;
   }
 
   private static _createRegistry(name: string, configClass: ConfigClass): Registry {
@@ -76,43 +88,3 @@ class Registry {
     return this._table;
   }
  }
-
-
-
-
-
-
-
-// import { Injectable } from '@angular/core';
-
-// const archive: Array<Registry> = [];
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-
-// export class SharedRegistryService {
-
-//   constructor() {}
-
-
-//   public add(name, registryArray): void {
-//     archive.push(new Registry(name, registryArray))
-//   }
-
-//   public get(name: string): Registry {
-//     console.log(name, archive)
-//     return archive.find(reg => reg.name === name);
-//   }
-// }
-
-
-// class Registry {
-//   public readonly name: string;
-//   public container: any
-//   constructor(name, container) {
-//     this.name = name;
-//     this.container = container;
-//   }
-// }
-
