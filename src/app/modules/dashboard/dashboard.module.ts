@@ -7,6 +7,7 @@ import { DashboardMasterComponent } from './components/dashboard-master/dashboar
 // import routing module
 import { RoutesModule } from './dashboard-routing.module';
 
+import './dashboard-registry.module';
 
 @NgModule({
   declarations: [

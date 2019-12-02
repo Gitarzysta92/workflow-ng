@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Registry, SharedRegistryTemplate, RegistryList } from '../../../../core/services/shared-registry/shared-registry.service';
 
 @Component({
   selector: 'app-sidebar-view',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarViewComponent implements OnInit {
 
+  sidebarItems: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.sidebarItems = Sidebar.table;
+
+    console.log(this.sidebarItems);
   }
 
+}
+
+
+
+
+@Registry(RegistryList.Sidebar)
+class Sidebar extends SharedRegistryTemplate { 
+  static scheme: {
+    name: 'string',
+    path: 'string',
+    meta: {
+      position: 'number'
+    }
+  }
 }

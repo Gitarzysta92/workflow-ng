@@ -26,7 +26,7 @@ export class InitializationComponent implements OnInit {
     
     //this.router.navigate(['dashboard'], { relativeTo: this.route });
     //this.router.navigate([{ outlets: { primary: ['workflow','dashboard'], 'sidebar-left': ['workflow','sidebar'] }}]);
-    this.router.navigate([{ outlets: { 'sidebar-left': ['workflow','sidebar'] }}]);
+    this.router.navigate([{ outlets: { 'primary': ['dashboard'], 'sidebar-left': ['sidebar-left', 'passedArg'], 'sidebar-right': ['sidebar-right', 'passedArg'] }}], { relativeTo: this.route });
 
     console.log('on init', this.router, this.route);
   }

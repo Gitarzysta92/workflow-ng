@@ -1,8 +1,8 @@
-import { SharedRegistryService } from './shared-registry.service';
+import { SharedRegistry } from './shared-registry';
 
 
-export function SharedRegistry(name) {
+export function Registry(name) {
   return function(target: any) {
-    SharedRegistryService.addRegistry(name, target);
+    SharedRegistry.createRegistry(name, target);
   }
 }

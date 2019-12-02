@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedRegistry} from '../../../../core/services/shared-registry/shared-registry.decorator';
+import { Registry, SharedRegistryTemplate, RegistryList } from '../../../../core/services/shared-registry/shared-registry.service';
 
 
 @Component({
@@ -19,33 +19,15 @@ export class MainMenuComponent implements OnInit {
 
 }
 
-interface NavigationItemMeta {
-  position: number;
-}
-
-interface NavigationItem {
-    name: string;
-    path: string;
-    childrens: Array<NavigationItem>;
-    meta: NavigationItemMeta;
-}
-
-@SharedRegistry('main-navigation')
-class Navigation { 
-  // Registry configuration
-  static accessible: boolean = true;
-
-  // Registry core properties - required
-  static table: Array<any> = [];
-  static scheme: NavigationItem = {
-    name: '',
-    path: '',
+@Registry(RegistryList.Navigation)
+class Navigation extends SharedRegistryTemplate { 
+  static scheme: {
+    name: 'string',
+    path: 'string',
     childrens: [],
     meta: {
-      position: 0
+      position: 'number'
     }
   }
-
-  
 }
 

@@ -13,13 +13,11 @@ import { SidebarModule } from './modules/sidebar/sidebar.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'workflow', pathMatch: 'full' },
- //{ path: 'asd', outlet: 'sidebar-left' },
   { path: 'workflow', canActivate: [AuthGuard], children: [
     { path: '', component: InitializationComponent, pathMatch: 'full' },
-    { path: 'sidebar', loadChildren: () => SidebarModule, },
-    { path: 'dashboard', loadChildren: () => DashboardModule },
-    //{ path: 'sidebar-left', loadChildren: () => SidebarModule,  }
-    //{ path: 'projects', loadChildren: () => ProjectsModule }
+    { path: 'sidebar-left/:components', loadChildren: () => SidebarModule, outlet: 'sidebar-left'},
+    { path: 'sidebar-right/:components', loadChildren: () => SidebarModule, outlet: 'sidebar-right'},
+    { path: 'dashboard', loadChildren: () => DashboardModule }
   ]},
   // { path: 'login',  component:  },
   // { register: 'register', component: }

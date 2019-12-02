@@ -9,37 +9,7 @@ import { SidebarViewComponent } from './components/sidebar-view/sidebar-view.com
 
 // declare routes
 const routes: Routes = [
-  { path: '', children: [
-    { path: 'left', component: SidebarViewComponent, outlet: 'sidebar-left' },
-    { path: 'right', component: SidebarViewComponent, outlet: 'sidebar-right' }
-  ]}
-
+  { path: '', component: SidebarViewComponent }
 ]
 
 export const RoutesModule = RouterModule.forChild(routes);
-
-
-// declare navigation paths
-// SharedRegistryService.createRecord({
-//   key: 'main-navigation',
-//   data: {
-//     name: '',
-//     path: '',
-//     childrens: {},
-//     meta: {
-//       icon: '',
-//       position: ''
-//     }
-//   }
-// })
-
-
-
-
-// @NgModule({
-//   imports: [RouterModule.forChild(routes)],
-//   exports: [RouterModule],
-//   providers: []
-// })
-
-// export class DashboardModuleRouting {}
