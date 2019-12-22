@@ -14,7 +14,6 @@ export class SidebarViewComponent implements OnInit {
 
   ngOnInit() {
     this.sidebarItems = Sidebar.table;
-
     console.log(this.sidebarItems);
   }
 
@@ -25,7 +24,7 @@ export class SidebarViewComponent implements OnInit {
 
 @Registry(RegistryList.Sidebar)
 class Sidebar extends SharedRegistryTemplate { 
-  static scheme: {
+  static dataScheme = {
     name: 'string',
     path: 'string',
     meta: {

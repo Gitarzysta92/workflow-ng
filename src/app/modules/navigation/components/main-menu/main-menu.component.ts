@@ -14,14 +14,14 @@ export class MainMenuComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.menuItems = Navigation.table;
+    //this.menuItems = Navigation.table;
   }
 
 }
 
 @Registry(RegistryList.Navigation)
 class Navigation extends SharedRegistryTemplate { 
-  static scheme: {
+  static dataScheme = {
     name: 'string',
     path: 'string',
     childrens: [],

@@ -12,9 +12,6 @@ export class SharedRegistryContainer {
     this._scheme = template.scheme;
     this._accessible = template.accessible;
 
-    
-
-
     this._selfSetup()
   }
 
@@ -25,7 +22,8 @@ export class SharedRegistryContainer {
 
   public addRecord(itemData): void {
     if (itemData == null) return;
-    this._table.push(Object.assign(this._scheme, itemData));
+    //const validItemData = Object.keys(this._scheme).map(key=> itemData[key]);  
+    this._table.push(itemData);
   }
 
   private _selfSetup(): void {
@@ -47,7 +45,17 @@ export class SharedRegistryContainer {
 
  export class RegistryRecord {
   assignedRegistryName: RegistryList;
-  constructor(assignedRegistryName, data) {
+  constructor(assignedRegistryName, data, scheme?) {
     this.assignedRegistryName = assignedRegistryName;
+    this.initializeProperties(data)
+  }
+
+  initializeProperties(data, scheme?) {
+    Object.keys(data).forEach(key => {
+      Object.defineProperty(this, key, {
+        value: data[key],
+        enumerable: true
+      })
+    })
   }
  }

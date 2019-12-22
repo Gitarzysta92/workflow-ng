@@ -41,7 +41,6 @@ export class SharedRegistry {
     if (isExists) return isExists;
     
     setup.registryName = name;
-    console.log(setup.registryName);
     const createdRegistry = new SharedRegistryContainer(setup);
     
     createdRegistry.addRecords(this._getNotAssignedRecordsByRegistryName(createdRegistry.name));
@@ -54,9 +53,9 @@ export class SharedRegistry {
   private static _addRecordFor(registryName: RegistryList, data: any = {}): void {
     const newRecord = new RegistryRecord(registryName, data)
 
-    const registry = this._archive.find(registry => console.log(registry.name, registryName));
+    const registry = this._archive.find(registry => registry.name === registryName);
 
-    console.log(this._archive, RegistryList[registryName]); 
+    console.log(registry);
 
     registry ? registry.addRecord(newRecord) : this._notAssignedRecords.push(newRecord);
   }

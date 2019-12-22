@@ -9,9 +9,12 @@ import { RegistryList } from './shared-registry.enum';
   
 
   // Registry data scheme
-  public static set scheme(data) { this._scheme = Object.assign(this._scheme, data) }
-  private static _scheme: {
+  public static dataScheme: any = {};
+  private static _defaultDataScheme: any = {
     name: 'string',
     component: 'Function'
+  }
+  public static get scheme() { 
+    return {...this.dataScheme, ...this._defaultDataScheme};
   }
  }
