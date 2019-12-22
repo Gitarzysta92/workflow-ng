@@ -1,8 +1,6 @@
 import { RegistryList } from './shared-registry.enum';
  
  export class SharedRegistryTemplate {
-  static table: Array<any> = [];
-
   // configuration
   static registryName: RegistryList;
   static accessible: boolean = true;

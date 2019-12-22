@@ -20,6 +20,9 @@ import './navigation-registry.module';
   providers: [],
   exports: [
     MainMenuComponent
+  ],
+  entryComponents: [
+    MainMenuComponent
   ]
 })
 

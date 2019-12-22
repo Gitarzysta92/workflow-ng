@@ -1,1 +1,4 @@
-<p>sidebar-view works!</p>
+<ng-container *ngFor="let item of itemsForView">
+  <ng-container *resolve="item"></ng-container>
+</ng-container>
+

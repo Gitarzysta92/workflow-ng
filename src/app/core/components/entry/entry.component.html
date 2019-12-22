@@ -1,13 +1,23 @@
-<div class="app-wrapper">
-  <div class="row">
-    <ng-container *ngTemplateOutlet="isUserExists ? tripleColumnGrid : singleColumnGrid;"></ng-container>
-  </div>
+
+
+<div class="row">
+  <router-outlet name="topbar"></router-outlet>
+</div>
+<div class="row">
+  <router-outlet name="sidebar-left"></router-outlet>
+  <router-outlet></router-outlet>
+  <router-outlet name="sidebar-right"></router-outlet>  
+</div>
+<div class="row">
+  <router-outlet name="topbar"></router-outlet>
 </div>
 
 
 
+
+
 <!-- View template with 3 outlets -->
-<ng-template #tripleColumnGrid>
+<!-- <ng-template #tripleColumnGrid>
   <div grid-column [config]="{ width: 3 }">
     <router-outlet name="sidebar-left"></router-outlet>
   </div>
@@ -17,14 +27,15 @@
   <div grid-column [config]="{ width: 3 }">
     <router-outlet name="sidebar-right"></router-outlet>
   </div>
-</ng-template>
+</ng-template> -->
 
 <!-- View template with 1 outlet -->
-<ng-template #singleColumnGrid>
+<!-- <ng-template #singleColumnGrid>
   <div grid-column [config]="{ width: 12 }">
     <router-outlet></router-outlet>
   </div>
-</ng-template>
+</ng-template> -->
+
 
 
 

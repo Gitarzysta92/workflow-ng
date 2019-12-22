@@ -29,6 +29,11 @@ export class SharedRegistry {
     this._addRecordFor(registryName , data);
   }
 
+  // Returns registry with given name
+  public static getRegistry(registryName: RegistryList): SharedRegistryContainer {
+    return this._archive.find(registry => registry.name === registryName);
+  }
+
 
   //
   // Private methods
@@ -54,8 +59,6 @@ export class SharedRegistry {
     const newRecord = new RegistryRecord(registryName, data)
 
     const registry = this._archive.find(registry => registry.name === registryName);
-
-    console.log(registry);
 
     registry ? registry.addRecord(newRecord) : this._notAssignedRecords.push(newRecord);
   }

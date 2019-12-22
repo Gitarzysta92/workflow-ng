@@ -7,6 +7,7 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
 // Register component in sidebar
 SharedRegistry.addRecordFor(RegistryList.Sidebar, {
   name: 'Main menu',
-  path: 'sidebar-left/*',
+  path: '**',
+  type: 'sidebar-left',
   component: MainMenuComponent
 })

@@ -2,13 +2,16 @@ import { RegistryList } from './shared-registry.enum';
 
 
 export class SharedRegistryContainer {
+
+  public get items(): Array<RegistryRecord> {
+    return this._table;
+  }
   public readonly name: RegistryList;
-  private _table: any;
+  private _table: any = [];
   private _scheme: object;
   private _accessible: boolean;
   constructor(template) {
     this.name = template.registryName;
-    this._table = template.table;
     this._scheme = template.scheme;
     this._accessible = template.accessible;
 

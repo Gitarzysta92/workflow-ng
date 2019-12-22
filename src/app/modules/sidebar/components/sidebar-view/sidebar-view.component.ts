@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Registry, SharedRegistryTemplate, RegistryList } from '../../../../core/services/shared-registry/shared-registry.service';
+import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-view',
@@ -10,12 +11,33 @@ export class SidebarViewComponent implements OnInit {
 
   sidebarItems: any;
 
-  constructor() { }
+  itemsForView: Array<any> = [];
+
+  constructor(
+    private readonly registryService: SharedRegistryService,
+    private readonly route: ActivatedRoute
+  ) { }
+
+  
+
 
   ngOnInit() {
-    this.sidebarItems = Sidebar.table;
-    console.log(this.sidebarItems);
+    const { items } = this.registryService.getRegistry(RegistryList.Sidebar);
+    this.sidebarItems = items;
+
+    this.sidebarItems.forEach(item => {
+      item.type === this.route.parent.outlet 
+        && this.itemsForView.push(item.component);
+    })
+
+    //console.log(this.itemsForView);
   }
+
+  // private _loadComponent(component: any): any {
+    
+
+  //   return componentFactory;
+  // } 
 
 }
 
@@ -27,8 +49,7 @@ class Sidebar extends SharedRegistryTemplate {
   static dataScheme = {
     name: 'string',
     path: 'string',
-    meta: {
-      position: 'number'
-    }
+    type: '',
+    position: 'number'
   }
 }
