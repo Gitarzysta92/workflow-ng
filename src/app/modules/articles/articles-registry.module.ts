@@ -3,7 +3,7 @@ import { SharedRegistry, RegistryList } from '../../core/services/shared-registr
 
 // declare navigation paths
 SharedRegistry.addRecordFor(RegistryList.Navigation, {
-    name: 'dashboard',
+    name: 'articles',
     path: '',
     childrens: {},
     meta: {

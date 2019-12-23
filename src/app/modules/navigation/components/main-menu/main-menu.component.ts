@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Registry, SharedRegistryTemplate, RegistryList } from '../../../../core/services/shared-registry/shared-registry.service';
+import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 
 
 @Component({
@@ -9,12 +9,15 @@ import { Registry, SharedRegistryTemplate, RegistryList } from '../../../../core
 })
 
 export class MainMenuComponent implements OnInit {
-  menuItems: any;
+  menuItems: any = [];
 
-  constructor() {}
+  constructor(
+    private readonly registryService: SharedRegistryService
+  ) {}
 
   ngOnInit() {
-    //this.menuItems = Navigation.table;
+    this.menuItems = this.registryService.getRegistry(RegistryList.Navigation).items;
+    console.log(this.menuItems)
   }
 
 }

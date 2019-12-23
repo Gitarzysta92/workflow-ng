@@ -19,7 +19,7 @@ import { SharedRegistryService } from './core/services/shared-registry/shared-re
 import { NavigationModule } from './modules/navigation/navigation.module';
 
 // imports shared
-import { GridColumn } from './shared/directives/grid-column/grid-column.directive';
+//import { GridColumn } from './shared/directives/grid-column/grid-column.directive';
 
 
 // imports top level routing module
@@ -28,7 +28,7 @@ import { InitializationComponent } from './core/components/initialization/initia
 
 @NgModule({
   declarations: [
-    GridColumn,
+    //GridColumn,
     EntryComponent,
     InitializationComponent,
   ],

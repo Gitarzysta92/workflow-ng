@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SidebarViewComponent implements OnInit {
 
+  outletData: any;
+
   sidebarItems: any;
 
   itemsForView: Array<any> = [];
@@ -17,8 +19,6 @@ export class SidebarViewComponent implements OnInit {
     private readonly registryService: SharedRegistryService,
     private readonly route: ActivatedRoute
   ) { }
-
-  
 
 
   ngOnInit() {
@@ -30,15 +30,11 @@ export class SidebarViewComponent implements OnInit {
         && this.itemsForView.push(item.component);
     })
 
-    //console.log(this.itemsForView);
+    // const { items: outlets } = this.registryService.getRegistry(RegistryList.outlets);
+    // this.outletData = outlets.find(outlet => {
+    //   outlet.name === this.route.parent.outlet
+    // })
   }
-
-  // private _loadComponent(component: any): any {
-    
-
-  //   return componentFactory;
-  // } 
-
 }
 
 
