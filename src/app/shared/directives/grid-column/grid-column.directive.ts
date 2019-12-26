@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input, AfterViewInit, ElementRef, HostListener } from '@angular/core';
+import { Directive, OnInit, Input, AfterViewInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { RouterOutlet } from '@angular/router'
 import { config } from 'rxjs';
 

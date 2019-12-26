@@ -1,8 +1,5 @@
-<div class="col-3">
-  <div class="row">
-    <ng-container *ngFor="let item of itemsForView">
-      <ng-container *resolve="item"></ng-container>
-    </ng-container>
-  </div>
-</div>
+<ng-container *ngFor="let item of itemsForView">
+  <ng-container *resolve="item"></ng-container>
+</ng-container>
+
 

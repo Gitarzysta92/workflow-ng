@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TemplateGridService, GridPart } from '@workflow/grid';
 import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 
 
@@ -12,8 +13,17 @@ export class MainMenuComponent implements OnInit {
   menuItems: any = [];
 
   constructor(
-    private readonly registryService: SharedRegistryService
+    private readonly registryService: SharedRegistryService,
+    private readonly gridService: TemplateGridService
+    //private readonly sidebarRef: SidebarReference 
   ) {}
+
+  collapseSidebar() {
+    //this.sidebarRef.collapse();
+    //this.sidebarRef.expand();
+
+    this.gridService.getPart(GridPart.sidebarLeft).collapse();
+  }
 
   ngOnInit() {
     this.menuItems = this.registryService.getRegistry(RegistryList.Navigation).items;

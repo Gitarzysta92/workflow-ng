@@ -12,7 +12,8 @@ import { EntryComponent } from './core/components/entry/entry.component';
 
 // import core services
 import { UserService } from './core/services/user/user.service';
-import { SharedRegistryService } from './core/services/shared-registry/shared-registry.service'
+import { SharedRegistryService } from './core/services/shared-registry/shared-registry.service';
+import { TemplateGridService } from './core/services/template-grid/template-grid.service';
 
 
 // imports modules
@@ -39,7 +40,8 @@ import { InitializationComponent } from './core/components/initialization/initia
   ],
   providers: [
     UserService,
-    SharedRegistryService
+    SharedRegistryService,
+    TemplateGridService
   ],
   bootstrap: [EntryComponent]
 })

@@ -23,4 +23,8 @@ export class EntryComponent implements OnInit {
     const AuthorizedUser = this.userService.getAsyncUserData();
     AuthorizedUser.subscribe(isExists => this.isUserExists = isExists);
   }
+
+  activateEvent(event) {
+    console.log(event);
+  }
 }
