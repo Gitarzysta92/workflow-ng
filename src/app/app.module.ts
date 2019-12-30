@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 //
 
 // imports entry component
-import { EntryComponent } from './core/components/entry/entry.component';
+import { AppViewComponent } from './core/components/app-view/app-view.component';
 
 
 // import core services
@@ -15,12 +15,15 @@ import { UserService } from './core/services/user/user.service';
 import { SharedRegistryService } from './core/services/shared-registry/shared-registry.service';
 import { TemplateGridService } from './core/services/template-grid/template-grid.service';
 
+// import core directives
+import { GridColumn } from './core/directives/grid-column/grid-column.directive';
+
 
 // imports modules
 import { NavigationModule } from './modules/navigation/navigation.module';
 
 // imports shared
-//import { GridColumn } from './shared/directives/grid-column/grid-column.directive';
+
 
 
 // imports top level routing module
@@ -29,8 +32,8 @@ import { InitializationComponent } from './core/components/initialization/initia
 
 @NgModule({
   declarations: [
-    //GridColumn,
-    EntryComponent,
+    GridColumn,
+    AppViewComponent,
     InitializationComponent,
   ],
   imports: [
@@ -43,6 +46,6 @@ import { InitializationComponent } from './core/components/initialization/initia
     SharedRegistryService,
     TemplateGridService
   ],
-  bootstrap: [EntryComponent]
+  bootstrap: [AppViewComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TemplateGridService, GridPart } from '@workflow/grid';
+import { TemplateGridService, GridViews } from '@workflow/grid';
 import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 
 
@@ -19,10 +19,8 @@ export class MainMenuComponent implements OnInit {
   ) {}
 
   collapseSidebar() {
-    //this.sidebarRef.collapse();
-    //this.sidebarRef.expand();
-
-    this.gridService.getPart(GridPart.sidebarLeft).collapse();
+    const sidebarLeft = this.gridService.view(GridViews.sidebarLeft);
+    sidebarLeft && sidebarLeft.collapse();
   }
 
   ngOnInit() {

@@ -1,0 +1,21 @@
+<div class="row">
+  <div grid-column [type]="gridViews.topBar" class="topbar col-12">
+    <router-outlet name="topbar"></router-outlet>
+  </div>
+</div>
+<div class="row">
+  <div grid-column [type]="gridViews.sidebarLeft" class="sidebar-left col-3">
+    <router-outlet name="sidebar-left"></router-outlet>
+  </div>
+  <div grid-column [type]="gridViews.primary" class="primary col">
+    <router-outlet></router-outlet>
+  </div>
+  <div grid-column [type]="gridViews.sidebarRight" class="sidebar-right col-3">
+    <router-outlet name="sidebar-right"></router-outlet>
+  </div>  
+</div>
+<div class="row">
+  <div grid-column [type]="gridViews.bottomBar" class="bottombar col-12">
+    <router-outlet name="bottomBar"></router-outlet>
+  </div>
+</div>
