@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Workflow } from '../../services/workflow-shared-api.service';
 
 import { GridConfig } from '../layout-grid/layout-grid.component';
 
@@ -17,11 +16,11 @@ export class EntryComponent implements OnInit {
   mainConfig: GridConfig;
 
   constructor() {
-    const AuthState = Workflow.isAuthorized({ listen: true });
+    // const AuthState = Workflow.isAuthorized({ listen: true });
 
-    AuthState.subscribe(result => {
-      result ? this._setupViewForLoggedUser() : this._setupViewForNotLoggedUser()
-    })
+    // AuthState.subscribe(result => {
+    //   result ? this._setupViewForLoggedUser() : this._setupViewForNotLoggedUser()
+    // })
   }
 
   ngOnInit() {

@@ -9,43 +9,35 @@ import { SharedRegistry} from '../../../../core/services/shared-registry/shared-
 })
 
 export class MainMenuComponent implements OnInit {
-  menuItems: any;
+  private _menuItems: Array<>;
 
-  constructor() {}
-
-  ngOnInit() {
-    this.menuItems = Navigation.table;
+  constructor() {
+    this._menuItems = [];
   }
 
+  ngOnInit() {
+    this._getMenuItems();
+  }
+
+  private _getMenuItems(): void {
+    this._menuItems = this.sharedRegistry.get(RegistryList.navigation).items;
+  }
+
+  private _setMenuItemsPositions(): void {
+
+  }
+
+
+
 }
 
-interface NavigationItemMeta {
-  position: number;
-}
 
-interface NavigationItem {
-    name: string;
-    path: string;
-    childrens: Array<NavigationItem>;
-    meta: NavigationItemMeta;
-}
-
-@SharedRegistry('navigation')
-class Navigation { 
-  // Registry configuration
-  static accessible: boolean = true;
-
-  // Registry core properties - required
-  static table: Array<any> = [];
-  static scheme: NavigationItem = {
+const asd = {
     name: '',
     path: '',
     childrens: [],
     meta: {
-      position: 0
+      position: 0,
+
     }
   }
-
-  
-}
-
