@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserService } from '../../services/shared-api/shared-api.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-initialization',
@@ -21,12 +21,18 @@ export class InitializationComponent implements OnInit {
   ngOnInit() {
 
     const AuthorizedUser = this.userService.getAsyncUserData();
-    AuthorizedUser.subscribe(isExists => this.isUserExists = isExists);
+    AuthorizedUser.subscribe(isExists => {
+      if (isExists) {
+        this.router.navigate([{ outlets: { 'primary': ['dashboard'], 'sidebar-left': ['sidebar-left', 'passedArg'], 'sidebar-right': ['sidebar-right', 'passedArg'] }}], { relativeTo: this.route });
+      } else {
+        this.router.navigate([{ outlets: { 'primary': [''], 'sidebar-left': null, 'sidebar-right': null }}]);
+      } 
+    });
 
     
     //this.router.navigate(['dashboard'], { relativeTo: this.route });
     //this.router.navigate([{ outlets: { primary: ['workflow','dashboard'], 'sidebar-left': ['workflow','sidebar'] }}]);
-    this.router.navigate([{ outlets: { 'primary': ['dashboard'], 'sidebar-left': ['sidebar-left', 'passedArg'], 'sidebar-right': ['sidebar-right', 'passedArg'] }}], { relativeTo: this.route });
+    
 
     console.log('on init', this.router, this.route);
   }
