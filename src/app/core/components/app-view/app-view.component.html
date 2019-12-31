@@ -5,13 +5,13 @@
 </div>
 <div class="row">
   <div grid-column [type]="gridViews.sidebarLeft" class="sidebar-left col-3">
-    <router-outlet name="sidebar-left"></router-outlet>
+    <router-outlet name="app-view-left-sidebar"></router-outlet>
   </div>
   <div grid-column [type]="gridViews.primary" class="primary col">
     <router-outlet></router-outlet>
   </div>
   <div grid-column [type]="gridViews.sidebarRight" class="sidebar-right col-3">
-    <router-outlet name="sidebar-right"></router-outlet>
+    <router-outlet name="app-view-right-sidebar"></router-outlet>
   </div>  
 </div>
 <div class="row">

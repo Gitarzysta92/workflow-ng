@@ -6,9 +6,10 @@ import { NgModule } from '@angular/core';
 // import application core
 //
 
-// imports entry component
+// imports core components
+import { EntryViewComponent } from './core/components/entry-view/entry-view.component';
 import { AppViewComponent } from './core/components/app-view/app-view.component';
-
+import { InitializationComponent } from './core/components/initialization/initialization.component';
 
 // import core services
 import { UserService } from './core/services/user/user.service';
@@ -28,13 +29,15 @@ import { NavigationModule } from './modules/navigation/navigation.module';
 
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
-import { InitializationComponent } from './core/components/initialization/initialization.component';
+
 
 @NgModule({
   declarations: [
     GridColumn,
     AppViewComponent,
+    EntryViewComponent,
     InitializationComponent,
+    EntryViewComponent,
   ],
   imports: [
     AppModuleRouting,
@@ -46,6 +49,6 @@ import { InitializationComponent } from './core/components/initialization/initia
     SharedRegistryService,
     TemplateGridService
   ],
-  bootstrap: [AppViewComponent]
+  bootstrap: [EntryViewComponent]
 })
 export class AppModule { }
