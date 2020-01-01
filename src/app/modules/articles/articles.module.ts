@@ -8,6 +8,8 @@ import { PinnedArticlesComponent } from './components/pinned-articles/pinned-art
 import { ArticlesModuleRouting } from './articles-routing.module';
 
 
+import './articles-registry.module';
+
 @NgModule({
   declarations: [
     PinnedArticlesComponent

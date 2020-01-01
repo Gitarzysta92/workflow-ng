@@ -7,6 +7,8 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component'
 //import routing module
 import { NavigationModuleRouting } from './navigation-routing.module';
 
+import './navigation-registry.module';
+
 @NgModule({
   declarations: [
     MainMenuComponent
@@ -17,6 +19,9 @@ import { NavigationModuleRouting } from './navigation-routing.module';
   ],
   providers: [],
   exports: [
+    MainMenuComponent
+  ],
+  entryComponents: [
     MainMenuComponent
   ]
 })

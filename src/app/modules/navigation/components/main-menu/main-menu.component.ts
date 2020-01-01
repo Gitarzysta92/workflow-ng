@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedRegistry} from '../../../../core/services/shared-registry/shared-registry.decorator';
+import { TemplateGridService, GridViews } from '@workflow/grid';
+import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 
 
 @Component({
@@ -9,43 +10,35 @@ import { SharedRegistry} from '../../../../core/services/shared-registry/shared-
 })
 
 export class MainMenuComponent implements OnInit {
-  menuItems: any;
+  menuItems: any = [];
 
-  constructor() {}
+  constructor(
+    private readonly registryService: SharedRegistryService,
+    private readonly gridService: TemplateGridService
+    //private readonly sidebarRef: SidebarReference 
+  ) {}
+
+  collapseSidebar() {
+    const sidebarLeft = this.gridService.view(GridViews.sidebarLeft);
+    sidebarLeft && sidebarLeft.collapse();
+  }
 
   ngOnInit() {
-    this.menuItems = Navigation.table;
+    this.menuItems = this.registryService.getRegistry(RegistryList.Navigation).items;
+    console.log(this.menuItems)
   }
 
 }
 
-interface NavigationItemMeta {
-  position: number;
-}
-
-interface NavigationItem {
-    name: string;
-    path: string;
-    childrens: Array<NavigationItem>;
-    meta: NavigationItemMeta;
-}
-
-@SharedRegistry('navigation')
-class Navigation { 
-  // Registry configuration
-  static accessible: boolean = true;
-
-  // Registry core properties - required
-  static table: Array<any> = [];
-  static scheme: NavigationItem = {
-    name: '',
-    path: '',
+@Registry(RegistryList.Navigation)
+class Navigation extends SharedRegistryTemplate { 
+  static dataScheme = {
+    name: 'string',
+    path: 'string',
     childrens: [],
     meta: {
-      position: 0
+      position: 'number'
     }
   }
-
-  
 }
 

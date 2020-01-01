@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // imports components
-import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 // declare routes
-const routes = [];
+const routes = [
+  { path: 'login', component: LoginFormComponent }
+];
 
 
 @NgModule({
@@ -13,4 +15,5 @@ const routes = [];
   exports: [RouterModule],
   providers: []
 })
-export class NavigationModuleRouting {}
+
+export class AuthenticationModuleRouting {}
