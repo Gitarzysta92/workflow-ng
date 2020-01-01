@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
   }
 
   redirectToLoginPage() {
-    this.router.navigate([{ outlets: { 'primary': ['user','login'] }}]);
+    this.router.navigate(['user', { outlets: { 'primary': ['login'], 'entry-view-sidebar': ['app-ads'] }}]);
     return false;
   }
 }

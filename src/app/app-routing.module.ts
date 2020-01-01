@@ -6,6 +6,7 @@ import { AuthGuard } from './core/services/auth-guard/auth-guard.service';
 
 // Load core components
 import { AppViewComponent } from './core/components/app-view/app-view.component';
+import { UnauthViewComponent } from './core/components/unauth-view/unauth-view.component';
 import { InitializationComponent } from './core/components/initialization/initialization.component';
 
 // Load additional modules
@@ -27,7 +28,7 @@ const routes: Routes = [
   ]},
   { path: 'user', component: UnauthViewComponent, children: [
     { path: '', loadChildren: () => AuthenticationModule },
-    { path: 'entry-sidebar', loadChildren: () => AppAdvertisementsModule, outlet: 'entry-view-sidebar' }
+    { path: 'app-ads', loadChildren: () => AppAdvertisementsModule, outlet: 'entry-view-sidebar' }
   ]}
 ]
 

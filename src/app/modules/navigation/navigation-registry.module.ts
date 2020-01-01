@@ -8,6 +8,6 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
 SharedRegistry.addRecordFor(RegistryList.Sidebar, {
   name: 'Main menu',
   path: '**',
-  type: 'sidebar-left',
+  type: 'app-view-left-sidebar',
   component: MainMenuComponent
 })

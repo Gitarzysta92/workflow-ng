@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 // imports core components
 import { EntryViewComponent } from './core/components/entry-view/entry-view.component';
 import { AppViewComponent } from './core/components/app-view/app-view.component';
+import { UnauthViewComponent } from './core/components/unauth-view/unauth-view.component';
 import { InitializationComponent } from './core/components/initialization/initialization.component';
 
 // import core services
@@ -36,6 +37,7 @@ import { AppModuleRouting } from './app-routing.module';
     GridColumn,
     AppViewComponent,
     EntryViewComponent,
+    UnauthViewComponent,
     InitializationComponent,
     EntryViewComponent,
   ],

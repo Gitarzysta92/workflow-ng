@@ -5,7 +5,7 @@ import { CommonModule } from "@angular/common";
 import { AdvSliderComponent } from './components/adv-slider/adv-slider.component'; 
 
 // import routing module
-import { AppAdvertisementsModuleRouting } from './app-advertisements-routing.module';
+import { RoutesModule } from './app-advertisements-routing.module';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { AppAdvertisementsModuleRouting } from './app-advertisements-routing.mod
     AdvSliderComponent
   ],
   imports: [
-    AppAdvertisementsModuleRouting
+    RoutesModule
   ],
   providers: []
 })
