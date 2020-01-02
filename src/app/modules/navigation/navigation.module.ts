@@ -9,6 +9,8 @@ import { NavigationModuleRouting } from './navigation-routing.module';
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
 import { MenuWrapperComponent } from './components/menu-wrapper/menu-wrapper.component';
 
+import './navigation-registry.module';
+
 @NgModule({
   declarations: [
     MainMenuComponent,
@@ -21,6 +23,9 @@ import { MenuWrapperComponent } from './components/menu-wrapper/menu-wrapper.com
   ],
   providers: [],
   exports: [
+    MainMenuComponent
+  ],
+  entryComponents: [
     MainMenuComponent
   ]
 })

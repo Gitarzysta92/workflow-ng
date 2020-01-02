@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedRegistry} from '../../../../core/services/shared-registry/shared-registry.decorator';
+import { TemplateGridService, GridViews } from '@workflow/grid';
+import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 
 
 @Component({
@@ -9,35 +10,34 @@ import { SharedRegistry} from '../../../../core/services/shared-registry/shared-
 })
 
 export class MainMenuComponent implements OnInit {
-  private _menuItems: Array<>;
+  menuItems: any = [];
 
-  constructor() {
-    this._menuItems = [];
+  constructor(
+    private readonly registryService: SharedRegistryService,
+    private readonly gridService: TemplateGridService,
+    //private readonly sidebarRef: SidebarReference
+  ) {}
+
+  collapseSidebar() {
+    const sidebarLeft = this.gridService.view(GridViews.sidebarLeft);
+    sidebarLeft && sidebarLeft.collapse();
   }
 
   ngOnInit() {
-    this._getMenuItems();
+    this.menuItems = this.registryService.getRegistry(RegistryList.Navigation).items;
   }
-
-  private _getMenuItems(): void {
-    this._menuItems = this.sharedRegistry.get(RegistryList.navigation).items;
-  }
-
-  private _setMenuItemsPositions(): void {
-
-  }
-
-
 
 }
 
-
-const asd = {
-    name: '',
-    path: '',
+@Registry(RegistryList.Navigation)
+class Navigation extends SharedRegistryTemplate { 
+  static dataScheme = {
+    name: 'string',
+    path: 'string',
     childrens: [],
     meta: {
-      position: 0,
-
+      position: 'number'
     }
   }
+}
+

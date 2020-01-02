@@ -6,44 +6,49 @@ import { NgModule } from '@angular/core';
 // import application core
 //
 
-// imports entry component
-import { EntryComponent } from './core/components/entry/entry.component';
-import { GridColumn } from './core/components/layout-grid/layout-grid.component';
+// imports core components
+import { EntryViewComponent } from './core/components/entry-view/entry-view.component';
+import { AppViewComponent } from './core/components/app-view/app-view.component';
+import { UnauthViewComponent } from './core/components/unauth-view/unauth-view.component';
+import { InitializationComponent } from './core/components/initialization/initialization.component';
 
 // import core services
 import { UserService } from './core/services/user/user.service';
-import { SharedRegistryService } from './core/services/shared-registry/shared-registry.service'
+import { SharedRegistryService } from './core/services/shared-registry/shared-registry.service';
+import { TemplateGridService } from './core/services/template-grid/template-grid.service';
 
+// import core directives
+import { GridColumn } from './core/directives/grid-column/grid-column.directive';
 
 // imports modules
 import { NavigationModule } from './modules/navigation/navigation.module';
-import { ArticlesModule } from './modules/articles/articles.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 // imports shared
 
 
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
-import { InitializationComponent } from './core/components/initialization/initialization.component';
+
 
 @NgModule({
   declarations: [
     GridColumn,
-    EntryComponent,
+    AppViewComponent,
+    EntryViewComponent,
+    UnauthViewComponent,
     InitializationComponent,
+    EntryViewComponent,
   ],
   imports: [
     AppModuleRouting,
     BrowserModule,
-    NavigationModule,
-    ArticlesModule,
-    DashboardModule
+    NavigationModule
   ],
   providers: [
     UserService,
-    SharedRegistryService
+    SharedRegistryService,
+    TemplateGridService
   ],
-  bootstrap: [EntryComponent]
+  bootstrap: [EntryViewComponent]
 })
 export class AppModule { }

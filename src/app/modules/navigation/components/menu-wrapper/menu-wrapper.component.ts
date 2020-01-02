@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Route, Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'menu-wrapper',
@@ -9,7 +10,8 @@ export class MenuWrapperComponent implements OnInit {
 
   @Input() menuItems: Array<any> = [];
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
     this.menuItems = this.menuItems.sort((first, second) => {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutGridComponent } from './layout-grid.component';
+import { MainMenuComponent } from './main-menu.component';
 
-describe('LayoutGridComponent', () => {
-  let component: LayoutGridComponent;
-  let fixture: ComponentFixture<LayoutGridComponent>;
+describe('MainMenuComponent', () => {
+  let component: MainMenuComponent;
+  let fixture: ComponentFixture<MainMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LayoutGridComponent ]
+      declarations: [ MainMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LayoutGridComponent);
+    fixture = TestBed.createComponent(MainMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
