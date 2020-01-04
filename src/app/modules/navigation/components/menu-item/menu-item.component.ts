@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators'
 @Component({
   selector: 'menu-item',
   templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.scss']
+  styleUrls: ['./menu-item.component.scss'],
 })
 export class MenuItemComponent implements OnInit {
 
@@ -17,10 +17,11 @@ export class MenuItemComponent implements OnInit {
 
 
   constructor(
-    
+    //private route: Route
   ) { }
 
   ngOnInit() {
+    //console.log(this.route);
     // this.isActive = !!(this.route.url === this.path);
 
     // this.router.events

@@ -1,4 +1,4 @@
-import { ViewRef, Directive, Input, ViewContainerRef, TemplateRef, ComponentFactoryResolver } from '@angular/core';
+import { ViewRef, Directive, Input, ViewContainerRef, TemplateRef, ComponentFactoryResolver, Injector, InjectDecorator } from '@angular/core';
 
 @Directive({
   selector: '[resolve]'
@@ -7,18 +7,16 @@ export class DynamicItemDirective {
 
   constructor(
     private viewContainerRef: ViewContainerRef,
-    private readonly componentFactoryResolver: ComponentFactoryResolver
+    private readonly componentFactoryResolver: ComponentFactoryResolver,
+    private injector: Injector
   ) { }
 
   @Input()
   set resolve(view) {
     this.viewContainerRef.clear();
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(view);
-
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(view); 
     console.log(componentFactory);
-
-
-    this.viewContainerRef.createComponent(componentFactory);
+    this.viewContainerRef.createComponent(componentFactory, null, this.injector);
   }
 
   ngOnDestroy() {

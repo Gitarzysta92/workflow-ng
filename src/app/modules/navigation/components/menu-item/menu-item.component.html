@@ -1,6 +1,5 @@
 <li [class.active]="isActive">
-  <a [routerLink]="path">{{ label }}</a>
-  <ng-container *ngIf="children.length > 0 && isActive">
-    <menu-wrapper data="children"></menu-wrapper>
-  </ng-container>
+  {{ path }}
+  <a routerLink='path'>{{ label }}</a>
+ 
 </li>

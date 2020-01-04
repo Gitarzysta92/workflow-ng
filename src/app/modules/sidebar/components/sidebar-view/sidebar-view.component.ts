@@ -29,9 +29,6 @@ export class SidebarViewComponent implements OnInit {
       item.type === this.route.parent.outlet 
         && this.itemsForView.push(item.component);
     })
-
-    console.log(this.sidebarItems);
-
     // const { items: outlets } = this.registryService.getRegistry(RegistryList.outlets);
     // this.outletData = outlets.find(outlet => {
     //   outlet.name === this.route.parent.outlet
