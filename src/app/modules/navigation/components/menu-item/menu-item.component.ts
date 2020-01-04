@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Route, Router, NavigationStart } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { filter } from 'rxjs/operators'
 
 @Component({
@@ -17,11 +17,11 @@ export class MenuItemComponent implements OnInit {
 
 
   constructor(
-    //private route: Route
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    //console.log(this.route);
+    console.log(this.route);
     // this.isActive = !!(this.route.url === this.path);
 
     // this.router.events

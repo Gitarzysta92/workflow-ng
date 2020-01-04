@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Route, Router, NavigationStart } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'menu-wrapper',
@@ -11,7 +11,7 @@ export class MenuWrapperComponent implements OnInit {
   @Input() items: Array<any> = [];
 
   constructor(
-    private route: Route
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {

@@ -1,5 +1,3 @@
 <li [class.active]="isActive">
-  {{ path }}
-  <a routerLink='path'>{{ label }}</a>
- 
+  <a [routerLink]="path">{{ label }}</a>
 </li>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateGridService, GridViews } from '@workflow/grid';
+import { ActivatedRoute } from '@angular/router';
 import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 
 
@@ -16,16 +17,39 @@ export class MainMenuComponent implements OnInit {
   constructor(
     private readonly registryService: SharedRegistryService,
     private readonly gridService: TemplateGridService,
-    //private readonly sidebarRef: SidebarReference
+    private readonly route: ActivatedRoute
   ) {}
+
+  ngOnInit() {
+    this.menuItems 
+    
+    const navigationItems = this.registryService.getRegistryItems(RegistryList.Navigation);
+    if (!navigationItems) return;
+
+    const parentAbsPath = this.getPrimaryOutletAbsPath();
+    this.menuItems = navigationItems.map(item => {
+      item.path = [parentAbsPath, item.path];
+      return item;
+    })
+    console.log(this.menuItems)
+  }
 
   collapseSidebar() {
     const sidebarLeft = this.gridService.view(GridViews.sidebarLeft);
     sidebarLeft && sidebarLeft.collapse();
   }
 
-  ngOnInit() {
-    this.menuItems = this.registryService.getRegistry(RegistryList.Navigation).items;
+  getPrimaryOutletAbsPath() {
+    const routes = this.route.pathFromRoot;
+    const fragments = [];
+
+    Array.isArray(routes) && routes.forEach(route => {
+      if (route.outlet != 'primary') return;
+      route.snapshot.url.forEach(fragment => fragments.push(fragment.path));
+    })
+
+    const absPath = `/${fragments.join('/')}`;
+    return absPath;
   }
 
 }

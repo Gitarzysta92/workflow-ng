@@ -23,8 +23,10 @@ import './navigation-registry.module';
   ],
   providers: [],
   exports: [
-    MainMenuComponent,
-    MenuWrapperComponent
+    MainMenuComponent
+  ], 
+  entryComponents: [
+    MainMenuComponent
   ]
 })
 

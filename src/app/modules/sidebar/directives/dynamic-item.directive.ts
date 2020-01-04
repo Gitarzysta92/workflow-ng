@@ -15,7 +15,6 @@ export class DynamicItemDirective {
   set resolve(view) {
     this.viewContainerRef.clear();
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(view); 
-    console.log(componentFactory);
     this.viewContainerRef.createComponent(componentFactory, null, this.injector);
   }
 

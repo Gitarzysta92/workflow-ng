@@ -11,8 +11,18 @@ export class SharedRegistryService {
   constructor() {}
 
   public getRegistry(registryName) {
-    return SharedRegistry.getRegistry(registryName);
+    return _SharedRegistry.getRegistry(registryName);
   }
+
+  public getRegistryItems(registryName) {
+    const registry = _SharedRegistry.getRegistry(registryName);
+    return registry.items.map(item => this._createRecordDataCopy(item));
+  }
+
+  private _createRecordDataCopy(record) {
+    return Object.assign({}, record);
+  }
+  
 
 }
 
