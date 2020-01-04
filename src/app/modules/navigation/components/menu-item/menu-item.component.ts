@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators'
 
 @Component({
@@ -11,24 +11,17 @@ export class MenuItemComponent implements OnInit {
 
   @Input() label: string = '';
   @Input() path: string = '';
-  @Input() children: Array<any> = [];
+  @Input() childrens: Array<any> = [];
 
-  isActive: boolean = false;
+  @Input() isActive: boolean = false;
+  @Input() isToplevel: boolean = false;
 
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    console.log(this.route);
-    // this.isActive = !!(this.route.url === this.path);
-
-    // this.router.events
-    //   .filter(event => event instanceof NavigationStart)
-    //   .subscribe((event: NavigationStart) => {
-        
-    //   })
   }
 
 }

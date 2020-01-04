@@ -25,6 +25,7 @@ export class LoginFormComponent implements OnInit {
   authenticateUser() {
     this.userService.setAsyncUserData(true);
     this.location.back();
+  
   }
 
 

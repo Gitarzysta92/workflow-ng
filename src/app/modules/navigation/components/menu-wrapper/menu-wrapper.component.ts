@@ -9,13 +9,14 @@ import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 export class MenuWrapperComponent implements OnInit {
 
   @Input() items: Array<any> = [];
+  @Input() isExpanded: boolean = false;
 
   constructor(
+    
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    //console.log(this.route);
     this.items = this.items.sort((first, second) => {
       if (!(first.meta && second.meta)) return;
       return first.meta.position - second.meta.position;

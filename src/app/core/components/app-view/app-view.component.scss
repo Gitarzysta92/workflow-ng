@@ -7,13 +7,31 @@
 }
 
 .sidebar-left {
-  background-color: greenyellow;
+  -ms-flex: 0 0 230px;
+  flex: 0 0 230px;
+  height: 100%;
+  border-right: 1px #ededed solid;
+}
+
+.primary {
+  height: 100%;
 }
 
 .sidebar-right {
   background-color: red;
+  -ms-flex: 0 0 230px;
+  flex: 0 0 230px;
+  height: 100%;
 }
 
 .bottombar {
   background-color: blue
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.no-padding { 
+  padding: 0;
 }
