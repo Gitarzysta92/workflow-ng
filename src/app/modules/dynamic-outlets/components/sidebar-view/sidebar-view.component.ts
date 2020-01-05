@@ -24,9 +24,9 @@ export class SidebarViewComponent implements OnInit {
   ngOnInit() {
     const { items } = this.registryService.getRegistry(RegistryList.Sidebar);
     this.sidebarItems = items;
-
+    
     this.sidebarItems.forEach(item => {
-      item.type === this.route.parent.outlet 
+      item.type === this.route.outlet 
         && this.itemsForView.push(item.component);
     })
     // const { items: outlets } = this.registryService.getRegistry(RegistryList.outlets);

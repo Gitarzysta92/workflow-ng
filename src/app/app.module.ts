@@ -22,6 +22,8 @@ import { GridColumn } from './core/directives/grid-column/grid-column.directive'
 
 // imports modules
 import { NavigationModule } from './modules/navigation/navigation.module';
+import { UserProfileModule } from './modules/user-profile/user-profile.module';
+import { DynamicOutletsModule } from './modules/dynamic-outlets/dynamic-outlets.module';
 
 // imports shared
 
@@ -42,7 +44,9 @@ import { AppModuleRouting } from './app-routing.module';
   imports: [
     AppModuleRouting,
     BrowserModule,
-    NavigationModule
+    NavigationModule,
+    UserProfileModule,
+    DynamicOutletsModule
   ],
   providers: [
     UserService,

@@ -9,7 +9,8 @@ import { SidebarViewComponent } from './components/sidebar-view/sidebar-view.com
 
 // declare routes
 const routes: Routes = [
-  { path: '', component: SidebarViewComponent }
+  { path: 'left-sidebar', component: SidebarViewComponent, outlet: 'app-view-left-sidebar'},
+  { path: 'right-sidebar', component: SidebarViewComponent, outlet: 'app-view-right-sidebar'},
 ]
 
-export const RoutesModule = RouterModule.forChild(routes);
+export const DynamicOutletsRoutes = routes;

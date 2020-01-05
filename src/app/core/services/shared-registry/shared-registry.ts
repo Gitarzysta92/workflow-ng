@@ -47,7 +47,7 @@ export class SharedRegistry {
     
     setup.registryName = name;
     const createdRegistry = new SharedRegistryContainer(setup);
-    
+
     createdRegistry.addRecords(this._getNotAssignedRecordsByRegistryName(createdRegistry.name));
     this._archive.push(createdRegistry); 
 
@@ -65,8 +65,16 @@ export class SharedRegistry {
 
   // Get all not Assigned Records
   private static _getNotAssignedRecordsByRegistryName(registryName: RegistryList): Array<RegistryRecord> {
-    const filteredRecords = this._notAssignedRecords.reduce((acc, record, index) => 
-      record.assignedRegistryName === registryName ? [...this._notAssignedRecords.splice(index, 1), ...acc] : acc, []);
+    const filteredRecords = [];
+
+    this._notAssignedRecords = this._notAssignedRecords.filter(item => {
+      const result = item.assignedRegistryName === registryName && filteredRecords.push(item)
+      return !result;
+    });
+
+    // const filteredRecords = this._notAssignedRecords.reduce((acc, record, index) => {
+    //   return record.assignedRegistryName === registryName ? [...this._notAssignedRecords.splice(index, 1), ...acc] : acc
+    // }, []);
 
    
     return filteredRecords;

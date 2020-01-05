@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarViewComponent } from './components/sidebar-view/sidebar-view.component';
-import { RoutesModule } from './sidebar-routing.module';
 import { DynamicItemDirective } from './directives/dynamic-item.directive';
 
 
@@ -12,8 +11,7 @@ import { DynamicItemDirective } from './directives/dynamic-item.directive';
     DynamicItemDirective
   ],
   imports: [
-    CommonModule,
-    RoutesModule
+    CommonModule
   ]
 })
-export class SidebarModule { }
+export class DynamicOutletsModule { }
