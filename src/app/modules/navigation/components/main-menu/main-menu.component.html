@@ -1,5 +1,8 @@
-<ng-container *ngFor="let item of menuItems">
- {{ item.name }}
-</ng-container>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <menu-wrapper [items]="menuItems" [isExpanded]="true"></menu-wrapper>
+    </div>
+  </div>
+</div>
 
-<p>main-menu works!</p>
