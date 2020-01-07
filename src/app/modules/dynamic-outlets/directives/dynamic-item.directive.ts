@@ -5,6 +5,7 @@ import { ViewRef, Directive, Input, ViewContainerRef, TemplateRef, ComponentFact
 })
 export class DynamicItemDirective {
 
+
   constructor(
     private viewContainerRef: ViewContainerRef,
     private readonly componentFactoryResolver: ComponentFactoryResolver,
@@ -13,9 +14,15 @@ export class DynamicItemDirective {
 
   @Input()
   set resolve(view) {
+    
     this.viewContainerRef.clear();
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(view); 
-    this.viewContainerRef.createComponent(componentFactory, null, this.injector);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(view.component);     
+    const component = this.viewContainerRef.createComponent(componentFactory, null, this.injector);
+    Object.defineProperty(component.instance, 'gridView', {
+      value: view.inputs.gridView,
+      enumerable: true
+    })
+    
   }
 
   ngOnDestroy() {

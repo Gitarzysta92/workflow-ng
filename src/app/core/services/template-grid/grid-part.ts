@@ -3,5 +3,5 @@ export enum GridPart {
   sidebarLeft,
   sidebarRight,
   primary,
-  bottomBar
+  footer
 }

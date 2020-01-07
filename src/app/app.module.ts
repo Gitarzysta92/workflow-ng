@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //import "bootstrap";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //
 // import application core
@@ -44,6 +45,7 @@ import { AppModuleRouting } from './app-routing.module';
   imports: [
     AppModuleRouting,
     BrowserModule,
+    BrowserAnimationsModule,
     NavigationModule,
     UserProfileModule,
     DynamicOutletsModule

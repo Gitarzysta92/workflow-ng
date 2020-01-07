@@ -1,14 +1,14 @@
 import { SharedRegistry, RegistryList } from '../../core/services/shared-registry/shared-registry.service';
 
 // imports components
-import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import { SwitchExpandComponent } from './components/switch-expand/switch-expand.component';
 
 
 // Register component in sidebar
 SharedRegistry.addRecordFor(RegistryList.Sidebar, {
-  name: 'Main menu',
+  name: 'Switch expand',
   path: '**',
   type: 'app-view-left-sidebar',
-  position: 10,
-  component: MainMenuComponent
+  position: 0,
+  component: SwitchExpandComponent
 })

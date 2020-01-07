@@ -21,5 +21,6 @@ SharedRegistry.addRecordFor(RegistryList.Sidebar, {
   name: 'User profile tile',
   path: '**',
   type: 'app-view-left-sidebar',
+  position: 4,
   component: UserProfileTileComponent
 })
