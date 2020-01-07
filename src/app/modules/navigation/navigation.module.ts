@@ -11,6 +11,8 @@ import { MenuWrapperComponent } from './components/menu-wrapper/menu-wrapper.com
 
 import './navigation-registry.module';
 
+import './navigation-registry.module';
+
 @NgModule({
   declarations: [
     MainMenuComponent,

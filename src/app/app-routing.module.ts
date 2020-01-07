@@ -12,6 +12,7 @@ import { InitializationComponent } from './core/components/initialization/initia
 // Load additional modules
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ArticlesModule } from './modules/articles/articles.module';
+
 import { DynamicOutletsRoutes } from './modules/dynamic-outlets/dynamic-outlets.routes';
 import { UserProfileRoutes } from './modules/user-profile/user-profile.routes';
 
@@ -35,23 +36,6 @@ const routes: Routes = [
   ]}
 ]
 
-
-// const routes: Routes = [
-//   { path: '', redirectTo: 'workflow', pathMatch: 'full' },
-//   { path: 'workflow', canActivate: [AuthGuard], component: AppViewComponent, children: [
-//     { path: '', component: InitializationComponent, pathMatch: 'full' },
-//     { path: 'dashboard', loadChildren: () => DashboardModule },
-//     { path: 'articles', loadChildren: () => ArticlesModule },
-//     { path: 'profile', children: RoutesModule },
-
-//     { path: 'left-sidebar', loadChildren: () => SidebarModule, outlet: 'app-view-left-sidebar'},
-//     { path: 'right-sidebar', loadChildren: () => SidebarModule, outlet: 'app-view-right-sidebar'},
-//   ]},
-//   { path: 'user', component: UnauthViewComponent, children: [
-//     { path: '', loadChildren: () => AuthenticationModule },
-//     { path: 'app-ads', loadChildren: () => AppAdvertisementsModule, outlet: 'entry-view-sidebar' }
-//   ]}
-// ]
 
 
 @NgModule({

@@ -8,6 +8,7 @@ export class UserService {
 
   isUserAuthorized: boolean = false;
 
+
   constructor() { 
     this.isUserAuthorized = User.authorized;
   }
@@ -15,15 +16,18 @@ export class UserService {
 
   public setAsyncUserData(state: boolean) {
     this._storeUserStatus(state);
+
     this.isUserAuthorized = state;
   }
 
   public getAsyncUserData() {
     this._setStoredUserStatus();
+
     return of(this.isUserAuthorized);
   }
 
   public getSyncUserData() {
+
     this._setStoredUserStatus()
     return this.isUserAuthorized;
   }
@@ -55,5 +59,6 @@ class User {
   public static set authorized(state) {
     this._authorized = state;
   }
+
 }
 

@@ -17,6 +17,7 @@ export class MainMenuComponent implements OnInit {
 
   constructor(
     private readonly registryService: SharedRegistryService,
+
     private readonly gridService: TemplateGridService,
     private readonly route: ActivatedRoute,
     private router: Router
@@ -60,10 +61,12 @@ export class MainMenuComponent implements OnInit {
   }
 
 
+
   collapseSidebar() {
     const sidebarLeft = this.gridService.view(GridViews.sidebarLeft);
     sidebarLeft && sidebarLeft.collapse();
   }
+
 
   getPrimaryOutletAbsPath() {
     const routes = this.route.pathFromRoot;

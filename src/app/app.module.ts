@@ -18,6 +18,7 @@ import { UserService } from './core/services/user/user.service';
 import { SharedRegistryService } from './core/services/shared-registry/shared-registry.service';
 import { TemplateGridService } from './core/services/template-grid/template-grid.service';
 
+
 // import core directives
 import { GridColumn } from './core/directives/grid-column/grid-column.directive';
 
@@ -25,8 +26,6 @@ import { GridColumn } from './core/directives/grid-column/grid-column.directive'
 import { NavigationModule } from './modules/navigation/navigation.module';
 import { UserProfileModule } from './modules/user-profile/user-profile.module';
 import { DynamicOutletsModule } from './modules/dynamic-outlets/dynamic-outlets.module';
-
-// imports shared
 
 
 // imports top level routing module

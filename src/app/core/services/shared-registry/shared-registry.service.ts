@@ -23,7 +23,6 @@ export class SharedRegistryService {
     return Object.assign({}, record);
   }
   
-
 }
 
 

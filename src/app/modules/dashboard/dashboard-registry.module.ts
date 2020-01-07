@@ -50,9 +50,11 @@ SharedRegistry.addRecordFor(RegistryList.Navigation,
         }
       },
     ],
+
     meta: {
       icon: '',
       position: ''
     }
   }
 );
+
