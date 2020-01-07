@@ -18,7 +18,8 @@ export class GridColumn implements OnInit, OnDestroy  {
 
   ngOnInit() {
     this.gridService.addView(this.type, {
-      collapse: () => this.collapse()
+      collapse: () => this.collapse(),
+      expand: () => this.expand()
     });
   }
 

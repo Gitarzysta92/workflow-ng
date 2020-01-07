@@ -27,6 +27,13 @@ export class InitializationComponent implements OnInit {
     const AuthorizedUser = this.userService.getAsyncUserData();
     AuthorizedUser.subscribe(isExists => {
       if (isExists) {
+
+        // this.router.navigate(['dashboard'], { relativeTo: this.route }).then(result => {
+      
+        //   this.router.navigate(['workflow', { outlets: { 'app-view-left-sidebar': ['left-sidebar'], 'app-view-right-sidebar': ['right-sidebar'] }}]);
+        // })
+        
+
         this.router.navigate([{ outlets: { 'primary': ['dashboard'], 'app-view-left-sidebar': ['left-sidebar'], 'app-view-right-sidebar': ['right-sidebar'] }}], { relativeTo: this.route });
       } else {
         this.router.navigate([{ outlets: { 'primary': [''], 'app-view-left-sidebar': null, 'app-view-right-sidebar': null }}]);
@@ -37,8 +44,6 @@ export class InitializationComponent implements OnInit {
     //this.router.navigate(['dashboard'], { relativeTo: this.route });
     //this.router.navigate([{ outlets: { primary: ['workflow','dashboard'], 'sidebar-left': ['workflow','sidebar'] }}]);
     
-
-    console.log('on init', this.router, this.route);
   }
 
 
