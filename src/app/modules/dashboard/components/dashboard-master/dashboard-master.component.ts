@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../../services/dashboard.service';
 
 
 
@@ -9,16 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardMasterComponent implements OnInit {
 
-  constructor() {}
+  dashboardItems: Array<any>
+
+  constructor(
+    private dashboardService: DashboardService
+  ) {}
 
   ngOnInit() {
+    this.dashboardItems = this.dashboardService.getItems();
 
-      
-    // this.registryService.navigation.add({
-    //   name: 'home',
-    //   place: 'main',
-    //   url: ''
-    // })
+
   }
 
 }
