@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../../services/dashboard.service';
+import { DashboardService } from '../../../services/dashboard.service';
+import { DashboardTile } from '../../../models/DashboardTile';
 
 
 
@@ -10,16 +11,14 @@ import { DashboardService } from '../../services/dashboard.service';
 })
 export class DashboardMasterComponent implements OnInit {
 
-  dashboardItems: Array<any>
+  dashboardItems: Array<DashboardTile>;
 
   constructor(
     private dashboardService: DashboardService
   ) {}
 
   ngOnInit() {
-    this.dashboardItems = this.dashboardService.getItems();
-
-
+    this.dashboardItems = this.dashboardService.getTiles();
   }
 
 }

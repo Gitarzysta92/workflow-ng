@@ -1,64 +1,20 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { DashboardTiles } from './dashboards-tiles-sample-data';
+import { DashboardTile } from '../models/DashboardTile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-  isUserAuthorized: boolean = false;
+  private _dashboardTiles: Array<DashboardTile>;
 
-
-  constructor() { 
-    this.isUserAuthorized = User.authorized;
+  constructor() {
+    this._dashboardTiles = DashboardTiles.map(tileData => new DashboardTile(tileData));
   }
   
-
-  public setAsyncUserData(state: boolean) {
-    this._storeUserStatus(state);
-
-    this.isUserAuthorized = state;
-  }
-
-  public getAsyncUserData() {
-    this._setStoredUserStatus();
-
-    return of(this.isUserAuthorized);
-  }
-
-  public getSyncUserData() {
-
-    this._setStoredUserStatus()
-    return this.isUserAuthorized;
-  }
-
-
-  // local storage
-
-  private _setStoredUserStatus() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    user && (this.isUserAuthorized = user.isAuthorized)
-  }
-
-  private _storeUserStatus(state) {
-    if (state === true) {
-      localStorage.setItem('user', JSON.stringify({ isAuthorized: state }));
-    } else {
-      localStorage.clear();
-    }
+  public getTiles() {
+    return this._dashboardTiles;
   }
 }
-
-
-class User {
-  private static _authorized: boolean = false;
-  public static get authorized() {
-    return this._authorized;
-  }
-
-  public static set authorized(state) {
-    this._authorized = state;
-  }
-
-}
-
