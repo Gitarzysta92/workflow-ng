@@ -17,7 +17,10 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@workflow/grid": ["src/app/core/services/template-grid/template-grid.service"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

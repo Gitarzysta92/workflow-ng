@@ -7,7 +7,7 @@ import { PinnedArticlesComponent } from './components/pinned-articles/pinned-art
 
 
 const routes = [
-  { path: 'articles', component: PinnedArticlesComponent },
+  { path: '', component: PinnedArticlesComponent },
 ]
 
 
