@@ -7,7 +7,7 @@ import { DashboardTile } from '../../../models/DashboardTile';
 @Component({
   selector: 'app-dashboard-master',
   templateUrl: './dashboard-master.component.html',
-  styleUrls: ['./dashboard-master.component.css']
+  styleUrls: ['./dashboard-master.component.scss']
 })
 export class DashboardMasterComponent implements OnInit {
 

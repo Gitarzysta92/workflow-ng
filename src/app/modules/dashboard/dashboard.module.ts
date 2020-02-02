@@ -8,10 +8,12 @@ import { DashboardMasterComponent } from './components/containers/dashboard-mast
 import { RoutesModule } from './dashboard-routing.module';
 
 import './dashboard-registry.module';
+import { DashboardTileComponent } from './components/presentational/dashboard-tile/dashboard-tile.component';
 
 @NgModule({
   declarations: [
-    DashboardMasterComponent
+    DashboardMasterComponent,
+    DashboardTileComponent
   ],
   imports: [
     RoutesModule,
