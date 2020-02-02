@@ -1,8 +1,9 @@
 import { SharedRegistry as _SharedRegistry } from './shared-registry';
-import { SharedRegistryTemplate as _SharedRegistryTemplate } from './shared-registry.template'
-import { Registry as _Registry } from './shared-registry.decorator';
-import { RegistryList as _RegistryList } from './shared-registry.enum';
-import { Injectable } from '@angular/core';
+import { TypeOfRegistry } from './type-of-registry.enum';
+
+
+
+import { Injectable, Type } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SharedRegistryService {
@@ -14,9 +15,13 @@ export class SharedRegistryService {
     return _SharedRegistry.getRegistry(registryName);
   }
 
-  public getRegistryItems(registryName) {
+  public getRegistryItems<RecordModel>(registryName): Array<RecordModel> {
     const registry = _SharedRegistry.getRegistry(registryName);
     return registry.items.map(item => this._createRecordDataCopy(item));
+  }
+
+  public getRecords<RecordModel>(registryName): Array<RecordModel> {
+    return this.getRegistryItems<RecordModel>(registryName);
   }
 
   private _createRecordDataCopy(record) {
@@ -26,8 +31,8 @@ export class SharedRegistryService {
 }
 
 
+export { Initialize } from './registry-init.decorator';
 export const SharedRegistry = _SharedRegistry;
-export const SharedRegistryTemplate = _SharedRegistryTemplate;
-export const Registry = _Registry;
-export const RegistryList = _RegistryList;
+export const Registry = TypeOfRegistry;
+
 

@@ -1,6 +1,6 @@
-import { SharedRegistryTemplate } from './shared-registry.template';
 import { SharedRegistryContainer, RegistryRecord } from './shared-registry.container';
-import { RegistryList } from './shared-registry.enum';
+import { TypeOfRegistry } from './type-of-registry.enum';
+import { AdvSliderComponent } from 'src/app/modules/app-advertisements/components/adv-slider/adv-slider.component';
 
 
 
@@ -10,27 +10,27 @@ export class SharedRegistry {
   private static _notAssignedRecords: Array<any> = [];
 
   // Define array for RegistryContainers
-  private static _archive: Array<SharedRegistryContainer> = [];
-  public static get archive(): Array<SharedRegistryContainer> { return this._archive };
+  private static _archive: Array<SharedRegistryContainer<any>> = [];
+  public static get archive() { return this._archive };
   
   //
   // Public methods (API)
   //
 
   // Create new registry 
-  public static createRegistry(name: RegistryList, setup: SharedRegistryTemplate): void {
-    if (name == null || setup == null) return;
-    this._createRegistry({name, setup})
+  public static createRegistry<RecordModel>(name: TypeOfRegistry, recordModel: RecordModel): void {
+    if (name == null || recordModel == null) return;
+    this._createRegistry<RecordModel>({name, recordModel})
   }
 
-  // Add new record to created registry
-  public static addRecordFor(registryName: RegistryList, data: any = {}): void {
+  // Add new record to created registry 
+  public static addRecordFor(registryName: TypeOfRegistry , data: any = {}): void {
     if (registryName == null || data == null) return;
     this._addRecordFor(registryName , data);
   }
 
   // Returns registry with given name
-  public static getRegistry(registryName: RegistryList): SharedRegistryContainer {
+  public static getRegistry(registryName: TypeOfRegistry ): SharedRegistryContainer<any> {
     return this._archive.find(registry => registry.name === registryName);
   }
 
@@ -40,54 +40,39 @@ export class SharedRegistry {
   //
 
   // Create new registry if doesn't exists already
-  private static _createRegistry(config: any): SharedRegistryContainer {
-    const { name, setup } = config;
+  private static _createRegistry<RecordModel>(config): SharedRegistryContainer<RecordModel> {
+    const { name, recordModel } = config;
     const isExists = this._archive.find(registry => registry.name === name);
     if (isExists) return isExists;
     
-    setup.registryName = name;
-    const createdRegistry = new SharedRegistryContainer(setup);
+    const createdRegistry = new SharedRegistryContainer<RecordModel>(name, recordModel);
 
-    
     createdRegistry.addRecords(this._getNotAssignedRecordsByRegistryName(createdRegistry.name));
     this._archive.push(createdRegistry); 
 
     return createdRegistry;
   }
 
+
   // Add new record and assign it to registry if it does exists 
-  private static _addRecordFor(registryName: RegistryList, data: any = {}): void {
+  private static _addRecordFor(registryName: TypeOfRegistry , data: any = {}): void {
     const newRecord = new RegistryRecord(registryName, data)
-
+    
     const registry = this._archive.find(registry => registry.name === registryName);
-
     registry ? registry.addRecord(newRecord) : this._notAssignedRecords.push(newRecord);
   }
 
+
   // Get all not Assigned Records
-  private static _getNotAssignedRecordsByRegistryName(registryName: RegistryList): Array<RegistryRecord> {
+  private static _getNotAssignedRecordsByRegistryName(registryName: TypeOfRegistry ): Array<RegistryRecord> {
     const filteredRecords = [];
 
     this._notAssignedRecords = this._notAssignedRecords.filter(item => {
       const result = item.assignedRegistryName === registryName && filteredRecords.push(item)
       return !result;
     });
-
-    // const filteredRecords = this._notAssignedRecords.reduce((acc, record, index) => {
-    //   return record.assignedRegistryName === registryName ? [...this._notAssignedRecords.splice(index, 1), ...acc] : acc
-    // }, []);
-
-
    
     return filteredRecords;
   }
 
-
-
-
-  // private static _validateConfig(configClass: object): boolean {
-  //   const requiredProps = this._setup.configClassRequiredProps;
-  //   const result = requiredProps.filter(key => configClass.hasOwnProperty(key));
-  //   return result.length > 0 ? false : true;
-  // }
 }

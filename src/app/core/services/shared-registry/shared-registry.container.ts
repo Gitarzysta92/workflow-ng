@@ -1,59 +1,53 @@
-import { RegistryList } from './shared-registry.enum';
+import { TypeOfRegistry } from './type-of-registry.enum';
 
 
-export class SharedRegistryContainer {
+export class SharedRegistryContainer<RecordModel> {
 
-  public get items(): Array<RegistryRecord> {
-    return this._table;
+  private _table: Array<RecordModel> = [];
+  public get items() { return this._table; }
+
+  public readonly name: TypeOfRegistry;
+  private _recordModel: RecordModel;
+
+  constructor(name, recordModel) {
+    if (!this._isRecordModelValid) return;
+
+    this.name = name;
+    this._recordModel = recordModel;
+
   }
-  public readonly name: RegistryList;
-  private _table: any = [];
-  private _scheme: object;
-  private _accessible: boolean;
-  constructor(template) {
-    this.name = template.registryName;
-    this._scheme = template.scheme;
-    this._accessible = template.accessible;
 
-    this._selfSetup()
-  }
-
+  // Add sequentially registry records
   public addRecords(recordsList: Array<RegistryRecord>): void {
     if (!Array.isArray(recordsList)) return;
     recordsList.forEach(record => this.addRecord(record));
   }
 
-  public addRecord(itemData): void {
-    if (itemData == null) return;
-    //const validItemData = Object.keys(this._scheme).map(key=> itemData[key]);  
-    this._table.push(itemData);
+  // Add single registry record
+  public addRecord(recordData): void {
+    if (recordData == null) return;
+    const newRecord = new this._recordModel(recordData);
+    this._table.push(newRecord);
   }
 
-  private _selfSetup(): void {
-    this._accessible && this._defineGetter();
+  // Check provided record model is valid
+  // if not throw error
+  private _isRecordModelValid(model: any): Error | boolean {
+    if (typeof model === 'function') return true;  
+    throw new Error('Given record model is invalid');
   }
 
-  private _defineGetter(): void {
-    Object.defineProperty(this, 'get', {
-      value: this._get,
-      enumerable: true
-    })
-  }
-
-  private _get() {
-    return this._table;
-  }
- }
+}
 
 
  export class RegistryRecord {
-  assignedRegistryName: RegistryList;
-  constructor(assignedRegistryName, data, scheme?) {
+  assignedRegistryName: TypeOfRegistry;
+  constructor(assignedRegistryName, data) {
     this.assignedRegistryName = assignedRegistryName;
-    this.initializeProperties(data)
+    this.initializeProperties(data);
   }
 
-  initializeProperties(data, scheme?) {
+  initializeProperties(data): void {
     Object.keys(data).forEach(key => {
       Object.defineProperty(this, key, {
         value: data[key],

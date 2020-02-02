@@ -1,8 +1,8 @@
-import { SharedRegistry, RegistryList } from '../../core/services/shared-registry/shared-registry.service';
+import { SharedRegistry, Registry} from '../../core/services/shared-registry/shared-registry.service';
 
 
 // declare navigation paths
-SharedRegistry.addRecordFor(RegistryList.Navigation, 
+SharedRegistry.addRecordFor(Registry.Navigation, 
   {
     name: 'dashboard',
     path: 'dashboard',

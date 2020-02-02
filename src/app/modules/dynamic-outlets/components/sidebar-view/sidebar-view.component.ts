@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 import { ActivatedRoute } from '@angular/router';
-import { TemplateGridService, GridViews, GridView } from '@workflow/grid';
+
+import { Registry, SharedRegistryService } from '@workflow/registry';
+import { GridViews, TemplateGridService } from '@workflow/grid';
+
+import { OutletItem } from '../../models/outlet-item';
 
 @Component({
   selector: 'app-sidebar-view',
@@ -10,13 +13,8 @@ import { TemplateGridService, GridViews, GridView } from '@workflow/grid';
 })
 export class SidebarViewComponent implements OnInit {
 
-  outletData: any;
-
-  sidebarItems: any;
-
   gridView: any;
-
-  itemsForView: Array<any> = [];
+  itemsForView: Array<OutletItem> = [];
 
   constructor(
     private readonly registryService: SharedRegistryService,
@@ -26,20 +24,26 @@ export class SidebarViewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.gridView = this.setTargetOutlet();
-    
-    const { items } = this.registryService.getRegistry(RegistryList.Sidebar);
-    this.sidebarItems = items.sort((first, second) => {
-      return first.position - second.position;
-    })
-    
-    this.sidebarItems.forEach(item => {
-      item.type === this.route.outlet 
-        && this.itemsForView.push(item.component);
-    })
+    this.gridView = this._setTargetOutlet();
+    this.itemsForView = this._getOutletsItems();
   }
 
-  setTargetOutlet() {
+
+  private _getOutletsItems(): Array<OutletItem> {
+    const registryItems = this.registryService.getRecords<OutletItem>(Registry.DynamicOutlets);
+    if (!Array.isArray(registryItems)) return [];
+
+    const filteredItems = registryItems.filter(item => item.type === this.route.outlet);
+    return this._sortItemsDescending(filteredItems);
+  }
+
+
+  private _sortItemsDescending(items: Array<OutletItem>): Array<OutletItem> {
+    return items.sort((first, second) => first.position - second.position);
+  }
+
+
+  private _setTargetOutlet() {
     let appView;
     switch(this.route.outlet) {
       case 'app-view-topbar': {
@@ -69,13 +73,3 @@ export class SidebarViewComponent implements OnInit {
 
 
 
-
-@Registry(RegistryList.Sidebar)
-class Sidebar extends SharedRegistryTemplate { 
-  static dataScheme = {
-    name: 'string',
-    path: 'string',
-    type: '',
-    position: 'number'
-  }
-}
