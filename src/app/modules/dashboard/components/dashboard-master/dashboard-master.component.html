@@ -1,8 +1,16 @@
-<div class="row">
-  <div class="col-md-6">
-    asd
+<section class="dashboard-top-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-right">
+        <button>Settings</button>
+      </div>
+    </div>
   </div>
-  <div class="col-md-6">
-    
+</section>
+<section class="dashboard">
+  <div class="container-fluid">
+    <div class="row">
+      <dashboard-tile *ngFor="let tile of tiles" [params]="tile"></dashboard-tile>
+    </div>
   </div>
-</div>
+</section>

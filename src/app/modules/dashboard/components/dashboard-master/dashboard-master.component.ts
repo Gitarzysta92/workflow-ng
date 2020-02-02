@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
+import { DashboardTile } from '../../models/dashboard-tile';
 
 
 
 @Component({
   selector: 'app-dashboard-master',
   templateUrl: './dashboard-master.component.html',
-  styleUrls: ['./dashboard-master.component.css']
+  styleUrls: ['./dashboard-master.component.scss']
 })
 export class DashboardMasterComponent implements OnInit {
 
-  dashboardItems: Array<any>
+  public tiles: Array<DashboardTile>
 
   constructor(
-    private dashboardService: DashboardService
-  ) {}
+    private _dashboardService: DashboardService
+  ) {
+
+  }
 
   ngOnInit() {
-    this.dashboardItems = this.dashboardService.getItems();
-
-
+    this.tiles = this._dashboardService.getItems();
   }
 
 }
