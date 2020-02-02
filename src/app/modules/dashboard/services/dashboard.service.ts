@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { dashboardItems } from './dashboards-items'
-import { DashboardTile } from '../models/dashboard-tile';
+import { DashboardTiles } from './dashboards-tiles-sample-data';
+import { DashboardTile } from '../models/DashboardTile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
+  private _dashboardTiles: Array<DashboardTile>;
 
-  constructor() { 
+  constructor() {
+    this._dashboardTiles = DashboardTiles.map(tileData => new DashboardTile(tileData));
   }
   
-  getItems(): Array<DashboardTile> {
-    return dashboardItems.map(item => new DashboardTile(item));
+  public getTiles() {
+    return this._dashboardTiles;
   }
-
 }

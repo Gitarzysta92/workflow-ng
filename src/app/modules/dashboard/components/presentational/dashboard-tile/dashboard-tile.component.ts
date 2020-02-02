@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
-import { DashboardTile } from '../../models/dashboard-tile';
+import { DashboardTile } from '../../../models/dashboard-tile';
 
 @Component({
   selector: 'dashboard-tile',

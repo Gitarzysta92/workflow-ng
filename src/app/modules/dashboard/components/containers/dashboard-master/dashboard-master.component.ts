@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../../services/dashboard.service';
-import { DashboardTile } from '../../models/dashboard-tile';
+import { DashboardService } from '../../../services/dashboard.service';
+import { DashboardTile } from '../../../models/DashboardTile';
 
 
 
@@ -11,16 +11,14 @@ import { DashboardTile } from '../../models/dashboard-tile';
 })
 export class DashboardMasterComponent implements OnInit {
 
-  public tiles: Array<DashboardTile>
+  dashboardItems: Array<DashboardTile>;
 
   constructor(
-    private _dashboardService: DashboardService
-  ) {
-
-  }
+    private dashboardService: DashboardService
+  ) {}
 
   ngOnInit() {
-    this.tiles = this._dashboardService.getItems();
+    this.dashboardItems = this.dashboardService.getTiles();
   }
 
 }
