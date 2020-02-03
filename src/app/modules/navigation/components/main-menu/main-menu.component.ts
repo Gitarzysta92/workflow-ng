@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TemplateGridService, GridViews } from '@workflow/grid';
 import { ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators'
-import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 
+import { TemplateGridService, GridViews } from '@workflow/grid';
+import { NavigationRegistryService } from './../../services/naviagtion-registry.service';
+import { NavigationItem } from '../../models/navigation-item';
 
 @Component({
   selector: 'app-main-menu',
@@ -13,19 +14,19 @@ import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService }
 })
 
 export class MainMenuComponent implements OnInit {
-  menuItems: any = [];
+
+  menuItems: Array<NavigationItem> = [];
 
   constructor(
-    private readonly registryService: SharedRegistryService,
-
+    private readonly navigationRegistry: NavigationRegistryService,
     private readonly gridService: TemplateGridService,
     private readonly route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.menuItems = this.registryService.getRegistryItems(RegistryList.Navigation);
-
+    this.menuItems = this.navigationRegistry.getItems();
+    console.log(this.menuItems);
     const parentAbsPath = this.getPrimaryOutletAbsPath();
 
     this.menuItems = this.menuItems.map(item => Object.assign(item, { isToplevel: true }))
@@ -33,7 +34,7 @@ export class MainMenuComponent implements OnInit {
     this.menuItems = this.recursiveWalker(this.menuItems, 'childrens', item => {
       item.path = [parentAbsPath, ...item.path.split('/')]
       item.url = this.router.parseUrl(item.path.join('/'))
-      return new MenuItem(item)
+      return new NavigationItem(item)
     });
 
     this.setActiveItems();
@@ -83,40 +84,4 @@ export class MainMenuComponent implements OnInit {
 }
 
 
-class MenuItem {
-  name: string;
-  path: Array<string>;
-  childrens: Array<MenuItem>;
-  
-  position: number;
-  icon: string;
-  active: boolean = false;
-  url: any;
-  isToplevel: boolean;
-
-  constructor(itemData){
-    this.name = itemData.name;
-    this.path = itemData.path;
-    this.childrens = itemData.childrens || [];
-
-    this.position = itemData.meta.position;
-    this.icon = itemData.meta.icon;
-    this.url = itemData.url;
-    this.isToplevel = itemData.isToplevel;
-  }
-}
-
-
-
-@Registry(RegistryList.Navigation)
-class Navigation extends SharedRegistryTemplate { 
-  static dataScheme = {
-    name: 'string',
-    path: 'string',
-    childrens: [],
-    meta: {
-      position: 'number'
-    }
-  }
-}
 

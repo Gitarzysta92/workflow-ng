@@ -1,0 +1,16 @@
+<section class="dashboard-top-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-right">
+        <button>Settings</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="dashboard">
+  <div class="container-fluid">
+    <div class="row">
+      <dashboard-tile *ngFor="let tile of tiles" [params]="tile"></dashboard-tile>
+    </div>
+  </div>
+</section>

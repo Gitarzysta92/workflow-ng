@@ -1,8 +1,8 @@
-import { SharedRegistry, RegistryList } from '../../core/services/shared-registry/shared-registry.service';
+import { SharedRegistry, Archive } from '../../core/services/shared-registry/shared-registry.service';
 
 
 // declare navigation paths
-SharedRegistry.addRecordFor(RegistryList.Navigation, {
+SharedRegistry.addRecordFor(Archive.Navigation, {
     name: 'articles',
     path: 'articles',
     childrens: {},

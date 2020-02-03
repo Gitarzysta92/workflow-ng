@@ -2,7 +2,7 @@ import { Route, RouterModule } from '@angular/router';
 
 
 // imports components
-import { DashboardMasterComponent } from './components/dashboard-master/dashboard-master.component'
+import { DashboardMasterComponent } from './components/containers/dashboard-master/dashboard-master.component'
 
 
 // declare routes
