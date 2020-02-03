@@ -1,0 +1,6 @@
+<li [class.active]="isActive" [class.top-level]="isToplevel">
+  <a [routerLink]="path">{{ label }}</a>
+  <ng-container *ngIf="childrens && childrens.length > 0">
+    <menu-wrapper [items]="childrens" [isExpanded]="isActive"></menu-wrapper>
+  </ng-container>
+</li>

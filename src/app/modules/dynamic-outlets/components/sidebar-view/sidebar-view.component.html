@@ -1,0 +1,5 @@
+<ng-container *ngFor="let item of itemsForView">
+  <ng-container *resolve="{ component: item.component, inputs: { gridView: gridView }}"></ng-container>
+</ng-container>
+
+

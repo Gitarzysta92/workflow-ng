@@ -1,0 +1,43 @@
+
+
+
+
+.topbar {
+  background-color: grey;
+}
+
+.sidebar-left {
+  -ms-flex: 0 0 230px;
+  flex: 0 0 230px;
+  height: 100%;
+  border-right: 1px #ededed solid;
+  &.collapsed {
+    flex: 0 0 20px;
+    width: 50px;
+  } 
+}
+
+.primary {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.sidebar-right {
+  background-color: red;
+  -ms-flex: 0 0 230px;
+  flex: 0 0 230px;
+  height: 100%;
+
+}
+
+.bottombar {
+  background-color: blue
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.no-padding { 
+  padding: 0;
+}
