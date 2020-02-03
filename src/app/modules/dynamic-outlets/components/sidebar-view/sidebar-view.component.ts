@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Registry, SharedRegistryTemplate, RegistryList, SharedRegistryService } from '../../../../core/services/shared-registry/shared-registry.service';
 import { ActivatedRoute } from '@angular/router';
-import { TemplateGridService, GridViews, GridView } from '@workflow/grid';
+
+import { GridViews, TemplateGridService } from '@workflow/grid';
+
+import { OutletsRegistryService } from '../../services/outlets-registry.service';
+
+import { OutletItem } from '../../models/outlet-item';
 
 @Component({
   selector: 'app-sidebar-view',
@@ -10,56 +14,45 @@ import { TemplateGridService, GridViews, GridView } from '@workflow/grid';
 })
 export class SidebarViewComponent implements OnInit {
 
-  outletData: any;
-
-  sidebarItems: any;
-
   gridView: any;
-
-  itemsForView: Array<any> = [];
+  itemsForView: Array<OutletItem> = [];
 
   constructor(
-    private readonly registryService: SharedRegistryService,
-    private readonly route: ActivatedRoute,
-    private templateGridService: TemplateGridService
+    private readonly _route: ActivatedRoute,
+    private readonly _templateGridService: TemplateGridService,
+    private readonly _outletsRegistry: OutletsRegistryService
   ) { }
 
 
   ngOnInit() {
-    this.gridView = this.setTargetOutlet();
-    
-    const { items } = this.registryService.getRegistry(RegistryList.Sidebar);
-    this.sidebarItems = items.sort((first, second) => {
-      return first.position - second.position;
-    })
-    
-    this.sidebarItems.forEach(item => {
-      item.type === this.route.outlet 
-        && this.itemsForView.push(item.component);
-    })
+    this.gridView = this._setTargetOutlet();
+    this.itemsForView = this._outletsRegistry.getItems(this._route.outlet);
+    console.log(this.itemsForView);
+  
   }
 
-  setTargetOutlet() {
+
+  private _setTargetOutlet() {
     let appView;
-    switch(this.route.outlet) {
+    switch(this._route.outlet) {
       case 'app-view-topbar': {
-        appView = this.templateGridService.view(GridViews.topBar);
+        appView = this._templateGridService.view(GridViews.topBar);
         break;
       }
       case 'app-view-left-sidebar': {
-        appView = this.templateGridService.view(GridViews.sidebarLeft);
+        appView = this._templateGridService.view(GridViews.sidebarLeft);
         break;
       }
       case 'gridViews.primary': {
-        appView = this.templateGridService.view(GridViews.primary);
+        appView = this._templateGridService.view(GridViews.primary);
         break;
       }
       case 'app-view-right-sidebar': {
-        appView = this.templateGridService.view(GridViews.sidebarRight);
+        appView = this._templateGridService.view(GridViews.sidebarRight);
         break;
       }
       case 'app-view-footer': {
-        appView = this.templateGridService.view(GridViews.footer);
+        appView = this._templateGridService.view(GridViews.footer);
         break;
       }
     }
@@ -69,13 +62,3 @@ export class SidebarViewComponent implements OnInit {
 
 
 
-
-@Registry(RegistryList.Sidebar)
-class Sidebar extends SharedRegistryTemplate { 
-  static dataScheme = {
-    name: 'string',
-    path: 'string',
-    type: '',
-    position: 'number'
-  }
-}

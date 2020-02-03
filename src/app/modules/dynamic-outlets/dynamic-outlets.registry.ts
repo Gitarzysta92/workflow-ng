@@ -1,11 +1,13 @@
-import { SharedRegistry, RegistryList } from '../../core/services/shared-registry/shared-registry.service';
+import { SharedRegistry, Archive } from '@workflow/registry';
 
 // imports components
 import { SwitchExpandComponent } from './components/switch-expand/switch-expand.component';
 
 
+
+
 // Register component in sidebar
-SharedRegistry.addRecordFor(RegistryList.Sidebar, {
+SharedRegistry.addRecordFor(Archive.DynamicOutlets, {
   name: 'Switch expand',
   path: '**',
   type: 'app-view-left-sidebar',

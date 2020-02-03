@@ -19,7 +19,8 @@
       "dom"
     ],
     "paths": {
-      "@workflow/grid": ["src/app/core/services/template-grid/template-grid.service"]
+      "@workflow/grid": ["src/app/core/services/template-grid/template-grid.service"],
+      "@workflow/registry": ["src/app/core/services/shared-registry/shared-registry.service"]
     }
   },
   "angularCompilerOptions": {
