@@ -31,8 +31,8 @@ export class SharedRegistryService {
 }
 
 
-export { Initialize } from './registry-init.decorator';
+export { Registry } from './registry-init.decorator';
 export const SharedRegistry = _SharedRegistry;
-export const Registry = TypeOfRegistry;
+export const Archive = TypeOfRegistry;
 
 

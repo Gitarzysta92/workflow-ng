@@ -14,8 +14,8 @@ export class NavigationItem {
     this.path = itemData.path;
     this.childrens = itemData.childrens || [];
 
-    this.position = itemData.meta.position;
-    this.icon = itemData.meta.icon;
+    this.position = itemData.meta ? itemData.meta.position : 0;
+    this.icon = itemData.meta ? itemData.meta.icon : '0';
     this.url = itemData.url;
     this.isToplevel = itemData.isToplevel;
   }

@@ -7,7 +7,7 @@ export class OutletItem {
   path: string;
   type: string;
   position: number;
-  component: Component
+  component: Component;
 
   constructor(data) {
     this.name = data.name;

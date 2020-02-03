@@ -10,17 +10,17 @@ export class SharedRegistry {
   private static _notAssignedRecords: Array<any> = [];
 
   // Define array for RegistryContainers
-  private static _archive: Array<SharedRegistryContainer<any>> = [];
-  public static get archive() { return this._archive };
+  private static _registry: Array<SharedRegistryContainer> = [];
+  public static get registry() { return this._registry };
   
   //
   // Public methods (API)
   //
 
   // Create new registry 
-  public static createRegistry<RecordModel>(name: TypeOfRegistry, recordModel: RecordModel): void {
-    if (name == null || recordModel == null) return;
-    this._createRegistry<RecordModel>({name, recordModel})
+  public static createArchive(name: TypeOfRegistry, archive): void {
+    if (name == null || archive == null) return;
+    this._createArchive(name, archive)
   }
 
   // Add new record to created registry 
@@ -30,8 +30,8 @@ export class SharedRegistry {
   }
 
   // Returns registry with given name
-  public static getRegistry(registryName: TypeOfRegistry ): SharedRegistryContainer<any> {
-    return this._archive.find(registry => registry.name === registryName);
+  public static getRegistry(registryName: TypeOfRegistry ): SharedRegistryContainer{
+    return this._registry.find(registry => registry.name === registryName);
   }
 
 
@@ -40,17 +40,17 @@ export class SharedRegistry {
   //
 
   // Create new registry if doesn't exists already
-  private static _createRegistry<RecordModel>(config): SharedRegistryContainer<RecordModel> {
-    const { name, recordModel } = config;
-    const isExists = this._archive.find(registry => registry.name === name);
-    if (isExists) return isExists;
-    
-    const createdRegistry = new SharedRegistryContainer<RecordModel>(name, recordModel);
+  private static _createArchive(name: TypeOfRegistry, archive): void {
+    const isExists = this._registry.find(registry => registry.name === name);
+    if (isExists) return;
+
+    const createdRegistry = new SharedRegistryContainer(name, archive.recordModel);
 
     createdRegistry.addRecords(this._getNotAssignedRecordsByRegistryName(createdRegistry.name));
-    this._archive.push(createdRegistry); 
+    archive.archive = createdRegistry.items;
 
-    return createdRegistry;
+    //console.log(archive)
+    this._registry.push(createdRegistry); 
   }
 
 
@@ -58,7 +58,7 @@ export class SharedRegistry {
   private static _addRecordFor(registryName: TypeOfRegistry , data: any = {}): void {
     const newRecord = new RegistryRecord(registryName, data)
     
-    const registry = this._archive.find(registry => registry.name === registryName);
+    const registry = this._registry.find(registry => registry.name === registryName);
     registry ? registry.addRecord(newRecord) : this._notAssignedRecords.push(newRecord);
   }
 

@@ -1,13 +1,13 @@
 import { TypeOfRegistry } from './type-of-registry.enum';
 
 
-export class SharedRegistryContainer<RecordModel> {
+export class SharedRegistryContainer {
 
-  private _table: Array<RecordModel> = [];
+  private _table: Array<any> = [];
   public get items() { return this._table; }
 
   public readonly name: TypeOfRegistry;
-  private _recordModel: RecordModel;
+  private _recordModel;
 
   constructor(name, recordModel) {
     if (!this._isRecordModelValid) return;

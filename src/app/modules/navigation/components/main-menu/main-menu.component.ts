@@ -3,8 +3,7 @@ import { ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators'
 
 import { TemplateGridService, GridViews } from '@workflow/grid';
-import { Registry, SharedRegistryService } from '@workflow/registry';
-
+import { NavigationRegistryService } from './../../services/naviagtion-registry.service';
 import { NavigationItem } from '../../models/navigation-item';
 
 @Component({
@@ -19,16 +18,15 @@ export class MainMenuComponent implements OnInit {
   menuItems: Array<NavigationItem> = [];
 
   constructor(
-    private readonly registryService: SharedRegistryService,
-
+    private readonly navigationRegistry: NavigationRegistryService,
     private readonly gridService: TemplateGridService,
     private readonly route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.menuItems = this.registryService.getRecords<NavigationItem>(Registry.Navigation);
-
+    this.menuItems = this.navigationRegistry.getItems();
+    console.log(this.menuItems);
     const parentAbsPath = this.getPrimaryOutletAbsPath();
 
     this.menuItems = this.menuItems.map(item => Object.assign(item, { isToplevel: true }))

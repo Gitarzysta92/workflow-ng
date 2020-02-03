@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Registry, SharedRegistryService } from '@workflow/registry';
 import { GridViews, TemplateGridService } from '@workflow/grid';
+
+import { OutletsRegistryService } from '../../services/outlets-registry.service';
 
 import { OutletItem } from '../../models/outlet-item';
 
@@ -17,53 +18,41 @@ export class SidebarViewComponent implements OnInit {
   itemsForView: Array<OutletItem> = [];
 
   constructor(
-    private readonly registryService: SharedRegistryService,
-    private readonly route: ActivatedRoute,
-    private templateGridService: TemplateGridService
+    private readonly _route: ActivatedRoute,
+    private readonly _templateGridService: TemplateGridService,
+    private readonly _outletsRegistry: OutletsRegistryService
   ) { }
 
 
   ngOnInit() {
     this.gridView = this._setTargetOutlet();
-    this.itemsForView = this._getOutletsItems();
-  }
-
-
-  private _getOutletsItems(): Array<OutletItem> {
-    const registryItems = this.registryService.getRecords<OutletItem>(Registry.DynamicOutlets);
-    if (!Array.isArray(registryItems)) return [];
-
-    const filteredItems = registryItems.filter(item => item.type === this.route.outlet);
-    return this._sortItemsDescending(filteredItems);
-  }
-
-
-  private _sortItemsDescending(items: Array<OutletItem>): Array<OutletItem> {
-    return items.sort((first, second) => first.position - second.position);
+    this.itemsForView = this._outletsRegistry.getItems(this._route.outlet);
+    console.log(this.itemsForView);
+  
   }
 
 
   private _setTargetOutlet() {
     let appView;
-    switch(this.route.outlet) {
+    switch(this._route.outlet) {
       case 'app-view-topbar': {
-        appView = this.templateGridService.view(GridViews.topBar);
+        appView = this._templateGridService.view(GridViews.topBar);
         break;
       }
       case 'app-view-left-sidebar': {
-        appView = this.templateGridService.view(GridViews.sidebarLeft);
+        appView = this._templateGridService.view(GridViews.sidebarLeft);
         break;
       }
       case 'gridViews.primary': {
-        appView = this.templateGridService.view(GridViews.primary);
+        appView = this._templateGridService.view(GridViews.primary);
         break;
       }
       case 'app-view-right-sidebar': {
-        appView = this.templateGridService.view(GridViews.sidebarRight);
+        appView = this._templateGridService.view(GridViews.sidebarRight);
         break;
       }
       case 'app-view-footer': {
-        appView = this.templateGridService.view(GridViews.footer);
+        appView = this._templateGridService.view(GridViews.footer);
         break;
       }
     }

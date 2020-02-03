@@ -1,11 +1,11 @@
-import { SharedRegistry, Registry } from '../../core/services/shared-registry/shared-registry.service';
+import { SharedRegistry, Archive } from '../../core/services/shared-registry/shared-registry.service';
 
 // imports components
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserProfileTileComponent } from './components/user-profile-tile/user-profile-tile.component';
 
 
-SharedRegistry.addRecordFor(Registry.Navigation, {
+SharedRegistry.addRecordFor(Archive.Navigation, {
   name: 'Your profile',
   path: 'profile',
   childrens: {},
@@ -17,7 +17,7 @@ SharedRegistry.addRecordFor(Registry.Navigation, {
 
 
 // Register component in sidebar
-SharedRegistry.addRecordFor(Registry.DynamicOutlets, {
+SharedRegistry.addRecordFor(Archive.DynamicOutlets, {
   name: 'User profile tile',
   path: '**',
   type: 'app-view-left-sidebar',
