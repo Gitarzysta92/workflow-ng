@@ -1,4 +1,4 @@
-export const dashboardItems = [
+export const DashboardTiles = [
   {
     id: 1,
     name: 'First tile',
@@ -10,20 +10,6 @@ export const dashboardItems = [
     id: 2,
     name: 'Second tile',
     sequence: 2,
-    size: 'medium',
-    component: null
-  },
-  {
-    id: 3,
-    name: 'third tile',
-    sequence: 3,
-    size: 'medium',
-    component: null
-  },
-  {
-    id: 4,
-    name: 'fourth tile',
-    sequence: 4,
     size: 'medium',
     component: null
   },

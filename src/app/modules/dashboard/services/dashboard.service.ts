@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { DashboardTiles } from './dashboards-tiles-sample-data';
+import { DashboardTiles } from './dashboards-items';
 import { DashboardTile } from '../models/DashboardTile';
 
 @Injectable({
@@ -15,6 +15,7 @@ export class DashboardService {
   }
   
   public getTiles() {
+    console.log(this._dashboardTiles)
     return this._dashboardTiles;
   }
 }
