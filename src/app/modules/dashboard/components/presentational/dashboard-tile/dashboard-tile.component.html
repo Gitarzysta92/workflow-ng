@@ -1,4 +1,20 @@
-
-<div class="tile">
-  <h2>{{ name }}</h2>
-</div>
+<content-tile [backgroundColor]="color">
+  <tile-header>
+    <span>{{ data.creationDate | date:'MMMM d, y, h:mm a' }}</span>
+  </tile-header>
+  <tile-body>
+    <h2>{{ data.title }}</h2>
+    <p>{{ data.excerpt }}...</p>
+  </tile-body>
+  <tile-footer>
+    <div class="row no-gutters h-100">
+      <div class="col-6 h-100">
+        <button class="btn-fluid">(22) Komentarzy</button>
+      </div>
+      <div class="col-6 h-100">
+        <button class="btn-fluid">Michał Łukasiewicz (22)</button>
+      </div>
+    </div>
+  </tile-footer>
+</content-tile>
+  

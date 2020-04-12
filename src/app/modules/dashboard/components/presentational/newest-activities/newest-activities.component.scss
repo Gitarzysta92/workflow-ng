@@ -1,0 +1,20 @@
+.activity-wrapper {
+  position: relative;
+  padding: 20px 0;
+}
+
+
+.activity-separator {
+  position: relative;
+  padding: 40px 0 20px 0;
+  .off-grid {
+    top: 50%;
+  }
+}
+
+.off-grid {
+  position: absolute;
+  left: -130px;
+  text-align: right;
+  width: 100px;
+}

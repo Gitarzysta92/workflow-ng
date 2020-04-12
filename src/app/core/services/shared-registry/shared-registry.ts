@@ -68,7 +68,7 @@ export class SharedRegistry {
     const filteredRecords = [];
 
     this._notAssignedRecords = this._notAssignedRecords.filter(item => {
-      const result = item.assignedRegistryName === registryName && filteredRecords.push(item)
+      const result = (item.assignedRegistryName === registryName) && filteredRecords.push(item)
       return !result;
     });
    

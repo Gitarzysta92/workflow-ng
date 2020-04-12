@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 
 @Component({
-  selector: 'dashboard-tile',
-  templateUrl: './dashboard-tile.component.html',
-  styleUrls: ['./dashboard-tile.component.scss'],
+  selector: 'board-tile',
+  templateUrl: './tile.component.html',
+  styleUrls: ['./tile.component.scss'],
   host: { '[class]': 'widthClass' }
 })
-export class DashboardTileComponent implements OnInit {
+export class TileComponent implements OnInit {
 
   // tile name
   @Input() name: string = ''; 
@@ -16,9 +16,6 @@ export class DashboardTileComponent implements OnInit {
 
   // tile background color
   @Input() color: string = '#f6f6f6'; 
-
-
-  @Input() data;
 
   // host element reference
   private _element: HTMLElement

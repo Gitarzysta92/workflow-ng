@@ -9,3 +9,35 @@ body {
   overflow: hidden;
 }
 
+
+
+h2 {
+  font-weight: 800;
+}
+
+p {
+  color: #bbbbbb;
+  font-size: 18px;
+}
+
+span {
+  color: #bbbbbb;
+  font-size: 12px;
+}
+
+
+[class^="btn"] {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  color: #bbbbbb;
+  font-size: 13px;
+
+}
+
+
+.btn-fluid {
+  height: 100%;
+  width: 100%;
+}
+

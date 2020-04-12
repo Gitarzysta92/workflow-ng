@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" *ngFor="let dialyActivities of data">
+      <div class="row">
+        <div class="col-12">
+          <div class="activity-separator">
+            <div class="off-grid">
+              <span>{{ dialyActivities.date | date:'MMMM d, y' }}</span>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div class="col-12" *ngFor="let activity of dialyActivities.data">
+          <div class="activity-wrapper">
+            <div class="off-grid">
+              <span>{{ activity.creationDate | date:'h:mm'}}</span>
+            </div>
+            <dashboard-tile [data]="activity"></dashboard-tile>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

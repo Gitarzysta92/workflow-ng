@@ -6,8 +6,8 @@ export class DashboardTile {
   // across other tiles
   public position: number;
 
-  // Tile size - space in grid that is occupied 
-  // defined in 12 columns grid
+  // Tile size (space in grid that is occupied) 
+  // divided in twelve columns grid
   private _size: number;
   public get size() { return this._size; }
   public set size(value) { this._size = value }
