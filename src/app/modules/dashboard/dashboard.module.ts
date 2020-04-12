@@ -12,6 +12,7 @@ import { DashboardTileComponent } from './components/presentational/dashboard-ti
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NewestActivitiesComponent } from './components/presentational/newest-activities/newest-activities.component';
 import { PinnedActivitiesComponent } from './components/presentational/pinned-activities/pinned-activities.component';
+import { DashboardTopBarComponent } from './components/presentational/dashboard-top-bar/dashboard-top-bar.component';
 
 
 
@@ -21,6 +22,7 @@ import { PinnedActivitiesComponent } from './components/presentational/pinned-ac
     DashboardTileComponent,
     NewestActivitiesComponent,
     PinnedActivitiesComponent,
+    DashboardTopBarComponent,
   ],
   imports: [
     SharedModule,

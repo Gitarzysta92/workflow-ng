@@ -19,6 +19,7 @@ import { UserProfileRoutes } from './modules/user-profile/user-profile.routes';
 
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { AppAdvertisementsModule } from './modules/app-advertisements/app-advertisements.module';
+import { ActivitiesModule } from './modules/activities/activities.module';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
     { path: '', component: InitializationComponent, pathMatch: 'full' },
     { path: 'dashboard', loadChildren: () => DashboardModule },
     { path: 'articles', loadChildren: () => ArticlesModule },
+    { path: 'activities', loadChildren: () => ActivitiesModule },
     ...UserProfileRoutes,
     ...DynamicOutletsRoutes
   ]},

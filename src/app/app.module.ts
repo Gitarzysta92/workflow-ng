@@ -39,15 +39,14 @@ import { AppModuleRouting } from './app-routing.module';
     EntryViewComponent,
     UnauthViewComponent,
     InitializationComponent,
-    EntryViewComponent,
   ],
   imports: [
-    AppModuleRouting,
     BrowserModule,
     BrowserAnimationsModule,
+    AppModuleRouting,
     NavigationModule,
     UserProfileModule,
-    DynamicOutletsModule
+    DynamicOutletsModule,
   ],
   providers: [
     UserService,

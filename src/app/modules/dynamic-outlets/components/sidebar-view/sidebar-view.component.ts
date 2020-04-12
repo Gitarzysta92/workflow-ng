@@ -27,7 +27,7 @@ export class SidebarViewComponent implements OnInit {
   ngOnInit() {
     this.gridView = this._setTargetOutlet();
     this.itemsForView = this._outletsRegistry.getItems(this._route.outlet);
-    console.log(this.itemsForView);
+   // console.log(this.itemsForView);
   
   }
 

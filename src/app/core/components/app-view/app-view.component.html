@@ -9,8 +9,8 @@
     <div grid-column [type]="gridViews.sidebarLeft" class="sidebar-left col">
       <router-outlet name="app-view-left-sidebar"></router-outlet>
     </div>
-    <div grid-column [type]="gridViews.primary" class="primary col">
-      <router-outlet></router-outlet>
+    <div grid-column [type]="gridViews.primary" [@routeAnimations]="trigger" class="primary col">
+      <router-outlet #outlet="outlet"></router-outlet>
     </div>
     <div grid-column [type]="gridViews.sidebarRight" class="sidebar-right col">
       <router-outlet name="app-view-right-sidebar"></router-outlet>

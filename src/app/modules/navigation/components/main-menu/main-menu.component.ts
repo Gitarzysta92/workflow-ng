@@ -26,8 +26,10 @@ export class MainMenuComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = this.navigationRegistry.getItems();
-    console.log(this.menuItems);
     const parentAbsPath = this.getPrimaryOutletAbsPath();
+
+    console.log(this.menuItems);
+
 
     this.menuItems = this.menuItems.map(item => Object.assign(item, { isToplevel: true }))
 

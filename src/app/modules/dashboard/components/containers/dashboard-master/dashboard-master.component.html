@@ -1,15 +1,9 @@
-<section class="dashboard-top-bar">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 text-right">
-        <button>Settings</button>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="dashboard-section">
+<header>
+  <dashboard-top-bar></dashboard-top-bar>
+</header>
+<section>
   <pinned-activities [data]="pinnedActivities"></pinned-activities>
 </section>
-<section class="dashboard-section">
+<section>
   <newest-activities [data]="activitiesData"></newest-activities>
 </section>

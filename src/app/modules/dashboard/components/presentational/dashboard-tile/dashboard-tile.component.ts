@@ -1,10 +1,15 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { slideInAnimation } from 'src/app/shared/animations/animations';
 
 @Component({
   selector: 'dashboard-tile',
   templateUrl: './dashboard-tile.component.html',
   styleUrls: ['./dashboard-tile.component.scss'],
-  host: { '[class]': 'widthClass' }
+  host: { '[class]': 'widthClass' },
+  animations: [
+    slideInAnimation
+    // animation triggers go here
+  ]
 })
 export class DashboardTileComponent implements OnInit {
 

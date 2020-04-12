@@ -15,7 +15,6 @@ export class DashboardService {
   }
   
   public getTiles() {
-    console.log(this._dashboardTiles)
     return this._dashboardTiles;
   }
 }
