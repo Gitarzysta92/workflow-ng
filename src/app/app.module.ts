@@ -32,6 +32,7 @@ import { DynamicOutletsModule } from './modules/dynamic-outlets/dynamic-outlets.
 import { AppModuleRouting } from './app-routing.module';
 
 
+
 @NgModule({
   declarations: [
     GridColumn,
