@@ -1,23 +1,28 @@
 
 <div class="container-fluid no-padding">
   <div class="row">
-    <div grid-column [type]="gridViews.topBar" class="topbar col-12">
+    <div class="topbar col-12">
       <router-outlet name="app-view-topbar"></router-outlet>
     </div>
   </div>
   <div class="row full-height no-gutters">
-    <div grid-column [type]="gridViews.sidebarLeft" class="sidebar-left col">
-      <router-outlet name="app-view-left-sidebar"></router-outlet>
+    <div #sidebarLeft="collapsibleRef" collapsible class="sidebar-left col">
+      <switch-button [(state)]="sidebarLeft.isCollapsed" ></switch-button>
+      <ng-container *ngFor="let item of sidebarLeftComponents">
+        <div *inject="item.component; context: { isCollapsed: sidebarLeft.isCollapsed }"></div>
+      </ng-container>
     </div>
-      <div grid-column [type]="gridViews.primary" [@routeAnimations]="trigger" (@routeAnimations.done)="update()" class="primary col">
+      <div grid-column [@routeAnimations]="trigger"  class="primary col">
       <router-outlet #outlet="outlet"></router-outlet>
     </div>
-    <div grid-column [type]="gridViews.sidebarRight" class="sidebar-right col collapsed">
-      <router-outlet name="app-view-right-sidebar"></router-outlet>
+    <div #sidebarRight collapsible class="sidebar-right col collapsed">
+      <!-- <ng-container *ngFor="let item of sidebarRightComponents">
+        <ng-container *inject="{ component: item.component, inputs: { parent: sidebarRight }}"></ng-container>
+      </ng-container> -->
     </div>  
   </div>
   <div class="row">
-    <div grid-column [type]="gridViews.footer" class="bottombar col-12">
+    <div class="bottombar col-12">
       <router-outlet name="app-view-footer"></router-outlet>
     </div>
   </div>

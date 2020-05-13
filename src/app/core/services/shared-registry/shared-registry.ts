@@ -1,6 +1,5 @@
 import { SharedRegistryContainer, RegistryRecord } from './shared-registry.container';
-import { TypeOfRegistry } from './type-of-registry.enum';
-import { AdvSliderComponent } from 'src/app/modules/app-advertisements/components/adv-slider/adv-slider.component';
+import { TypeOfRegistry } from '../../../app';
 
 
 

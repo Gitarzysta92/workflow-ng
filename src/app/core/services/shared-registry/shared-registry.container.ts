@@ -1,4 +1,4 @@
-import { TypeOfRegistry } from './type-of-registry.enum';
+import { TypeOfRegistry } from '../../../app';
 
 
 export class SharedRegistryContainer {

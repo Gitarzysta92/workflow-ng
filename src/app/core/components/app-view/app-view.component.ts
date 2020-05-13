@@ -4,6 +4,8 @@ import { UserService } from '../../services/shared-api/shared-api.service';
 import { RouterOutlet, Router, NavigationStart, Route, ActivatedRoute, UrlTree } from '@angular/router';
 import { slideInAnimation } from 'src/app/shared/animations/animations';
 import { filter, tap } from 'rxjs/operators';
+import { DynamicComponentsRegistryService } from '../../services/dynamic-components-registry/dynamic-components-registry.service';
+import { TypeOfInsertionPoint } from 'src/app/app';
 
 
 @Component({
@@ -19,28 +21,32 @@ export class AppViewComponent implements OnInit {
   
   gridViews: any;
 
-  router: Router;
-  route: ActivatedRoute;
-
 
   stack: Array<string>;
   stackMax: number;
 
   trigger: string;
 
+  public sidebarRightComponents: Array<any>;
+  public sidebarLeftComponents: Array<any>;
+  public sidebarLeftContext: any;
+
   constructor(
-    router: Router,
-    route: ActivatedRoute
+    private readonly _router: Router,
+    private readonly _route: ActivatedRoute,
+    private readonly _dynamicComponents: DynamicComponentsRegistryService
+    
   ) {
-    this.router = router;
-    this.route = route;
     this.gridViews = GridViews;
 
     this.stack = [];
     this.stackMax = 10;
   }
 
+
   ngOnInit(): void {
+    this.sidebarRightComponents = this._dynamicComponents.getItems(TypeOfInsertionPoint.sidebarRight);
+    this.sidebarLeftComponents = this._dynamicComponents.getItems(TypeOfInsertionPoint.sidebarLeft);
 
     const asd = JSON.parse(sessionStorage.getItem('routingHistory'));
 
@@ -52,16 +58,15 @@ export class AppViewComponent implements OnInit {
     // });
     //this.primaryOutllet.deactivateEvents.subscribe(result => console.log(result));
 
-    this.router.events
+    this._router.events
       .pipe(filter(event => event instanceof NavigationStart))
       .subscribe((event ) => {
         //this.trigger = !this.trigger;
 
-        const urlTree = this.router.parseUrl((event as NavigationStart).url);
+        const urlTree = this._router.parseUrl((event as NavigationStart).url);
         const primaryUrlTree = this.getOutletUrlTree(urlTree, 'primary');
-        const primaryUrl = this.router.serializeUrl(primaryUrlTree);
 
-        console.log(primaryUrl, this.stack[1]);
+        const primaryUrl = this._router.serializeUrl(primaryUrlTree);
 
         if (primaryUrl === this.stack[1]) {
           this.stack.shift()
@@ -70,9 +75,6 @@ export class AppViewComponent implements OnInit {
           this.trigger = 'next';
           this.addToStack(primaryUrl);
         }
-
-        console.log(this.trigger);
-
         sessionStorage.setItem('routingHistory', JSON.stringify(this.stack));
       });
   }
@@ -81,8 +83,10 @@ export class AppViewComponent implements OnInit {
   getOutletUrlTree(urlTree: any, outletName: string) {
     if (urlTree) {
       const outletTree = urlTree.root.children.primary.children[outletName];
-      urlTree.root.children.primary.children = {};
-      urlTree.root.children.primary.children[outletName] = outletTree;
+      if (outletTree) {
+        urlTree.root.children.primary.children = {};
+        urlTree.root.children.primary.children[outletName] = outletTree;
+      }
     }
 
     return urlTree;
@@ -94,8 +98,10 @@ export class AppViewComponent implements OnInit {
     this.stack.length === this.stackMax && (this.stack.length = this.stackMax);
   }
 
-  update() {
-    this.trigger = null;
+  update(event) {
+    
+    console.log(event);
+    setTimeout(() => { this.trigger = null },0)
   }
 
 

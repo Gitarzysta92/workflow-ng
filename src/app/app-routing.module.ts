@@ -8,36 +8,31 @@ import { AuthGuard } from './core/services/auth-guard/auth-guard.service';
 import { AppViewComponent } from './core/components/app-view/app-view.component';
 import { UnauthViewComponent } from './core/components/unauth-view/unauth-view.component';
 import { InitializationComponent } from './core/components/initialization/initialization.component';
+import { SidebarViewComponent } from './core/components/sidebar-view/sidebar-view.component';
 
-// Load additional modules
-import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { ArticlesModule } from './modules/articles/articles.module';
+// Load modules routes
+import { ActivitesRoutes } from './features/activities/activities.routing';
+import { ArticlesRoutes } from './features/articles/articles.routing';
+import { ProfilesRoutes } from './features/profiles/profiles.routing';
+import { DashboardRoutes } from './features/dashboard/dashboard.routing';
+import { AuthenticationRoutes } from './features/authentication/authentication.routing';
 
-import { DynamicOutletsRoutes } from './modules/dynamic-outlets/dynamic-outlets.routes';
-import { UserProfileRoutes } from './modules/user-profile/user-profile.routes';
-
-
-import { AuthenticationModule } from './modules/authentication/authentication.module';
-import { AppAdvertisementsModule } from './modules/app-advertisements/app-advertisements.module';
-import { ActivitiesModule } from './modules/activities/activities.module';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'workflow', pathMatch: 'full' },
   { path: 'workflow', canActivate: [AuthGuard], component: AppViewComponent, children: [
     { path: '', component: InitializationComponent, pathMatch: 'full' },
-    { path: 'dashboard', loadChildren: () => DashboardModule },
-    { path: 'articles', loadChildren: () => ArticlesModule },
-    { path: 'activities', loadChildren: () => ActivitiesModule },
-    ...UserProfileRoutes,
-    ...DynamicOutletsRoutes
+    ...ActivitesRoutes,
+    ...ArticlesRoutes,
+    ...DashboardRoutes,
+    ...ProfilesRoutes,
   ]},
   { path: 'user', component: UnauthViewComponent, children: [
-    { path: '', loadChildren: () => AuthenticationModule },
-    { path: 'app-ads', loadChildren: () => AppAdvertisementsModule, outlet: 'entry-view-sidebar' }
+    ...AuthenticationRoutes,
+    // { path: 'app-ads', component: SidebarViewComponent, outlet: 'unauth-view-sidebar' }
   ]}
 ]
-
 
 
 @NgModule({
@@ -48,3 +43,7 @@ const routes: Routes = [
 
 
 export class AppModuleRouting {}
+
+
+// { path: 'left-sidebar', component: SidebarViewComponent, outlet: 'app-view-left-sidebar'},
+// { path: 'right-sidebar', component: SidebarViewComponent, outlet: 'app-view-right-sidebar'},

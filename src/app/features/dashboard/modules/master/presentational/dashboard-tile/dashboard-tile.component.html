@@ -1,0 +1,19 @@
+<content-tile [routerLink]="urlSegment">
+  <tile-header>
+    <span>{{ date | date:'MMMM d, y, h:mm a' }}</span>
+  </tile-header>
+  <tile-body>
+    <h2>{{ title }}</h2>
+    <p>{{ excerpt }}...</p>
+  </tile-body>
+  <tile-footer>
+    <div class="row no-gutters h-100">
+      <div *insertionSpot="'bottomBarLeft';context: 'asd'" class="col-6 h-100"></div>
+      <div *insertionSpot="'bottomBarRight';context: 'asd'" class="col-6 h-100"></div>
+    </div>
+  </tile-footer>
+</content-tile>
+  
+
+<!-- <button class="btn-fluid" >(22) Komentarzy</button> -->
+<!-- <button class="btn-fluid">Michał Łukasiewicz (22)</button> -->

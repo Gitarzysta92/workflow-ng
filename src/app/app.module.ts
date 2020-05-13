@@ -19,35 +19,46 @@ import { SharedRegistryService } from './core/services/shared-registry/shared-re
 import { TemplateGridService } from './core/services/template-grid/template-grid.service';
 
 
-// import core directives
-import { GridColumn } from './core/directives/grid-column/grid-column.directive';
-
 // imports modules
-import { NavigationModule } from './modules/navigation/navigation.module';
-import { UserProfileModule } from './modules/user-profile/user-profile.module';
-import { DynamicOutletsModule } from './modules/dynamic-outlets/dynamic-outlets.module';
+import { SharedModule } from './shared/shared.module';
+import { NavigationModule } from './features/navigation/navigation.module';
+import { ProfilesModule } from './features/profiles/profiles.module';
+import { DashboardModule } from './features/dashboard/dashboard.module';
+// import { DashboardModule } from './modules/dashboard/dashboard.module';
+// import { DynamicOutletsModule } from './modules/dynamic-outlets/dynamic-outlets.module';
+// import { ArticlesModule } from './modules/articles/articles.module';
+// import { AuthenticationModule } from './modules/authentication/authentication.module';
+// import { AppAdvertisementsModule } from './modules/app-advertisements/app-advertisements.module';
+// import { ActivitiesModule } from './modules/activities/activities.module';
 
 
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
+import { SidebarViewComponent } from './core/components/sidebar-view/sidebar-view.component';
+
+
+
 
 
 
 @NgModule({
   declarations: [
-    GridColumn,
     AppViewComponent,
     EntryViewComponent,
     UnauthViewComponent,
     InitializationComponent,
+    SidebarViewComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppModuleRouting,
+    SharedModule,
     NavigationModule,
-    UserProfileModule,
-    DynamicOutletsModule,
+    ProfilesModule,
+    DashboardModule
+    // UserProfileModule,
+    // DynamicOutletsModule,
   ],
   providers: [
     UserService,

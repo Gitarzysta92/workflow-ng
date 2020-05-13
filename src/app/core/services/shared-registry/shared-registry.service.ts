@@ -1,5 +1,5 @@
 import { SharedRegistry as _SharedRegistry } from './shared-registry';
-import { TypeOfRegistry } from './type-of-registry.enum';
+import { TypeOfRegistry } from '../../../app';
 
 
 

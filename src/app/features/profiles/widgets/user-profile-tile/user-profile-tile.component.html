@@ -1,0 +1,40 @@
+<div #tile *ngIf="!isCollapsed" class="container tile">
+  <div class="row">
+    <div class="col-12">
+      <div class="avatar"
+        [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 300 } }"
+        [style.backgroundImage]="'url('+ fullImagePath +')'" 
+        [style.borderColor]="accentColor">
+      </div>
+      <h6 [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 100 } }">Michał Łukasiewicz<br>
+        <small>dział graficzny</small>
+      </h6>
+      <div class="layer" [class.active]="isOpen">
+        <div class="row">
+          <div class="col-4">
+            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 500 } }">asasdasd</div> 
+          </div>
+          <div class="col-4">
+            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 550 } }">asasdasd</div> 
+          </div>
+          <div class="col-4">
+            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 600 } }">asasdasd</div> 
+          </div>
+          <div class="col-4">
+            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 650 } }">asasdasd</div> 
+          </div>
+          <div class="col-4">
+            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 700 } }">asasdasd</div> 
+          </div>
+          <div class="col-4">
+            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 750 } }">asasdasd</div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [@openClose]="{ value: isOpen ? 'open' : 'closed', params: params  }" class="animated-background" [style.backgroundColor]="accentColor"></div>
+</div>
+<div *ngIf="isCollapsed" class="small-tile">
+  <div class="avatar" [style.backgroundImage]="'url('+ fullImagePath +')'"></div>
+</div>
