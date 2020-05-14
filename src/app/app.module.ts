@@ -24,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
 import { NavigationModule } from './features/navigation/navigation.module';
 import { ProfilesModule } from './features/profiles/profiles.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
+import { DiscussionsModule } from './features/discussions/discussions.module';
 // import { DashboardModule } from './modules/dashboard/dashboard.module';
 // import { DynamicOutletsModule } from './modules/dynamic-outlets/dynamic-outlets.module';
 // import { ArticlesModule } from './modules/articles/articles.module';
@@ -35,6 +36,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
 import { SidebarViewComponent } from './core/components/sidebar-view/sidebar-view.component';
+
 
 
 
@@ -56,7 +58,8 @@ import { SidebarViewComponent } from './core/components/sidebar-view/sidebar-vie
     SharedModule,
     NavigationModule,
     ProfilesModule,
-    DashboardModule
+    DashboardModule,
+    DiscussionsModule
     // UserProfileModule,
     // DynamicOutletsModule,
   ],

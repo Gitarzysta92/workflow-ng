@@ -16,6 +16,7 @@ import { ArticlesRoutes } from './features/articles/articles.routing';
 import { ProfilesRoutes } from './features/profiles/profiles.routing';
 import { DashboardRoutes } from './features/dashboard/dashboard.routing';
 import { AuthenticationRoutes } from './features/authentication/authentication.routing';
+import { DiscussionsRoutes } from './features/discussions/discussions.routing';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
     ...ArticlesRoutes,
     ...DashboardRoutes,
     ...ProfilesRoutes,
+    ...DiscussionsRoutes
   ]},
   { path: 'user', component: UnauthViewComponent, children: [
     ...AuthenticationRoutes,
