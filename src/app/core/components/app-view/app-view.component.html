@@ -7,7 +7,9 @@
   </div>
   <div class="row full-height no-gutters">
     <div #sidebarLeft="collapsibleRef" collapsible class="sidebar-left col">
-      <switch-button [(state)]="sidebarLeft.isCollapsed" ></switch-button>
+      <div class="button-wrapper">
+        <switch-button [(state)]="sidebarLeft.isCollapsed" ></switch-button>
+      </div>
       <ng-container *ngFor="let item of sidebarLeftComponents">
         <div *inject="item.component; context: { isCollapsed: sidebarLeft.isCollapsed }"></div>
       </ng-container>
