@@ -1,1 +1,5 @@
-<button (click)="toggleState()">asd</button>
+<button class="switch-button" (click)="toggleState()">
+  <div class="switch-wrapper" [@toggle]="{ value: state ? 'on' : 'off' }">
+    <div class="switch"></div>
+  </div>
+</button>

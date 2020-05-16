@@ -47,3 +47,14 @@
 .no-padding { 
   padding: 0;
 }
+
+
+.button-wrapper {
+  max-width: 50px;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+.collapsed .button-wrapper {
+  padding: 0 10px;
+}

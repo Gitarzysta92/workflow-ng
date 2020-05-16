@@ -1,0 +1,36 @@
+@import '../../../../assets/scss/light-scheme';
+
+.switch-button {
+  position: relative;
+  height: 1em;
+  padding: 0.2em;
+  width: 100%;
+  min-width: 1em;
+  border-radius: 50px;
+  border: none;
+  background-color: $surface-secondary-color;
+  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.05);
+  cursor: pointer;
+
+
+  &:focus {
+    outline: none;;
+  }
+
+  .switch-wrapper {
+    position: absolute;
+    top: 0;
+    width: calc(100% - 1em);
+    height: 100%;
+
+    .switch {
+      position: absolute;
+      height: 0.6em;
+      width: 0.6em;
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+      border-radius: 50px;
+      background-color: $accent-color;
+    }
+  }
+}

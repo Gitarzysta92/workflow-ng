@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Renderer2, ComponentRef } from '@angular/core';
 import { slideInAnimation } from 'src/app/shared/animations/animations';
 
 @Component({
@@ -20,9 +20,14 @@ export class DashboardTileComponent implements OnInit {
 
   // meta
   @Input() id: number;
+
   @Input() urlSegment: Array<string> = [];
   @Input() size: string = 'medium';
-  @Input() backgroundColor: string = '#f6f6f6'; 
+  @Input() backgroundColor: string = '#f6f6f6';
+
+  // structural
+  @Input() insertionSpotLeft: ComponentRef<any>;
+  @Input() insertionSpotRight: ComponentRef<any>;
 
 
   // host element reference
