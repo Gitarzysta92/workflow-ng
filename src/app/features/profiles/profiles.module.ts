@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // import components
 import './profiles.registry';
-import { UserProfileTileComponent } from './widgets/user-profile-tile/user-profile-tile.component';
+import { UserProfileTileComponent } from './components/containers/user-profile-tile/user-profile-tile.component';
 
 @NgModule({
   declarations: [

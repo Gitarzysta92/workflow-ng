@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators'
 
@@ -16,6 +16,8 @@ import { NavigationRegistryService } from 'src/app/features/navigation/services/
 
 export class MainMenuComponent implements OnInit {
 
+  @Input() isCollapsed: boolean = false;
+  
   menuItems: Array<NavigationItem> = [];
 
   constructor(

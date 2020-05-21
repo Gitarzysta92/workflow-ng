@@ -8,6 +8,7 @@ import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 })
 export class MenuWrapperComponent implements OnInit {
 
+ 
   @Input() items: Array<any> = [];
   @Input() isExpanded: boolean = false;
 

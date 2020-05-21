@@ -10,6 +10,7 @@ export enum TypeOfRegistry {
 
 export enum TypeOfInsertionPoint {
   sidebarRight,
-  sidebarLeft
+  sidebarLeft,
+  dashboardTile
 }
 
