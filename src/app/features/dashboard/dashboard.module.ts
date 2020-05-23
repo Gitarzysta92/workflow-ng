@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // import components
 import './dashboard.registry';
+import { DiscussionModule } from '../discussions/modules/discussion/discussion.module';
 
 @NgModule({
   declarations: [

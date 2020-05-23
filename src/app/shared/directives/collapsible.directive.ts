@@ -1,4 +1,5 @@
 import { Directive, OnInit, Input, OnDestroy, ElementRef } from '@angular/core';
+import { AnimationBuilder } from '@angular/animations';
 
 
 @Directive({
@@ -28,6 +29,7 @@ export class Collapsible implements OnInit, OnDestroy  {
   ) {}
 
   ngOnInit() { }
+
   ngOnDestroy() {
     //this.gridService.addView(this.type, this.publicApi);
   }

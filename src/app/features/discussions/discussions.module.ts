@@ -8,7 +8,10 @@ import { DiscussionWidgetComponent } from './components/containers/discussion-wi
 @NgModule({
   declarations: [DiscussionThreadComponent, DiscussionWidgetComponent],
   imports: [
-    CommonModule
+    CommonModule,
+  ],
+  exports: [
+    DiscussionThreadComponent
   ],
   entryComponents : [
     DiscussionWidgetComponent

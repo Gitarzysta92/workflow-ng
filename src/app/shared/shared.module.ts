@@ -10,6 +10,7 @@ import { InjectComponentDirective } from './directives/inject-component.directiv
 import { InsertionSpotDirective } from './directives/insertion-spot.directive';
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 import { Collapsible } from './directives/collapsible.directive';
+import { ExpandableListComponent } from './components/expandable-list/expandable-list.component';
 
 
 
@@ -18,7 +19,8 @@ import { Collapsible } from './directives/collapsible.directive';
     Collapsible,
     InjectComponentDirective,
     InsertionSpotDirective,
-    SwitchButtonComponent
+    SwitchButtonComponent,
+    ExpandableListComponent
   ],
   imports: [
     TilesBoardModule,
@@ -33,7 +35,8 @@ import { Collapsible } from './directives/collapsible.directive';
     NgScrollbarModule,
     InjectComponentDirective,
     InsertionSpotDirective,
-    SwitchButtonComponent
+    SwitchButtonComponent,
+    ExpandableListComponent
   ],
 })
 export class SharedModule { }

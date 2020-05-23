@@ -10,6 +10,9 @@ import {
 
 @Component({
   selector: 'app-user-profile-tile',
+  host: {
+    '[class.collapsed]' : 'isCollapsed', 
+  },  
   animations: [
     trigger('openClose', [
       state('open', style({
@@ -17,7 +20,6 @@ import {
         width: '100%'
       }), { params: { bgColor: '#000' } }),
       state('closed', style({
-        width: '10px'
         //backgroundColor: 'transparent'
       })),
       transition('open => closed', [
@@ -54,6 +56,27 @@ import {
         animate('0.2s {{ delay }}ms ease-in-out')
       ], { params: { delay: 200 }}),
     ]),
+    trigger(
+      'inOutAnimation', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ opacity: 0,  position: 'absolute' }),
+            animate('0.2s  ease-in-out', 
+                    style({  opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ opacity: 1, position: 'absolute' }),
+            animate('0.2s ease-in-out', 
+                    style({ opacity: 0 }))
+          ]
+        )
+      ]
+    )
   ],
   templateUrl: './user-profile-tile.component.html',
   styleUrls: ['./user-profile-tile.component.scss']
@@ -62,6 +85,7 @@ export class UserProfileTileComponent implements OnInit {
 
   @ViewChild('tile', { static: true }) tile:ElementRef;
   @Input() isCollapsed: boolean = false;
+
 
   @HostListener('mouseenter', ['$event'])
   onMouseEnter(event) {

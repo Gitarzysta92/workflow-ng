@@ -1,0 +1,18 @@
+<div>
+  <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: data }"></ng-container>
+</div>
+
+
+<ng-template #listTemplate let-items>
+  <ul *ngFor="let item of items">
+    <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item  }"></ng-container>
+  </ul>
+</ng-template>
+
+
+<ng-template #itemTemplate let-item>
+  <li>
+    <ng-container *ngTemplateOutlet="listItem; context: { $implicit: item.context }"></ng-container>
+    <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: item.childrens  }"></ng-container>  
+  </li>
+</ng-template>

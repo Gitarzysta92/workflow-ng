@@ -1,3 +1,18 @@
+:host {
+  position: relative;
+  transition: height ease-in-out .2s;
+  display: block;
+  height: 250px;
+  cursor: pointer;
+  &.collapsed {
+    height:50px;
+
+    .animated-background {
+      width: 0px;
+    }
+  }
+}
+
 .avatar {
   position: relative;
   right: 5px;
@@ -15,29 +30,35 @@
 }
 
 .small-tile {
+  height: 50px;
   .avatar {
-    height: 20px;
-    width: 20px;
+    right: 0;
+    height: 30px;
+    width: 30px;
     border-width: 0px;
+    margin-bottom: 0px;
   }
+}
+
+
+.animated-background {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 10px;
 }
 
 .tile {
   position: relative;
   padding: 30px 20px 30px 30px;
-  cursor: pointer;
+  white-space: nowrap;
   h6 {
     font-weight: 800;
   }
 
-  .animated-background {
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 10px;
-  }
+ 
 
   .layer {
     position: absolute;
@@ -47,10 +68,16 @@
     height: 100%;
     z-index: 0;
     margin: 0 -12px;
+    opacity: 0;
     &.active {
       z-index: 1000;
+      opacity: 1;
     }
   }
+}
+
+.no-padding {
+  padding: 0;
 }
 
 

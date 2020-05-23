@@ -13,7 +13,7 @@ import { DiscussionWidgetComponent } from './components/containers/discussion-wi
 SharedRegistry.addRecordFor(Archive.DynamicComponents, {
   name: 'User profile tile',
   path: '**',
-  target: TypeOfInsertionPoint.sidebarLeft,
+  target: TypeOfInsertionPoint.dashboardTile,
   position: 4,
   component: DiscussionWidgetComponent
 });

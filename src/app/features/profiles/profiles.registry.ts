@@ -1,7 +1,7 @@
 import { SharedRegistry, Archive } from '../../core/services/shared-registry/shared-registry.service';
 
 // imports components
-import { UserProfileTileComponent } from './widgets/user-profile-tile/user-profile-tile.component';
+import { UserProfileTileComponent } from './components/containers/user-profile-tile/user-profile-tile.component';
 import { TypeOfInsertionPoint } from 'src/app/app';
 
 
