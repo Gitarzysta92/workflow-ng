@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators'
 import { TemplateGridService, GridViews } from '@workflow/grid';
 import { NavigationItem } from 'src/app/features/navigation/models/navigation-item';
 import { NavigationRegistryService } from 'src/app/features/navigation/services/naviagtion-registry.service';
+import { ExpandableListItem } from 'src/app/shared/components/expandable-list/expandable-list.component';
 
 
 @Component({
@@ -18,17 +19,16 @@ export class MainMenuComponent implements OnInit {
 
   @Input() isCollapsed: boolean = false;
   
-  menuItems: Array<NavigationItem> = [];
-
+  menuItems: Array<ExpandableNavigationItem> = [];
+  
   constructor(
-    private readonly navigationRegistry: NavigationRegistryService,
-    private readonly gridService: TemplateGridService,
-    private readonly route: ActivatedRoute,
-    private router: Router
+    private readonly _navigationRegistry: NavigationRegistryService,
+    private readonly _route: ActivatedRoute,
+    private readonly _router: Router
   ) {}
 
   ngOnInit() {
-    this.menuItems = this.navigationRegistry.getItems();
+    this.menuItems = this._navigationRegistry.getItems() as Array<ExpandableNavigationItem>;
     const parentAbsPath = this.getPrimaryOutletAbsPath();
 
     console.log(this.menuItems);
@@ -38,12 +38,12 @@ export class MainMenuComponent implements OnInit {
 
     this.menuItems = this.recursiveWalker(this.menuItems, 'childrens', item => {
       item.path = [parentAbsPath, ...item.path.split('/')]
-      item.url = this.router.parseUrl(item.path.join('/'))
-      return new NavigationItem(item)
+      item.url = this._router.parseUrl(item.path.join('/'))
+      return new ExpandableNavigationItem(item)
     });
 
     this.setActiveItems();
-    this.router.events
+    this._router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.setActiveItems();
@@ -52,7 +52,7 @@ export class MainMenuComponent implements OnInit {
 
   setActiveItems() {
     this.recursiveWalker(this.menuItems, 'childrens', item => {
-      item.active = this.router.isActive(item.url, false);
+      item.active = this._router.isActive(item.url, false);
       return item;
     });
   };
@@ -69,13 +69,11 @@ export class MainMenuComponent implements OnInit {
 
 
   collapseSidebar() {
-    const sidebarLeft = this.gridService.view(GridViews.sidebarLeft);
-    sidebarLeft && sidebarLeft.collapse();
   }
 
 
   getPrimaryOutletAbsPath() {
-    const routes = this.route.pathFromRoot;
+    const routes = this._route.pathFromRoot;
     const fragments = [];
 
     Array.isArray(routes) && routes.forEach(route => {
@@ -85,6 +83,22 @@ export class MainMenuComponent implements OnInit {
 
     const absPath = `/${fragments.join('/')}`;
     return absPath;
+  }
+}
+
+
+export class ExpandableNavigationItem extends NavigationItem implements ExpandableListItem {
+  public expanded: boolean = false;
+  get active(): boolean {
+    return this.expanded;
+  }
+  set active(value: boolean) {
+    //console.log(value);
+    this.expanded = value;
+  }
+
+  constructor(data) {
+    super(data);
   }
 }
 

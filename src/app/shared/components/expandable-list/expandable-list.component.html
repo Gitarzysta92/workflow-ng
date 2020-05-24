@@ -1,18 +1,21 @@
-<div>
-  <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: data }"></ng-container>
-</div>
+<ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: dataForView, isExpanded: true }"></ng-container>
 
-
-<ng-template #listTemplate let-items>
-  <ul *ngFor="let item of items">
-    <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item  }"></ng-container>
+<ng-template #listTemplate let-items let-isExpanded="isExpanded">
+  <ul class="expandable" [class.expanded]="isExpanded">
+    <ng-container *ngFor="let item of items">
+      <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item  }"></ng-container>
+    </ng-container>
   </ul>
 </ng-template>
 
 
 <ng-template #itemTemplate let-item>
-  <li>
+  <li (click)="!expandOnHover && expandItem(item, $event)" 
+      (mouseenter)="expandOnHover && item.expanded = true"
+      (mouseleave)="expandOnHover && item.expanded = false">
     <ng-container *ngTemplateOutlet="listItem; context: { $implicit: item.context }"></ng-container>
-    <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: item.childrens  }"></ng-container>  
+    <ng-container *ngIf="item.childrens?.length > 0">
+      <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: item.childrens, isExpanded: item.expanded }"></ng-container> 
+    </ng-container> 
   </li>
 </ng-template>

@@ -1,9 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <expandable-list [data]="menuItems">
+      <expandable-list onHover [data]="menuItems">
         <ng-template #listItem let-item>
-          <menu-item [label]="item.name" [path]="item.path" [isActive]="item.active"></menu-item>
+          <menu-item 
+            [label]="item.name" 
+            [path]="item.path" 
+            [isActive]="item.active"
+            [isToplevel]="item.isToplevel">
+          </menu-item>
         </ng-template>
       </expandable-list>
     </div>
