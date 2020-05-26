@@ -1,5 +1,5 @@
 import { SharedRegistry, Archive} from '../../core/services/shared-registry/shared-registry.service';
-
+import { ICONS } from '../../constants/icons';
 
 // SharedRegistry.addRecordFor(Archive.InsertionSpots, {
 //   dashboardTilebottomBarLeft: 'discussionWidget',
@@ -57,7 +57,7 @@ SharedRegistry.addRecordFor(Archive.Navigation,
     ],
 
     meta: {
-      icon: '',
+      icon: ICONS.dashboard,
       position: ''
     }
   }

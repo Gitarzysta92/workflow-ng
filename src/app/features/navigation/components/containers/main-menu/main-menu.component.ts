@@ -31,7 +31,6 @@ export class MainMenuComponent implements OnInit {
     this.menuItems = this._navigationRegistry.getItems() as Array<ExpandableNavigationItem>;
     const parentAbsPath = this.getPrimaryOutletAbsPath();
 
-    console.log(this.menuItems);
 
 
     this.menuItems = this.menuItems.map(item => Object.assign(item, { isToplevel: true }))
@@ -41,6 +40,9 @@ export class MainMenuComponent implements OnInit {
       item.url = this._router.parseUrl(item.path.join('/'))
       return new ExpandableNavigationItem(item)
     });
+    
+
+    console.log(this.menuItems);
 
     this.setActiveItems();
     this._router.events
@@ -89,16 +91,18 @@ export class MainMenuComponent implements OnInit {
 
 export class ExpandableNavigationItem extends NavigationItem implements ExpandableListItem {
   public expanded: boolean = false;
-  get active(): boolean {
-    return this.expanded;
-  }
-  set active(value: boolean) {
-    //console.log(value);
-    this.expanded = value;
+  public settled: boolean = false;
+  public childrens: Array<ExpandableNavigationItem> = [];
+
+  private _active: boolean = false;
+  get active(): boolean { return this._active; }
+  set active(value: boolean) { 
+    this._active = this.expanded = this.settled = value; 
   }
 
   constructor(data) {
     super(data);
+    this.childrens = data.childrens;
   }
 }
 

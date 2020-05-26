@@ -1,12 +1,43 @@
+@import '../../../../../../assets/scss/light-scheme.scss';
+
 :host {
+  display: block;
+  width: 100%;
   padding: 0;
   font-weight: 300;
   &.active {
-    font-weight: 700;
-    padding: 0 0 10px 0;
+    font-weight: 500;
+    i { 
+      opacity: 1;
+      color: $accent-color;
+    }
   }
 
   &.top-level {
     font-size: 1rem;
+    padding-bottom: 5px;
+  }
+
+  &:not(.top-level) {
+    font-size: 0.7rem;
+  }
+
+  i {
+    font-size: 0.8em;
+    padding-right: 10px;
+    opacity: 0.5;
+  }
+
+  i, a {
+    color: $text-primary-color;
+    vertical-align: middle;
+  }
+
+  &:hover a {
+    text-decoration: none;
+  }
+
+  &:not(.active):hover a {
+    font-weight: 500;
   }
 }

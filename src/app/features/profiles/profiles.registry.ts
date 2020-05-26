@@ -3,6 +3,7 @@ import { SharedRegistry, Archive } from '../../core/services/shared-registry/sha
 // imports components
 import { UserProfileTileComponent } from './components/containers/user-profile-tile/user-profile-tile.component';
 import { TypeOfInsertionPoint } from 'src/app/app';
+import { ICONS } from 'src/app/constants/icons';
 
 
 SharedRegistry.addRecordFor(Archive.Navigation, {
@@ -10,7 +11,7 @@ SharedRegistry.addRecordFor(Archive.Navigation, {
   path: 'profile',
   childrens: {},
   meta: {
-    icon: '',
+    icon: ICONS.profile,
     position: ''
   }
 })

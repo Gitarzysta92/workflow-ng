@@ -10,10 +10,10 @@
 
 
 <ng-template #itemTemplate let-item>
-  <li (click)="!expandOnHover && expandItem(item, $event)" 
-      (mouseenter)="expandOnHover && item.expanded = true"
-      (mouseleave)="expandOnHover && item.expanded = false">
-    <ng-container *ngTemplateOutlet="listItem; context: { $implicit: item.context }"></ng-container>
+  <li (click)="!expandOnHover && toggleItem($event, item)" 
+      (mouseenter)="expandOnHover && toggleItem($event, item, true)"
+      (mouseleave)="expandOnHover && toggleItem($event, item, false)">
+    <ng-container *ngTemplateOutlet="listItem; context: { $implicit: item }"></ng-container>
     <ng-container *ngIf="item.childrens?.length > 0">
       <ng-container *ngTemplateOutlet="listTemplate; context: { $implicit: item.childrens, isExpanded: item.expanded }"></ng-container> 
     </ng-container> 

@@ -16,7 +16,7 @@ export class MenuItemComponent implements OnInit {
 
   @Input() label: string = '';
   @Input() path: string = '';
-  @Input() childrens: Array<any> = [];
+  @Input() icon: string = null;
 
   @Input() isActive: boolean = false;
   @Input() isToplevel: boolean = false;
