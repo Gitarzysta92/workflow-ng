@@ -14,12 +14,14 @@ import { MainMenuComponent } from './components/containers/main-menu/main-menu.c
 import { MenuItemComponent } from './components/presentational/menu-item/menu-item.component';
 import { MenuWrapperComponent } from './components/presentational/menu-wrapper/menu-wrapper.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FloatingMenuComponent } from './components/containers/floating-menu/floating-menu.component';
 
 @NgModule({
   declarations: [
     MainMenuComponent,
     MenuItemComponent,
-    MenuWrapperComponent
+    MenuWrapperComponent,
+    FloatingMenuComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MainMenuComponent
   ], 
   entryComponents: [
-    MainMenuComponent
+    MainMenuComponent,
+    FloatingMenuComponent
   ]
 })
 

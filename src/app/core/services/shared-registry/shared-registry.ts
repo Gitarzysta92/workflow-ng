@@ -22,10 +22,16 @@ export class SharedRegistry {
     this._createArchive(name, archive)
   }
 
-  // Add new record to created registry 
-  public static addRecordFor(registryName: TypeOfRegistry , data: any = {}): void {
-    if (registryName == null || data == null) return;
-    this._addRecordFor(registryName , data);
+  // Add new record to registry 
+  public static addRecordFor(registryName: TypeOfRegistry, recordData: any): void {
+    if (registryName == null || recordData == null) return;
+    this._addRecordFor(registryName , recordData);
+  }
+
+  // Add multiple new records to registry
+  public static addRecordsFor(registryName: TypeOfRegistry, data: Array<any>): void {
+    if (registryName == null || !Array.isArray(data)) return;
+    data.forEach(record => this._addRecordFor(registryName, record));
   }
 
   // Returns registry with given name

@@ -11,6 +11,7 @@ import { InsertionSpotDirective } from './directives/insertion-spot.directive';
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 import { Collapsible } from './directives/collapsible.directive';
 import { ExpandableListComponent } from './components/expandable-list/expandable-list.component';
+import { FloatingTrayComponent } from './components/floating-tray/floating-tray.component';
 
 
 
@@ -19,8 +20,9 @@ import { ExpandableListComponent } from './components/expandable-list/expandable
     Collapsible,
     InjectComponentDirective,
     InsertionSpotDirective,
-    SwitchButtonComponent,
-    ExpandableListComponent
+  SwitchButtonComponent, 
+    ExpandableListComponent,
+    FloatingTrayComponent
   ],
   imports: [
     TilesBoardModule,
@@ -36,7 +38,8 @@ import { ExpandableListComponent } from './components/expandable-list/expandable
     InjectComponentDirective,
     InsertionSpotDirective,
     SwitchButtonComponent,
-    ExpandableListComponent
+    ExpandableListComponent,
+    FloatingTrayComponent
   ],
 })
 export class SharedModule { }

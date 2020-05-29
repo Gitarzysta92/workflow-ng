@@ -31,8 +31,6 @@ export class MainMenuComponent implements OnInit {
     this.menuItems = this._navigationRegistry.getItems() as Array<ExpandableNavigationItem>;
     const parentAbsPath = this.getPrimaryOutletAbsPath();
 
-
-
     this.menuItems = this.menuItems.map(item => Object.assign(item, { isToplevel: true }))
 
     this.menuItems = this.recursiveWalker(this.menuItems, 'childrens', item => {
