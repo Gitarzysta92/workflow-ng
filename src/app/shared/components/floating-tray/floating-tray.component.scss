@@ -1,0 +1,13 @@
+:host {
+  position: relative;
+  display: block;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transition: transform ease-in-out .2s;
+
+  &.extended{
+    transform: translateX(100%);
+  }
+
+}

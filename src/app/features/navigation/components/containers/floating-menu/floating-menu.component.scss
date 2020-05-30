@@ -1,0 +1,14 @@
+@import '../../../../../../assets/scss/light-scheme.scss';
+
+:host {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.submenu-container {
+  color: $text-primary-color-inverted;
+  background-color: $accent-color;
+}

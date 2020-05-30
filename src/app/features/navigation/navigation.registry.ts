@@ -14,12 +14,12 @@ SharedRegistry.addRecordsFor(Archive.DynamicComponents, [
     position: 10,
     component: MainMenuComponent
   },
-  {
-    name: 'floating-menu',
-    target: TypeOfInsertionPoint.sidebarLeft,
-    position: 11,
-    component: FloatingMenuComponent
-  },
+  // {
+  //   name: 'floating-menu',
+  //   target: TypeOfInsertionPoint.sidebarLeft,
+  //   position: 11,
+  //   component: FloatingMenuComponent
+  // },
 ])
 
 

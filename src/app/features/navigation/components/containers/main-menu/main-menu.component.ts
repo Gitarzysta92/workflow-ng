@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators'
 
@@ -6,6 +6,12 @@ import { TemplateGridService, GridViews } from '@workflow/grid';
 import { NavigationItem } from 'src/app/features/navigation/models/navigation-item';
 import { NavigationRegistryService } from 'src/app/features/navigation/services/naviagtion-registry.service';
 import { ExpandableListItem } from 'src/app/shared/components/expandable-list/expandable-list.component';
+import { FloatingTrayComponent } from 'src/app/shared/components/floating-tray/floating-tray.component';
+
+interface SidebarItem {
+  isCollapsed: boolean;
+}
+
 
 
 @Component({
@@ -15,11 +21,16 @@ import { ExpandableListItem } from 'src/app/shared/components/expandable-list/ex
 
 })
 
-export class MainMenuComponent implements OnInit {
+export class MainMenuComponent implements OnInit, SidebarItem {
+
+  @ViewChild('floatingTray', { static : true}) _floatingTray: FloatingTrayComponent;
 
   @Input() isCollapsed: boolean = false;
   
   menuItems: Array<ExpandableNavigationItem> = [];
+
+  submenuTitle: string;
+  submenuItems: Array<ExpandableNavigationItem> = [];
   
   constructor(
     private readonly _navigationRegistry: NavigationRegistryService,
@@ -38,9 +49,6 @@ export class MainMenuComponent implements OnInit {
       item.url = this._router.parseUrl(item.path.join('/'))
       return new ExpandableNavigationItem(item)
     });
-    
-
-    console.log(this.menuItems);
 
     this.setActiveItems();
     this._router.events
@@ -57,6 +65,16 @@ export class MainMenuComponent implements OnInit {
     });
   };
 
+  toggleSubmenuTray(targetItem: ExpandableNavigationItem): void {
+    const isNotCollapsed = !this.isCollapsed;
+    const isNotTopLevel = !targetItem.isToplevel;
+    if (isNotTopLevel) return;
+
+    this.submenuTitle = targetItem.name;
+    this.submenuItems = targetItem.childrens;
+    this._floatingTray.toggle();
+  }
+
 
   recursiveWalker(items, key, callback) {
     if (!Array.isArray(items)) return;
@@ -67,9 +85,6 @@ export class MainMenuComponent implements OnInit {
   }
 
 
-
-  collapseSidebar() {
-  }
 
 
   getPrimaryOutletAbsPath() {

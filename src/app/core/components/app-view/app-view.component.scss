@@ -1,5 +1,4 @@
-
-
+@import '../../../../assets/scss/light-scheme.scss';
 
 
 .topbar {
@@ -19,7 +18,18 @@
 }
 
 div[class^="sidebar"] {
+  position: relative;
   transition: all ease-in-out .2s;
+  z-index: 2000;
+  background-color: $surface-primary-color;
+  .sidebar-container {
+    position: relative;
+    z-index: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+  }
 }
 
 .primary {
@@ -27,6 +37,7 @@ div[class^="sidebar"] {
   width: 100%;
   overflow: hidden;
   position: relative;
+
 }
 
 .sidebar-right {
