@@ -20,6 +20,8 @@ export class MenuItemComponent implements OnInit {
 
   @Input() isActive: boolean = false;
   @Input() isToplevel: boolean = false;
+  // TODO : Change input property name to be more descriptive.
+  @Input() isNarrow: boolean = false;
 
 
   constructor(

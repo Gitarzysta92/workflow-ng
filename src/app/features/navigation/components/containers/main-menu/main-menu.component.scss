@@ -1,4 +1,6 @@
 @import '../../../../../../assets/scss/light-scheme.scss';
+@import '../../../../../../assets/scss/dimensions.scss';
+
 
 
 .container {
@@ -13,8 +15,9 @@
 .floating-wrapper {
   position: absolute;
   top: 0;
+  right: 0;
   display: block;
-  width: 100%;
+  width: $sidebar-width;
   height: 100%;
   z-index: -1
 }

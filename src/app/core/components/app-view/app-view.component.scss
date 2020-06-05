@@ -1,4 +1,5 @@
 @import '../../../../assets/scss/light-scheme.scss';
+@import '../../../../assets/scss/dimensions.scss';
 
 
 .topbar {
@@ -10,7 +11,7 @@
   flex: 0 0 230px;
   height: 100%;
   border-right: 1px #ededed solid;
-  width: 230px;
+  width: $sidebar-width;
   &.collapsed {
     flex: 0 0 20px;
     width: 50px;

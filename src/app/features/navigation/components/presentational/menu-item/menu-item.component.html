@@ -1,6 +1,5 @@
 
-<i *ngIf="!!icon" class="{{ icon }}"></i>
-
-
-
-<a [routerLink]="path">{{ label }}</a>
+<a [routerLink]="path">
+  <i *ngIf="!!icon" class="{{ icon }}"></i>
+  <span *ngIf="!isNarrow">{{ label }}</span>
+</a>

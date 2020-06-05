@@ -1,15 +1,17 @@
-<div class="container">
+<div [ngClass]="isCollapsed ? 'container-fluid' : 'container'">
   <div class="row">
     <div class="col-md-12">
       <expandable-list onHover [data]="menuItems">
         <ng-template #listItem let-item>
           <menu-item 
-            (mouseover)="toggleSubmenuTray(item)"
+            (mouseenter)="toggleSubmenuTray(item, true)"
+            (mouseleave)="toggleSubmenuTray(item, false)"
             [icon]="item.icon"
             [label]="item.name" 
             [path]="item.path" 
             [isActive]="item.active"
-            [isToplevel]="item.isToplevel">
+            [isToplevel]="item.isToplevel"
+            [isNarrow]="isCollapsed">
           </menu-item>
         </ng-template>
       </expandable-list>

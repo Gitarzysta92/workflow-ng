@@ -65,14 +65,14 @@ export class MainMenuComponent implements OnInit, SidebarItem {
     });
   };
 
-  toggleSubmenuTray(targetItem: ExpandableNavigationItem): void {
+  toggleSubmenuTray(targetItem: ExpandableNavigationItem, state: boolean): void {
     const isNotCollapsed = !this.isCollapsed;
     const isNotTopLevel = !targetItem.isToplevel;
-    if (isNotTopLevel) return;
+    if (isNotTopLevel || isNotCollapsed) return;
 
     this.submenuTitle = targetItem.name;
     this.submenuItems = targetItem.childrens;
-    this._floatingTray.toggle();
+    this._floatingTray.toggle(state);
   }
 
 
