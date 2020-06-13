@@ -7,10 +7,4 @@ ul {
   list-style: none;
   padding: 0;
   overflow: hidden;
-  &.expandable {
-    height: 0;
-    &.expanded {
-      height: auto;
-    }
-  }
 }

@@ -1,45 +1,10 @@
-<div [ngClass]="isCollapsed ? 'container-fluid' : 'container'">
+<div class="container" *ngIf="!isCollapsed">
   <div class="row">
     <div class="col-md-12">
-      <expandable-list onHover [data]="menuItems">
-        <ng-template #listItem let-item>
-          <menu-item 
-            (mouseenter)="toggleSubmenuTray(item, true)"
-            (mouseleave)="toggleSubmenuTray(item, false)"
-            [icon]="item.icon"
-            [label]="item.name" 
-            [path]="item.path" 
-            [isActive]="item.active"
-            [isToplevel]="item.isToplevel"
-            [isNarrow]="isCollapsed">
-          </menu-item>
-        </ng-template>
-      </expandable-list>
+      <list-menu  [items]="menuItems"></list-menu>
     </div>
   </div>
 </div>
 
-<div class="floating-wrapper">
-  <floating-tray #floatingTray class="submenu-container">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="navigation">
-            <h2>{{ submenuTitle }}</h2>
-            <ul>
-              <li *ngFor="let item of submenuItems">
-                <menu-item 
-                  [icon]="item.icon"
-                  [label]="item.name" 
-                  [path]="item.path" 
-                  [isActive]="item.active"
-                  [isToplevel]="item.isToplevel">
-                </menu-item>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </floating-tray>
-</div>
+<floating-menu *ngIf="isCollapsed" [items]="menuItems"></floating-menu>
+

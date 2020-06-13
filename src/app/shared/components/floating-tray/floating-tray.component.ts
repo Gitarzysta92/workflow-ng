@@ -1,11 +1,13 @@
-import { Component, OnInit, HostBinding, HostListener } from '@angular/core';
+import { Component, OnInit, HostBinding, HostListener, ChangeDetectorRef, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Subject, interval, timer, merge } from 'rxjs';
 import { throttle, debounce, multicast, debounceTime, skip, take, skipWhile, takeWhile, filter } from 'rxjs/operators';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'floating-tray',
   templateUrl: './floating-tray.component.html',
   styleUrls: ['./floating-tray.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.extended]' : 'isExtended'
   }
@@ -23,7 +25,11 @@ export class FloatingTrayComponent implements OnInit {
     this._state.next(false);
   }
 
-  constructor() { }
+  @Output() slideout: EventEmitter<void> = new EventEmitter();
+
+  constructor(
+    private readonly _changeDetector: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     this._state
@@ -33,11 +39,14 @@ export class FloatingTrayComponent implements OnInit {
       )),)
       .subscribe(stateValue => {
         this.isExtended = stateValue;
+        this.isExtended === false && this.slideout.next();
+        this._changeDetector.markForCheck();
       })
   }
 
+ 
   public toggle(state?: boolean): void {
-    const newState = state || !this.isExtended;
+    const newState = isNullOrUndefined(state) ? !this.isExtended : state;
     this._state.next(newState);
   }
 

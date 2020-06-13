@@ -1,5 +1,6 @@
-import { Directive, OnInit, Input, OnDestroy, ElementRef } from '@angular/core';
+import { Directive, OnInit, Input, OnDestroy, ElementRef, Output, EventEmitter } from '@angular/core';
 import { AnimationBuilder } from '@angular/animations';
+import { Observable, Subject, merge } from 'rxjs';
 
 
 @Directive({
@@ -9,24 +10,35 @@ import { AnimationBuilder } from '@angular/animations';
 export class Collapsible implements OnInit, OnDestroy  {
 
 
+
+  private _asd: EventEmitter<boolean>;
+
   private _isCollapsed: boolean = false;
   public set isCollapsed(value) {
     if (this.isCollapsed === !!value) return;
 
     this._isCollapsed = !!value;
-    this.isCollapsed ? this.collapse() : this.expand();
+    this._isCollapsed ? this.collapse() : this.expand();
+    this._asd.emit(this.isCollapsed);
   }
 
   public get isCollapsed() {
     return this._isCollapsed 
   }
 
+  @Output() onCollapse: Observable<boolean>;
+
 
   private _collapsed: string = 'collapsed';
 
   constructor(
     private el: ElementRef,
-  ) {}
+  ) {
+    this._asd = new EventEmitter();
+
+    const onSubscribe = new Observable<boolean>(subscriber => subscriber.next(this._isCollapsed));
+    this.onCollapse = merge(onSubscribe, this._asd)
+  }
 
   ngOnInit() { }
 

@@ -12,15 +12,15 @@ import { NavigationModuleRouting } from './navigation.routing';
 import './navigation.registry';
 import { MainMenuComponent } from './components/containers/main-menu/main-menu.component';
 import { MenuItemComponent } from './components/presentational/menu-item/menu-item.component';
-import { MenuWrapperComponent } from './components/presentational/menu-wrapper/menu-wrapper.component';
+import { ListMenuComponent } from './components/presentational/list-menu/list-menu.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FloatingMenuComponent } from './components/containers/floating-menu/floating-menu.component';
+import { FloatingMenuComponent } from './components/presentational/floating-menu/floating-menu.component';
 
 @NgModule({
   declarations: [
     MainMenuComponent,
     MenuItemComponent,
-    MenuWrapperComponent,
+    ListMenuComponent,
     FloatingMenuComponent
   ],
   imports: [
@@ -34,7 +34,6 @@ import { FloatingMenuComponent } from './components/containers/floating-menu/flo
   ], 
   entryComponents: [
     MainMenuComponent,
-    FloatingMenuComponent
   ]
 })
 

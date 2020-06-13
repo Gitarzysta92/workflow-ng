@@ -13,8 +13,8 @@
   border-right: 1px #ededed solid;
   width: $sidebar-width;
   &.collapsed {
-    flex: 0 0 20px;
-    width: 50px;
+    flex: 0 0 60px;
+    width: 60px;
   } 
 }
 
@@ -48,7 +48,7 @@ div[class^="sidebar"] {
   height: 100%;
   &.collapsed {
     flex: 0 0 20px;
-    width: 50px;
+    width: 0px;
   } 
 
 }

@@ -1,0 +1,14 @@
+<expandable-list onHover [data]="items">
+  <ng-template #listItem let-item>
+    <menu-item
+      [icon]="item.icon"
+      [label]="item.name" 
+      [path]="item.path" 
+      [isFocused]="item.settled"
+      [isActive]="item.active"
+      [isToplevel]="item.isToplevel">
+    </menu-item>
+  </ng-template>
+</expandable-list>
+
+

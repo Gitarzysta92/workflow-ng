@@ -12,7 +12,7 @@
           <switch-button [(state)]="sidebarLeft.isCollapsed" ></switch-button>
         </div>
         <ng-container *ngFor="let item of sidebarLeftComponents">
-          <div *inject="item.component; context: { isCollapsed: sidebarLeft.isCollapsed }"></div>
+          <div *inject="item.component; context: { collapsed: sidebarLeft.onCollapse }"></div>
         </ng-container>
       </div>
     </div>

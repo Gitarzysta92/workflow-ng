@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 
 @Component({
-  selector: 'menu-wrapper',
-  templateUrl: './menu-wrapper.component.html',
-  styleUrls: ['./menu-wrapper.component.scss']
+  selector: 'list-menu',
+  templateUrl: './list-menu.component.html',
+  styleUrls: ['./list-menu.component.scss']
 })
-export class MenuWrapperComponent implements OnInit {
+export class ListMenuComponent implements OnInit {
 
  
   @Input() items: Array<any> = [];

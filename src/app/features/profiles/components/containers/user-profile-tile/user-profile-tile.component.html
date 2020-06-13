@@ -3,8 +3,8 @@
     <div class="col-12">
       <div class="avatar"
         [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 300 } }"
-        [style.backgroundImage]="'url('+ fullImagePath +')'" 
-        [style.borderColor]="accentColor">
+        (@fadeOutRight.done)="checkIsReady($event)"
+        [style.backgroundImage]="'url('+ fullImagePath +')'">
       </div>
       <h6 [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 100 } }">Michał Łukasiewicz<br>
         <small>dział graficzny</small>

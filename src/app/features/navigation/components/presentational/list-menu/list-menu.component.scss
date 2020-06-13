@@ -1,0 +1,14 @@
+:host {
+  font-size: .8rem;
+}
+
+
+::ng-deep ul li > ul {
+  padding-left:  26px!important;
+}
+
+
+::ng-deep ul:first-child > li.active {
+  padding-bottom:  15px;
+}
+

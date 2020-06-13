@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators'
 
@@ -7,12 +7,15 @@ import { filter } from 'rxjs/operators'
   selector: 'menu-item',
   templateUrl: './menu-item.component.html',
   styleUrls: ['./menu-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.active]': 'isActive',
-    '[class.top-level]': 'isToplevel'
+    '[class.top-level]': 'isToplevel',
+    '[class.narrow]': 'isNarrow',
+    '[class.focus]': 'isFocused'
   }
 })
-export class MenuItemComponent implements OnInit {
+export class MenuItemComponent implements OnInit, OnChanges{
 
   @Input() label: string = '';
   @Input() path: string = '';
@@ -24,6 +27,10 @@ export class MenuItemComponent implements OnInit {
   @Input() isNarrow: boolean = false;
 
 
+  @Input() isFocused: boolean = false;
+
+
+
   constructor(
     private route: ActivatedRoute,
   ) { }
@@ -31,4 +38,7 @@ export class MenuItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges() {
+    //console.log('asd');
+  }
 }

@@ -1,27 +1,8 @@
-@import '../../../../../../assets/scss/light-scheme.scss';
-@import '../../../../../../assets/scss/dimensions.scss';
-
-
-
 .container {
   padding: 30px;
 }
 
-.submenu-container {
-  color: $text-primary-color-inverted;
-  background-color: $accent-color;
-}
 
-.floating-wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  width: $sidebar-width;
-  height: 100%;
-  z-index: -1
-}
 
-::ng-deep ul li > ul {
-  padding-left:  23px!important;
-}
+
+

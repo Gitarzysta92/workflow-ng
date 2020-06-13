@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuWrapperComponent } from './menu-wrapper.component';
+import { ListMenuComponent } from './list-menu.component';
 
 describe('MenuWrapperComponent', () => {
-  let component: MenuWrapperComponent;
-  let fixture: ComponentFixture<MenuWrapperComponent>;
+  let component: ListMenuComponent;
+  let fixture: ComponentFixture<ListMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuWrapperComponent ]
+      declarations: [ ListMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MenuWrapperComponent);
+    fixture = TestBed.createComponent(ListMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

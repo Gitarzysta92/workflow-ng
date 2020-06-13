@@ -1,12 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, Input, EventEmitter, OnDestroy } from '@angular/core';
 import {
   trigger,
   state,
   style,
   animate,
   transition,
+  AnimationEvent,
   // ...
 } from '@angular/animations';
+import { Observable, Subject, timer } from 'rxjs';
+import { skipUntil, takeUntil, throttle, delay, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile-tile',
@@ -31,7 +34,8 @@ import {
     ]),
     trigger('fadeOutRight', [
       state('visible', style({
-        opacity: 1
+        opacity: 1,
+        transform: 'translate(0)'
       })),
       state('invisible', style({
         opacity: 0,
@@ -81,20 +85,27 @@ import {
   templateUrl: './user-profile-tile.component.html',
   styleUrls: ['./user-profile-tile.component.scss']
 })
-export class UserProfileTileComponent implements OnInit {
+export class UserProfileTileComponent implements OnInit, OnDestroy {
 
   @ViewChild('tile', { static: true }) tile:ElementRef;
-  @Input() isCollapsed: boolean = false;
+  @Input() collapsed: Observable<boolean>;
 
+  public isCollapsed: boolean = false;
+
+  private _isOpenState: EventEmitter<boolean> = new EventEmitter();
+
+  private _isReadyToOpen: Subject<void> = new Subject();
+
+  private _isDestroyed: Subject<void> = new Subject();
 
   @HostListener('mouseenter', ['$event'])
   onMouseEnter(event) {
-    this.isOpen = true;    
+    this._isOpenState.next(true); 
   }
 
   @HostListener('mouseleave', ['$event'])
   onMouseleave(event) {
-    this.isOpen = false;    
+    this._isOpenState.next(false);    
   }
 
   fullImagePath: string;
@@ -112,9 +123,54 @@ export class UserProfileTileComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    //const isReady = this._isReadyToOpen.pipe(delay(1000)).pipe(finalize(() => null));
+
+    let isTimerSetted = false;
+
+
+    const getDelay = () => {
+      const asd = isTimerSetted ? timer(3000) : timer(0);
+      isTimerSetted = false;
+      return asd;
+    } 
+
+
+    const timera = timer(3000);
+
+
+
+    this._isOpenState
+      .pipe(takeUntil(this._isDestroyed))
+      .pipe(throttle(() => getDelay()))
+      //.pipe(skipUntil(timer(3000)))
+      //.pipe(skipUntil(this._isReadyToOpen))
+      .subscribe(value => {
+        console.log(value);
+        this.isOpen = value;
+      });
+    
+
+
+    this.collapsed
+      .subscribe(value => {
+        this.isCollapsed = value;
+        isTimerSetted = true;
+      });
     
     //console.log(this.gridView.collapse());
     //console.log(this.tile.onmouseover());
+  }
+
+  ngOnDestroy() {
+    this._isDestroyed.next();
+  }
+
+  checkIsReady(event: AnimationEvent) {
+    if (event.fromState === 'void' && event.toState === 'visible') {
+      //this._isReadyToOpen.next();
+    }
+    //console.log(event);
   }
 
 }

@@ -1,0 +1,70 @@
+@import '../../../../../../assets/scss/light-scheme.scss';
+@import '../../../../../../assets/scss/dimensions.scss';
+
+ul {
+  list-style: none;
+  margin-top: 30px;
+  padding: 0;
+  li {
+    position: relative;
+    display: block;
+    height: auto;
+
+    &.no-background {
+      menu-item { background: transparent; }
+    }
+
+    .depth-order {
+      position: relative;
+      z-index: 20;
+    }
+
+    .animated-background {
+      position: absolute;
+      display: block;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      height: 100%;
+      transform: scale(1, 1.2);
+      background-color: $accent-color;
+    }
+
+    &:not(.no-background) .animated-background {
+      background-color: transparent;
+    }
+
+  }
+}
+
+.submenu-container {
+  color: $text-primary-color-inverted;
+  background-color: $accent-color;
+}
+
+.floating-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: $sidebar-width;
+  height: 100%;
+  z-index: -1
+}
+
+
+.navigation {
+  padding: 40px 20px;
+  color: $text-primary-color-inverted;
+
+  ul {
+    font-size: 1.2em;
+  }
+
+  h2 {
+    font-size: 2.5em;
+  }
+}
+
+
+

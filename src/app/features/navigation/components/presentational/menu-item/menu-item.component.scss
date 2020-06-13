@@ -4,9 +4,15 @@
   display: block;
   width: 100%;
   padding: 0;
+  margin: 0;
   font-weight: 300;
+  cursor: pointer;
+  transition: transform ease-in-out .2s;
+  //transition: background-color ease-in-out .2s;
+
+
   &.active {
-    font-weight: 500;
+    font-weight: 600;
     i { 
       opacity: 1;
       color: $accent-color;
@@ -14,12 +20,36 @@
   }
 
   &.top-level {
-    font-size: 1rem;
+    font-size: 1.4em;
     padding-bottom: 5px;
   }
 
   &:not(.top-level) {
-    font-size: 0.7rem;
+    font-size: 1em;
+  }
+
+  &.narrow {
+    text-align: center; 
+    height: 45px;
+    line-height: 45px;
+    transform: scale(1, 1);
+
+    i {
+      font-size: 1.4em;
+      padding: 0;
+      opacity: 1;
+      transition: transform ease-in-out .2s;
+    }
+
+    &.focus {
+      background-color: $accent-color;
+      transform: scale(1, 1.2);
+      i { 
+        color: $text-primary-color-inverted;
+        transform: scale(1, 0.85);
+      }
+    }
+    
   }
 
   i {
@@ -27,9 +57,14 @@
     padding-right: 10px;
     opacity: 0.5;
   }
+  a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
 
   i, a {
-    color: $text-primary-color;
+    color: inherit;
     vertical-align: middle;
   }
 

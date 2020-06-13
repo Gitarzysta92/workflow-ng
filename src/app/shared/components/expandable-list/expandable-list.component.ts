@@ -1,11 +1,20 @@
  import { Component, OnInit, ContentChild, TemplateRef, Input } from '@angular/core';
  import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ExpandableNavigationItem } from 'src/app/features/navigation/components/containers/main-menu/main-menu.component';
+import { trigger, style, state, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'expandable-list',
   templateUrl: './expandable-list.component.html',
-  styleUrls: ['./expandable-list.component.scss']
+  styleUrls: ['./expandable-list.component.scss'],
+  animations: [
+    trigger('expandHeight', [
+      state('expanded', style({ height: '*' })),
+      state('collapsed', style({ height: '0' })),
+      transition('expanded => collapsed', [ animate('0.1s ease-in-out') ]),
+      transition('collapsed => expanded', [ animate('0.1s ease-in-out') ]), 
+    ])
+  ]
 })
 export class ExpandableListComponent implements OnInit {
 
@@ -24,6 +33,9 @@ export class ExpandableListComponent implements OnInit {
 
   ngOnInit() {
     if (Array.isArray(this.data)) this.dataForView = this.data;
+
+
+
   }
 
   public toggleItem(event: Event, item: ExpandableListItem, state?: boolean): void {

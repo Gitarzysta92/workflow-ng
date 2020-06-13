@@ -1,5 +1,5 @@
 
 <a [routerLink]="path">
   <i *ngIf="!!icon" class="{{ icon }}"></i>
-  <span *ngIf="!isNarrow">{{ label }}</span>
+  {{ !!label ? label : '' }}
 </a>

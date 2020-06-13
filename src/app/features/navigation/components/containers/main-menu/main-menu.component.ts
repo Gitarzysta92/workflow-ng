@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators'
 
@@ -7,9 +7,10 @@ import { NavigationItem } from 'src/app/features/navigation/models/navigation-it
 import { NavigationRegistryService } from 'src/app/features/navigation/services/naviagtion-registry.service';
 import { ExpandableListItem } from 'src/app/shared/components/expandable-list/expandable-list.component';
 import { FloatingTrayComponent } from 'src/app/shared/components/floating-tray/floating-tray.component';
+import { Observable } from 'rxjs';
 
 interface SidebarItem {
-  isCollapsed: boolean;
+  collapsed: Observable<boolean>;
 }
 
 
@@ -17,77 +18,82 @@ interface SidebarItem {
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
-  styleUrls: ['./main-menu.component.scss']
-
+  styleUrls: ['./main-menu.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainMenuComponent implements OnInit, SidebarItem {
+export class MainMenuComponent implements OnInit, SidebarItem, OnChanges {
 
-  @ViewChild('floatingTray', { static : true}) _floatingTray: FloatingTrayComponent;
-
-  @Input() isCollapsed: boolean = false;
+  @Input() collapsed: Observable<boolean>;
   
-  menuItems: Array<ExpandableNavigationItem> = [];
-
-  submenuTitle: string;
-  submenuItems: Array<ExpandableNavigationItem> = [];
+  public menuItems: Array<ExpandableNavigationItem> = [];
+  public isCollapsed: boolean = false;
   
   constructor(
     private readonly _navigationRegistry: NavigationRegistryService,
     private readonly _route: ActivatedRoute,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _changeDetector: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.menuItems = this._navigationRegistry.getItems() as Array<ExpandableNavigationItem>;
-    const parentAbsPath = this.getPrimaryOutletAbsPath();
+    const parentAbsPath = this._getPrimaryOutletAbsPath();
 
-    this.menuItems = this.menuItems.map(item => Object.assign(item, { isToplevel: true }))
+    this._setTopLevelItems();
+    this._setItemsUrlFormat(parentAbsPath);
 
-    this.menuItems = this.recursiveWalker(this.menuItems, 'childrens', item => {
-      item.path = [parentAbsPath, ...item.path.split('/')]
-      item.url = this._router.parseUrl(item.path.join('/'))
-      return new ExpandableNavigationItem(item)
-    });
 
     this.setActiveItems();
     this._router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
+      .subscribe(() => {
         this.setActiveItems();
-      })
+      });
+
+    this.collapsed
+      .subscribe(value => {
+        this.setActiveItems();
+        this.isCollapsed = value;
+        this._changeDetector.markForCheck();
+      });
   }
 
-  setActiveItems() {
-    this.recursiveWalker(this.menuItems, 'childrens', item => {
+  public ngOnChanges(changes: SimpleChanges) {
+    //console.log(changes);
+  }
+
+  public setActiveItems() {
+    this._recursiveWalker(this.menuItems, 'childrens', item => {
       item.active = this._router.isActive(item.url, false);
       return item;
     });
+    this._changeDetector.markForCheck();
   };
 
-  toggleSubmenuTray(targetItem: ExpandableNavigationItem, state: boolean): void {
-    const isNotCollapsed = !this.isCollapsed;
-    const isNotTopLevel = !targetItem.isToplevel;
-    if (isNotTopLevel || isNotCollapsed) return;
 
-    this.submenuTitle = targetItem.name;
-    this.submenuItems = targetItem.childrens;
-    this._floatingTray.toggle(state);
+  private _setTopLevelItems(): void {
+    this.menuItems = this.menuItems.map(item => Object.assign(item, { isToplevel: true }));
   }
 
+  private _setItemsUrlFormat(parentAbsPath: string): void {
+    this.menuItems = this._recursiveWalker(this.menuItems, 'childrens', item => {
+      item.path = [parentAbsPath, ...item.path.split('/')];
+      item.url = this._router.parseUrl(item.path.join('/'));
+      return new ExpandableNavigationItem(item);
+    });
+  }
 
-  recursiveWalker(items, key, callback) {
+  
+  private _recursiveWalker(items, key, callback) {
     if (!Array.isArray(items)) return;
     return items.map(item => {
-      item.hasOwnProperty(key) && (item[key] = this.recursiveWalker(item[key], key, callback));
+      item.hasOwnProperty(key) && (item[key] = this._recursiveWalker(item[key], key, callback));
       return callback(item)
     });
   }
 
-
-
-
-  getPrimaryOutletAbsPath() {
+  private _getPrimaryOutletAbsPath() {
     const routes = this._route.pathFromRoot;
     const fragments = [];
 
