@@ -9,7 +9,7 @@ import {
   // ...
 } from '@angular/animations';
 import { Observable, Subject, timer } from 'rxjs';
-import { skipUntil, takeUntil, throttle, delay, finalize } from 'rxjs/operators';
+import { skipUntil, takeUntil, throttle, delay, finalize, auditTime, audit } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile-tile',
@@ -94,8 +94,6 @@ export class UserProfileTileComponent implements OnInit, OnDestroy {
 
   private _isOpenState: EventEmitter<boolean> = new EventEmitter();
 
-  private _isReadyToOpen: Subject<void> = new Subject();
-
   private _isDestroyed: Subject<void> = new Subject();
 
   @HostListener('mouseenter', ['$event'])
@@ -124,53 +122,29 @@ export class UserProfileTileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    //const isReady = this._isReadyToOpen.pipe(delay(1000)).pipe(finalize(() => null));
-
-    let isTimerSetted = false;
+    //this.isOpen = true;
 
 
-    const getDelay = () => {
-      const asd = isTimerSetted ? timer(3000) : timer(0);
-      isTimerSetted = false;
-      return asd;
-    } 
-
-
-    const timera = timer(3000);
-
-
-
-    this._isOpenState
-      .pipe(takeUntil(this._isDestroyed))
-      .pipe(throttle(() => getDelay()))
-      //.pipe(skipUntil(timer(3000)))
-      //.pipe(skipUntil(this._isReadyToOpen))
-      .subscribe(value => {
-        console.log(value);
-        this.isOpen = value;
-      });
-    
-
+    let delayTime = 250;
 
     this.collapsed
       .subscribe(value => {
         this.isCollapsed = value;
-        isTimerSetted = true;
+        //delayTime = 210;
       });
-    
-    //console.log(this.gridView.collapse());
-    //console.log(this.tile.onmouseover());
+
+    this._isOpenState
+      .pipe(takeUntil(this._isDestroyed))
+      .pipe(audit(() => timer(delayTime)))
+      .subscribe(value => {
+        //delayTime = 0;
+        this.isOpen = value;
+      });
+        
   }
 
   ngOnDestroy() {
     this._isDestroyed.next();
-  }
-
-  checkIsReady(event: AnimationEvent) {
-    if (event.fromState === 'void' && event.toState === 'visible') {
-      //this._isReadyToOpen.next();
-    }
-    //console.log(event);
   }
 
 }

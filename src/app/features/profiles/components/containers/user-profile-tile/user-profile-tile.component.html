@@ -1,33 +1,52 @@
 <div #tile *ngIf="!isCollapsed" class="container tile" [@inOutAnimation]>
   <div class="row">
     <div class="col-12">
-      <div class="avatar"
-        [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 300 } }"
-        (@fadeOutRight.done)="checkIsReady($event)"
-        [style.backgroundImage]="'url('+ fullImagePath +')'">
+      <div class="avatar-wrapper">
+        <div class="avatar"
+          [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 300 } }"
+          [style.backgroundImage]="'url('+ fullImagePath +')'">
+        </div>
+        <h6 [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 100 } }">Michał Łukasiewicz<br>
+          <small>dział graficzny</small>
+        </h6>
       </div>
-      <h6 [@fadeOutRight]="{ value: isOpen ? 'invisible' : 'visible',  params: { delay: 100 } }">Michał Łukasiewicz<br>
-        <small>dział graficzny</small>
-      </h6>
       <div class="layer" [class.active]="isOpen" >
-        <div class="row">
-          <div class="col-4">
-            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 500 } }">asasdasd</div> 
-          </div>
-          <div class="col-4">
-            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 550 } }">asasdasd</div> 
-          </div>
-          <div class="col-4">
-            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 600 } }">asasdasd</div> 
-          </div>
-          <div class="col-4">
-            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 650 } }">asasdasd</div> 
-          </div>
-          <div class="col-4">
-            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 700 } }">asasdasd</div> 
-          </div>
-          <div class="col-4">
-            <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 750 } }">asasdasd</div> 
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 500 } }">
+                <div class="menu-item">
+                  <i class="far fa-user-circle"></i>
+                </div>
+              </div> 
+            </div>
+            <div class="col-6">
+              <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 550 } }">
+                <div class="menu-item">
+                  <i class="far fa-bell"></i>
+                </div>
+              </div> 
+            </div>
+            <div class="col-6">
+              <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 600 } }">
+                <div class="menu-item">
+                  <i class="fas fa-sliders-h"></i>
+                </div>
+              </div> 
+            </div>
+            <div class="col-6">
+              <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 650 } }">
+                <div class="menu-item">
+                  <i class="fas fa-sign-out-alt"></i>
+                </div>
+              </div> 
+            </div>
+            <!-- <div class="col-4">
+              <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 700 } }">asasdasd</div> 
+            </div>
+            <div class="col-4">
+              <div [@fadeOutTop]="{ value: isOpen ? 'visible' : 'invisible',  params: { delay: 750 } }">asasdasd</div> 
+            </div> -->
           </div>
         </div>
       </div>

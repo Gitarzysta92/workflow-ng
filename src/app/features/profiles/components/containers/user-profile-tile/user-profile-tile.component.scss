@@ -4,7 +4,8 @@
   position: relative;
   transition: height ease-in-out .2s;
   display: block;
-  height: 230px;
+  height: 210px;
+  overflow: hidden;
   cursor: pointer;
   &.collapsed {
     height:50px;
@@ -49,9 +50,19 @@
 
 .tile {
   position: relative;
+  height: 100%;
   z-index: 100;
-  padding: 30px 20px 30px 30px;
+  padding: 20px;
   white-space: nowrap;
+
+  .avatar-wrapper {
+    padding-left: 10px;
+  }
+
+  .row {
+    height: 100%;
+  }
+
   h6 {
     font-weight: 800;
   }
@@ -62,11 +73,33 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    margin: 0 -12px;
     opacity: 0;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    height: 100%;
+
+
     &.active {
       z-index: 1000;
       opacity: 1;
+    }
+
+    .menu-item {
+      text-align: center;
+      color: $text-primary-color-inverted;
+      font-size: 3em;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      transition: transform ease-in-out .2s;
+      transform: scale(1);
+
+      &:hover {
+        transform: scale(1.2);
+        //background-color: #fff;
+        //color: $accent-color;
+      }
+
     }
   }
 }
