@@ -36,7 +36,7 @@ import { ActivitiesModule } from './features/activities/activities.module';
 
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
-import { SidebarViewComponent } from './core/components/sidebar-view/sidebar-view.component';
+
 
 
 
@@ -51,7 +51,6 @@ import { SidebarViewComponent } from './core/components/sidebar-view/sidebar-vie
     EntryViewComponent,
     UnauthViewComponent,
     InitializationComponent,
-    SidebarViewComponent
   ],
   imports: [
     BrowserModule,

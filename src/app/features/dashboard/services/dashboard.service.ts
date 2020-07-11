@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { DashboardTiles } from './dashboards-items';
-import { DashboardTile } from '../models/DashboardTile';
+import { DashboardTile } from '../models/dashboard-tile';
 
 @Injectable({
   providedIn: 'root'

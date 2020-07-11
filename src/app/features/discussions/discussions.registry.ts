@@ -10,11 +10,11 @@ import { DiscussionWidgetComponent } from './components/containers/discussion-wi
 
 
 // declare navigation paths
-SharedRegistry.addRecordFor(Archive.DynamicComponents, {
-  name: 'User profile tile',
-  path: '**',
-  target: TypeOfInsertionPoint.dashboardTile,
-  position: 4,
-  component: DiscussionWidgetComponent
-});
+// SharedRegistry.addRecordFor(Archive.DynamicComponents, {
+//   name: 'User profile tile',
+//   path: '**',
+//   target: TypeOfInsertionPoint.dashboardTile,
+//   position: 4,
+//   component: DiscussionWidgetComponent
+// });
 

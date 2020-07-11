@@ -1,5 +1,14 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, Renderer2, ComponentRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef,Renderer2 } from '@angular/core';
 import { slideInAnimation } from 'src/app/shared/animations/animations';
+import { DynamicComponentsRegistryService, InsertionQuery } from 'src/app/core/services/dynamic-components-registry/dynamic-components-registry.service';
+
+
+export interface DashboardTileButton {
+  discussionId: number;
+  activityId: number;
+  authorId: number;
+}
+
 
 @Component({
   selector: 'dashboard-tile',
@@ -26,8 +35,8 @@ export class DashboardTileComponent implements OnInit {
   @Input() backgroundColor: string = '#f6f6f6';
 
   // structural
-  @Input() insertionSpotLeft: ComponentRef<any>;
-  @Input() insertionSpotRight: ComponentRef<any>;
+  public insertionSpotLeft: Component;
+  public insertionSpotRight: Component;
 
 
   // host element reference
@@ -35,12 +44,21 @@ export class DashboardTileComponent implements OnInit {
 
   constructor(
     private readonly _ref: ElementRef,
-    private readonly _rendered: Renderer2
+    private readonly _rendered: Renderer2,
+    private readonly _dynamicComponentsService: DynamicComponentsRegistryService
   ) {
     this._element = _ref.nativeElement;
   }
 
   ngOnInit() {
+    const inputs: Array<keyof DashboardTileButton> = [ 'discussionId', 'activityId', 'authorId' ];
+    const query: InsertionQuery = { inputs };
+    const components = this._dynamicComponentsService.getItems(query);
+
+    console.log(components);
+
+    components[0] && (this.insertionSpotLeft = components[0].component);
+    components[1] && (this.insertionSpotRight = components[1].component);
     this._setElementStyle('background-color', this.backgroundColor);
     this._setElementStyle('width', this._getWidthClassName(this.size));
   }

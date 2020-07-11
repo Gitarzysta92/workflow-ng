@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Registry, Archive } from '@workflow/registry';
 import { DynamicComponent } from '../../models/dynamic-component';
-import { TypeOfInsertionPoint } from 'src/app/app';
+import { isNullOrUndefined } from 'util';
 
+export type InsertionQuery = Partial<DynamicComponentRecord>;
+
+
+export interface DynamicComponentRecord {
+  name: string,
+  inputs: Array<string>,
+  component: Function
+}
 
 @Injectable({ providedIn: 'root' })
 @Registry(Archive.DynamicComponents)
@@ -20,8 +28,35 @@ export class DynamicComponentsRegistryService {
     return this._archive.find(item => item.target === insertionSpot);
   }
 
-  public getItems(insertionSpot: TypeOfInsertionPoint): Array<DynamicComponent> {
-    const filteredItems = this._archive.filter(item => item.target === insertionSpot);
+  public getItems(query: InsertionQuery | TypeOfInsertionPoint): Array<DynamicComponent> {
+    let filteredItems = [];
+    
+    if (typeof query === 'object') {
+      filteredItems = this._archive.filter(item => {
+        const keys = Object.keys(query);
+        let isMatches = false;
+
+        keys.forEach(key => {
+          if (isNullOrUndefined(item[key])) return;
+          const queryPropValue = query[key];
+          const itemPropValue = item[key]; 
+
+          if (Array.isArray(itemPropValue))
+            isMatches = this._compareArrays(queryPropValue, itemPropValue);
+
+          if (typeof itemPropValue === 'string')
+            isMatches = (queryPropValue === itemPropValue);
+          
+        });
+
+        return isMatches;
+      });
+      
+    } else {
+      const insertionSpot = query;
+      filteredItems = this._archive.filter(item => item.target === insertionSpot);
+    }
+
     return this._sortItemsDescending(filteredItems);
   }
 
@@ -29,4 +64,19 @@ export class DynamicComponentsRegistryService {
     return items.sort((first, second) => first.position - second.position);
   }
 
+  private _compareArrays(firstArr: Array<any>, secondArr: Array<any>): boolean {
+    if (!Array.isArray(firstArr) || !Array.isArray(secondArr)) return;
+    const notMatched = firstArr.filter(firstItem => !!secondArr.find(secondItem => firstItem === secondItem));
+    return notMatched.length === 0;
+  }
+
 }
+
+
+
+export enum TypeOfInsertionPoint {
+  sidebarRight,
+  sidebarLeft,
+  dashboardTile
+}
+

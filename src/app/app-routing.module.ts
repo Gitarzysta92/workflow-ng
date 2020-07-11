@@ -8,7 +8,7 @@ import { AuthGuard } from './core/services/auth-guard/auth-guard.service';
 import { AppViewComponent } from './core/components/app-view/app-view.component';
 import { UnauthViewComponent } from './core/components/unauth-view/unauth-view.component';
 import { InitializationComponent } from './core/components/initialization/initialization.component';
-import { SidebarViewComponent } from './core/components/sidebar-view/sidebar-view.component';
+
 
 // Load modules routes
 import { ActivitesRoutes } from './features/activities/activities.routing';

@@ -17,10 +17,17 @@ SharedRegistry.addRecordFor(Archive.Navigation, {
 })
 
 // Register component in sidebar
-SharedRegistry.addRecordFor(Archive.DynamicComponents, {
-  name: 'User profile tile',
-  path: '**',
-  target: TypeOfInsertionPoint.sidebarLeft,
-  position: 4,
-  component: UserProfileTileComponent
-})
+SharedRegistry.addRecordsFor(Archive.DynamicComponents, [
+  {
+    name: 'User profile tile',
+    target: TypeOfInsertionPoint.sidebarLeft,
+    position: 4,
+    component: UserProfileTileComponent
+  },
+  // {
+  //   name: 'User profile shorcut',
+  //   target: TypeOfInsertionPoint.dashboardTile,
+  //   position: 1,
+  //   component: 
+  // }
+])

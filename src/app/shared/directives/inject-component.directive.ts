@@ -1,4 +1,4 @@
-import { ViewRef, Directive, Input, ViewContainerRef, TemplateRef, ComponentFactoryResolver, Injector, InjectDecorator, OnDestroy, Component, ComponentRef } from '@angular/core';
+import { ViewRef, Directive, Input, ViewContainerRef, TemplateRef, ComponentFactoryResolver, Injector, InjectDecorator, OnDestroy, Component, ComponentRef, ElementRef, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[inject]'
@@ -8,10 +8,13 @@ export class InjectComponentDirective implements OnDestroy {
   private _component: ComponentRef<any>;
 
   constructor(
+    private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
     private readonly componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
   ) { }
+
+
 
 
   @Input() set inject(component) {

@@ -49,7 +49,6 @@ export class AppViewComponent implements OnInit {
     this.sidebarLeftComponents = this._dynamicComponents.getItems(TypeOfInsertionPoint.sidebarLeft);
 
 
-    console.log(this.sidebarLeftComponents)
 
     const asd = JSON.parse(sessionStorage.getItem('routingHistory'));
 
@@ -102,8 +101,6 @@ export class AppViewComponent implements OnInit {
   }
 
   update(event) {
-    
-    console.log(event);
     setTimeout(() => { this.trigger = null },0)
   }
 

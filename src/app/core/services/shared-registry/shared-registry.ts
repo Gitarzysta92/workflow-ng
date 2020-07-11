@@ -23,13 +23,13 @@ export class SharedRegistry {
   }
 
   // Add new record to registry 
-  public static addRecordFor(registryName: TypeOfRegistry, recordData: any): void {
+  public static addRecordFor<T>(registryName: TypeOfRegistry, recordData: T): void {
     if (registryName == null || recordData == null) return;
     this._addRecordFor(registryName , recordData);
   }
 
   // Add multiple new records to registry
-  public static addRecordsFor(registryName: TypeOfRegistry, data: Array<any>): void {
+  public static addRecordsFor<T>(registryName: TypeOfRegistry, data: Array<T>): void {
     if (registryName == null || !Array.isArray(data)) return;
     data.forEach(record => this._addRecordFor(registryName, record));
   }

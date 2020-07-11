@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../../../services/dashboard.service';
-import { DashboardTile } from '../../../../models/DashboardTile';
+import { DashboardTile } from '../../../../models/dashboard-tile';
 
 
 
