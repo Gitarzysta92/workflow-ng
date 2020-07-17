@@ -10,6 +10,7 @@ export class DynamicComponent {
   position: number;
   component: Component;
   target: TypeOfInsertionPoint;
+  inputs: Array<string>;
 
   constructor(data) {
     this.name = data.name;
@@ -18,5 +19,6 @@ export class DynamicComponent {
     this.target = data.target;
     this.position = data.position;
     this.component = data.component;
+    this.inputs = data.inputs;
   }
 }

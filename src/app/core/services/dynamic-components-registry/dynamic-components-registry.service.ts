@@ -66,7 +66,7 @@ export class DynamicComponentsRegistryService {
 
   private _compareArrays(firstArr: Array<any>, secondArr: Array<any>): boolean {
     if (!Array.isArray(firstArr) || !Array.isArray(secondArr)) return;
-    const notMatched = firstArr.filter(firstItem => !!secondArr.find(secondItem => firstItem === secondItem));
+    const notMatched = firstArr.filter(firstItem => !secondArr.find(secondItem => firstItem === secondItem));
     return notMatched.length === 0;
   }
 

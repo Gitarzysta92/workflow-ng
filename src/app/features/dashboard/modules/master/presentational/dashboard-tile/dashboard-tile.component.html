@@ -7,8 +7,8 @@
     <p>{{ excerpt }}...</p>
   </tile-body>
   <tile-footer>
-    <div class="row no-gutters h-100">
-      <div class="col-6 h-100">
+    <div class="row no-gutters h-100 insertion-spots-wrapper">
+      <div class="col-6 h-100 ">
         <ng-container *inject="insertionSpotLeft; context: { discussionId: id, activityId: id, authorId: id }" ></ng-container>
       </div>
       <div class="col-6 h-100">

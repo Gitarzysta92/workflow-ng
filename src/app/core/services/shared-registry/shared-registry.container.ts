@@ -26,6 +26,7 @@ export class SharedRegistryContainer {
   // Add single registry record
   public addRecord(recordData): void {
     if (recordData == null) return;
+    
     const newRecord = new this._recordModel(recordData);
     this._table.push(newRecord);
   }
@@ -43,6 +44,7 @@ export class SharedRegistryContainer {
  export class RegistryRecord {
   assignedRegistryName: TypeOfRegistry;
   constructor(assignedRegistryName, data) {
+  
     this.assignedRegistryName = assignedRegistryName;
     this.initializeProperties(data);
   }
