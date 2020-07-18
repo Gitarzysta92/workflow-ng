@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DashboardTileButton } from '../../../../../features/dashboard/models/injection-spots';
+import { DashboardTileButton } from '../../../../features/dashboard/models/injection-spots';
 import { DynamicComponent } from 'src/app/core/services/dynamic-components-registry/dynamic-component.decorator';
 
 
