@@ -3,3 +3,13 @@
 </button>
 
 <div class=""></div>
+
+
+<div *ngIf="isHovered" class="comments-tray">
+  <div class="comments-wrapper">
+
+  </div>
+  <div class="comment-input">
+    <input [(ngModel)]="newComment" type="text" formControlName="">
+  </div>
+</div>

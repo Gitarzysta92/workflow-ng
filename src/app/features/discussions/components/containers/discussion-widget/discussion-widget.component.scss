@@ -13,7 +13,7 @@
     width: 15px;
     height: 15px;
     border-radius: 15px;
-    background-color: $text-primary-color;
+    background-color: $text-secondary-color;
     color: #fff;
     margin: 10px;
     line-height: 15px;
@@ -24,4 +24,13 @@
   &:hover .circle {
     background-color: $accent-color;
   }
+}
+
+
+.comments-tray {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
 }

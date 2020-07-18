@@ -36,6 +36,7 @@ import { ActivitiesModule } from './features/activities/activities.module';
 
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -53,6 +54,7 @@ import { AppModuleRouting } from './app-routing.module';
     InitializationComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppModuleRouting,

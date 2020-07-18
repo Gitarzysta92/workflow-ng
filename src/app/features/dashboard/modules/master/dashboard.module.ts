@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { DashboardModuleRouting } from './dashboard-routing.module';
 
 import { SharedModule } from 'src/app/shared/shared.module';
-import { DashboardMasterComponent } from './containers/dashboard-master/dashboard-master.component';
-import { DashboardTileComponent } from './presentational/dashboard-tile/dashboard-tile.component';
-import { NewestActivitiesComponent } from './presentational/newest-activities/newest-activities.component';
-import { PinnedActivitiesComponent } from './presentational/pinned-activities/pinned-activities.component';
-import { DashboardTopBarComponent } from './presentational/dashboard-top-bar/dashboard-top-bar.component';
+import { DashboardMasterComponent } from '../../components/containers/dashboard-master/dashboard-master.component';
+import { DashboardTileComponent } from '../../components/presentational/dashboard-tile/dashboard-tile.component';
+import { NewestActivitiesComponent } from '../../components/presentational/newest-activities/newest-activities.component';
+import { PinnedActivitiesComponent } from '../../components/presentational/pinned-activities/pinned-activities.component';
+import { DashboardTopBarComponent } from '../../components/presentational/dashboard-top-bar/dashboard-top-bar.component';
+
 
 
 

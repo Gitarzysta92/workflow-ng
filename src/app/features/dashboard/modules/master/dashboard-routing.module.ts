@@ -1,7 +1,7 @@
 // imports components
-import { DashboardMasterComponent } from './containers/dashboard-master/dashboard-master.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DashboardMasterComponent } from '../../components/containers/dashboard-master/dashboard-master.component';
 
 // declare routes
 const routes = [

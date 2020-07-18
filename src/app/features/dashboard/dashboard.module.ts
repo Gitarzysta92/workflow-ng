@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 // import components
 import './dashboard.registry';
 import { DiscussionModule } from '../discussions/modules/discussion/discussion.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { DiscussionModule } from '../discussions/modules/discussion/discussion.m
   ],
   imports: [
     CommonModule,
+    FormsModule
   ],
   entryComponents: [
 

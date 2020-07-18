@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DashboardTileButton } from 'src/app/features/dashboard/modules/master/presentational/dashboard-tile/dashboard-tile.component';
+import { DashboardTileButton } from '../../../../../features/dashboard/models/injection-spots';
 import { DynamicComponent } from 'src/app/core/services/dynamic-components-registry/dynamic-component.decorator';
 
 
@@ -22,10 +22,16 @@ export class DiscussionWidgetComponent implements OnInit, DashboardTileButton  {
   @Input() authorId: number;
 
   public commentsNumber: string = '';
+  public isHovered: boolean = true;
+
+  public newComment: string = '';
 
   constructor() { }
 
   ngOnInit() {
+
+
+
     this.commentsNumber = `${discussionModel.numberOfComments}`;
   }
 

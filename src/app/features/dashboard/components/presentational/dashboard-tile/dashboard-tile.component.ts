@@ -1,13 +1,8 @@
 import { Component, OnInit, Input, ElementRef,Renderer2 } from '@angular/core';
 import { slideInAnimation } from 'src/app/shared/animations/animations';
 import { DynamicComponentsRegistryService, InsertionQuery } from 'src/app/core/services/dynamic-components-registry/dynamic-components-registry.service';
+import { DashboardTileButton } from '../../../models/injection-spots';
 
-
-export interface DashboardTileButton {
-  discussionId: number;
-  activityId: number;
-  authorId: number;
-}
 
 
 @Component({
