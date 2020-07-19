@@ -15,4 +15,4 @@ const routes = [
   providers: []
 })
 
-export class DashboardModuleRouting {}
+export class DashboardMasterModuleRouting {}

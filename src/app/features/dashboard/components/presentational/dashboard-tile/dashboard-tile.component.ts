@@ -6,7 +6,7 @@ import { DashboardTileButton } from '../../../models/injection-spots';
 
 
 @Component({
-  selector: 'dashboard-tile',
+  selector: '[dashboard-tile]',
   templateUrl: './dashboard-tile.component.html',
   styleUrls: ['./dashboard-tile.component.scss'],
   host: { '[class]': 'widthClass' },

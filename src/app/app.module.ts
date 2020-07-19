@@ -37,6 +37,8 @@ import { ActivitiesModule } from './features/activities/activities.module';
 // imports top level routing module
 import { AppModuleRouting } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 
 
@@ -63,7 +65,8 @@ import { FormsModule } from '@angular/forms';
     ProfilesModule,
     DashboardModule,
     DiscussionsModule,
-    ActivitiesModule
+    ActivitiesModule,
+    NgScrollbarModule
     // UserProfileModule,
     // DynamicOutletsModule,
   ],
